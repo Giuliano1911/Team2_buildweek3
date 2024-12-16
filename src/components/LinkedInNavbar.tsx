@@ -9,6 +9,13 @@ import {
 } from 'react-bootstrap'
 import Logo from '../assets/LinkedIn Logo.png'
 import ProfileImg from '../assets/Generic profile.png'
+import SearchIcon from '../assets/Search Icon.png'
+import HomeIcon from '../assets/Home Icon.png'
+import WebIcon from '../assets/Web Icon.png'
+import JobIcon from '../assets/Job Icon.png'
+import MessageIcon from '../assets/Message Icon.png'
+import NotificationIcon from '../assets/Notification Icon.png'
+import FirmIcon from '../assets/Firm Icon.png'
 import Profile from '../types/Profile'
 import { useEffect, useState } from 'react'
 
@@ -52,55 +59,172 @@ const LinkedInNavbar = ({
                     width="30"
                     height="30"
                     className="d-inline-block align-top "
-                    alt="React Bootstrap logo"
+                    alt="LinkedIn Logo"
                   />
                 </Navbar.Brand>
-                <Form className="my-auto">
+                <Form className="my-auto d-none d-lg-block">
                   <Row>
-                    <Col xs="auto" className="p-0 m-1">
+                    <Col xs="auto" className="p-0 m-1 position-relative">
+                      <img
+                        src={SearchIcon}
+                        width="15"
+                        height="15"
+                        className="position-absolute top-50 start-0 translate-middle-y ms-3"
+                        alt="Search Icon"
+                      />
                       <Form.Control
                         type="text"
                         placeholder="Cerca"
-                        className="py-1 px-4 m-0 border-0 bg-body-secondary"
+                        className="py-1 m-0 border-0 bg-body-secondary ps-5 d-none d-lg-block"
                       />
                     </Col>
                   </Row>
                 </Form>
               </div>
-              <div className="d-flex">
-                <Nav className="me-auto">
-                  <Nav.Link href="#home">Home</Nav.Link>
-                  <Nav.Link href="#rete">Rete</Nav.Link>
-                  <Nav.Link href="#lavoro">Lavoro</Nav.Link>
-                  <Nav.Link href="#messaggistica">Messaggistica</Nav.Link>
-                  <Nav.Link href="#notifiche">Notifiche</Nav.Link>
+              <div className="d-flex flex-grow-1 justify-content-end me-lg-auto">
+                <Nav className="d-flex flex-row justify-content-evenly w-100 justify-content-lg-end">
+                  <Nav.Link href="#home">
+                    <div className="d-flex flex-column align-items-center">
+                      <img
+                        src={HomeIcon}
+                        height="20"
+                        className=""
+                        alt="Home Icon"
+                      />
+                      <p className="m-0 d-none d-lg-block">Home</p>
+                    </div>
+                  </Nav.Link>
+                  <Nav.Link href="#rete">
+                    <div className="d-flex flex-column align-items-center">
+                      <img
+                        src={WebIcon}
+                        height="20"
+                        className=""
+                        alt="Web Icon"
+                      />
+                      <p className="m-0 d-none d-lg-block">Rete</p>
+                    </div>
+                  </Nav.Link>
+                  <Nav.Link href="#lavoro">
+                    <div className="d-flex flex-column align-items-center">
+                      <img
+                        src={JobIcon}
+                        height="20"
+                        className=""
+                        alt="Job Icon"
+                      />
+                      <p className="m-0 d-none d-lg-block">Lavoro</p>
+                    </div>
+                  </Nav.Link>
+                  <Nav.Link href="#messaggistica">
+                    <div className="d-flex flex-column align-items-center">
+                      <img
+                        src={MessageIcon}
+                        height="20"
+                        className=""
+                        alt="Message Icon"
+                      />
+                      <p className="m-0 d-none d-lg-block">Messaggistica</p>
+                    </div>
+                  </Nav.Link>
+                  <Nav.Link href="#notifiche">
+                    <div className="d-flex flex-column align-items-center">
+                      <img
+                        src={NotificationIcon}
+                        height="20"
+                        className=""
+                        alt="Notification Icon"
+                      />
+                      <p className="m-0 d-none d-lg-block">Notifiche</p>
+                    </div>
+                  </Nav.Link>
                   <NavDropdown
                     title={
-                      <>
-                        <img
-                          src={ProfileImg}
-                          width="30"
-                          height="30"
-                          className="d-inline-block align-top"
-                          alt="Profile"
-                        />{' '}
-                        Tu
-                      </>
+                      <div className="d-flex flex-column align-items-center">
+                        {!isError && !isLoading ? (
+                          <img
+                            src={profile.image}
+                            width="20"
+                            height="20"
+                            className="d-inline-block align-top rounded-circle"
+                            alt="Profile"
+                          />
+                        ) : (
+                          <img
+                            src={ProfileImg}
+                            width="20"
+                            height="20"
+                            className="d-inline-block align-top"
+                            alt="Profile"
+                          />
+                        )}
+
+                        <div className="d-flex align-items-center d-none d-lg-block">
+                          Tu
+                        </div>
+                      </div>
                     }
                     id="basic-nav-dropdown"
                   >
-                    <NavDropdown.Item href="#action/3.1">
-                      <div className="d-flex">
-                        <img
-                          src={ProfileImg}
-                          width="80"
-                          height="80"
-                          className="d-inline-block align-top rounded-circle"
-                          alt="Profile"
-                        />
-                        <p>Name - Last name</p>
-                      </div>
-                    </NavDropdown.Item>
+                    {!isError && !isLoading ? (
+                      <>
+                        <NavDropdown.Item href="#action/3.1">
+                          <div className="d-flex">
+                            <img
+                              src={profile.image}
+                              width="80"
+                              height="80"
+                              className="d-inline-block align-top rounded-circle"
+                              alt="Profile"
+                            />
+                            <p>
+                              {profile.name} {profile.surname}
+                            </p>
+                          </div>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">
+                          Another action
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">
+                          Something
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">
+                          Esci
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.4">
+                          Post e attività
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.4">
+                          Esci
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">
+                          Esci
+                        </NavDropdown.Item>
+                      </>
+                    ) : null}
+                  </NavDropdown>
+
+                  <NavDropdown
+                    title={
+                      <>
+                        <div className="d-flex flex-column align-items-center">
+                          <img
+                            src={FirmIcon}
+                            width="20"
+                            height="20"
+                            className="d-inline-block align-top "
+                            alt="Profile"
+                          />
+                          Per le aziende
+                        </div>
+                      </>
+                    }
+                    id="basic-nav-dropdown"
+                    className="d-none d-lg-block"
+                  >
+                    <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
                       Another action
                     </NavDropdown.Item>

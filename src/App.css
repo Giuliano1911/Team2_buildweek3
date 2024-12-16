@@ -1,0 +1,7 @@
+.navbar-second {
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
+}
+.navbar-second.show {
+  transform: translateY(0);
+}

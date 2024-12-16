@@ -1,8 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import SideBar from "./components/SideBar";
 
 function App() {
-  return <></>
+  return (
+    <>
+      <SideBar />
+    </>
+  );
 }
 
-export default App
+export default App;

@@ -120,7 +120,7 @@ const LinkedInNavbar = () => {
       </Navbar>
       <Navbar
         expand="lg"
-        className={`navbar-second d-flex w-100 bg-body-tertiary shadow-sm fixed-top ${
+        className={`navbar-second d-flex w-100 bg-body-tertiary shadow-sm fixed-top z-0 ${
           showSecondNavbar ? 'show' : ''
         }`}
       >

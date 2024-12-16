@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import LinkedInNavbar from './components/LinkedInNavbar'
 
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { useEffect, useState } from 'react'
@@ -8,6 +7,7 @@ import { useEffect, useState } from 'react'
 import Profile from './types/Profile'
 import NotFound from './components/NotFound'
 import ProfilePage from './components/ProfilePage'
+import LinkedInNavbar from './components/LinkedInNavbar'
 
 function App() {
   const APIKEY =
@@ -47,6 +47,12 @@ function App() {
 
   return (
     <BrowserRouter>
+      <LinkedInNavbar
+        profile={profile!}
+        isLoading={isLoading}
+        isError={isError}
+      />
+
       <Routes>
         <Route
           path="/"

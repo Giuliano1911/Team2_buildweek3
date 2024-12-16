@@ -8,10 +8,21 @@ import {
   Form,
 } from 'react-bootstrap'
 import Logo from '../assets/LinkedIn Logo.png'
-import Profile from '../assets/Generic profile.png'
+import ProfileImg from '../assets/Generic profile.png'
+import Profile from '../types/Profile'
 import { useEffect, useState } from 'react'
 
-const LinkedInNavbar = () => {
+interface LinkedInNavbarPops {
+  profile: Profile
+  isLoading: boolean
+  isError: boolean
+}
+
+const LinkedInNavbar = ({
+  profile,
+  isLoading,
+  isError,
+}: LinkedInNavbarPops) => {
   const [showSecondNavbar, setShowSecondNavbar] = useState(false)
   useEffect(() => {
     const handleScroll = () => {
@@ -67,7 +78,7 @@ const LinkedInNavbar = () => {
                     title={
                       <>
                         <img
-                          src={Profile}
+                          src={ProfileImg}
                           width="30"
                           height="30"
                           className="d-inline-block align-top"
@@ -81,7 +92,7 @@ const LinkedInNavbar = () => {
                     <NavDropdown.Item href="#action/3.1">
                       <div className="d-flex">
                         <img
-                          src={Profile}
+                          src={ProfileImg}
                           width="80"
                           height="80"
                           className="d-inline-block align-top rounded-circle"

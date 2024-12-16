@@ -1,16 +1,24 @@
-const SidebarPersonalProfiles = () => {
+import Profile from '../types/Profile'
+
+interface SidebarPersonalProfilesProps {
+  p: Profile
+}
+
+const SidebarPersonalProfiles = ({ p }: SidebarPersonalProfilesProps) => {
   return (
     <>
       <div>
         <div className="d-flex align-items-start">
           <img
             className=" rounded-5 custom-sidebar-profilePicSize "
-            src="src/assets/image/profile-pic.jpg"
+            src={p.image}
             alt="profile-pic"
           />
           <div>
-            <h5 className=" ms-2">Giulio Marinelli</h5>
-            <p className="ms-2">Full Stack & AI Developer ❤️...</p>
+            <h5 className=" ms-2">
+              {p.name} {p.surname}
+            </h5>
+            <p className="ms-2">{p.title}</p>
             <button className="custom-sidebar-profiles-buttons">
               🔗 Collegati
             </button>
@@ -19,7 +27,7 @@ const SidebarPersonalProfiles = () => {
       </div>
       <hr />
     </>
-  );
-};
+  )
+}
 
-export default SidebarPersonalProfiles;
+export default SidebarPersonalProfiles

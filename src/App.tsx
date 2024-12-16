@@ -11,7 +11,7 @@ import LinkedInNavbar from './components/LinkedInNavbar'
 
 function App() {
   const APIKEY =
-    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVmZWIxZjBlYTI4NjAwMTUyOGI5MzIiLCJpYXQiOjE3MzQzNDM1NzgsImV4cCI6MTczNTU1MzE3OH0.v7lEVOe2QDdJlK5ak5I4FmtNPgqcmd8kXKzCk7W8hCc'
+    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVmZWI5YTBlYTI4NjAwMTUyOGI5MzMiLCJpYXQiOjE3MzQzMzk0ODMsImV4cCI6MTczNTU0OTA4M30.8FVQXQEJDpi6FMcQ05hTBgRDTzAWcis88nWJx_ksQWw'
 
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)

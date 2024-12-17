@@ -1,10 +1,76 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import HeroSection from './components/Hero'
+
+import { BrowserRouter, Route, Routes } from 'react-router'
+import { useEffect, useState } from 'react'
+
+import Profile from './types/Profile'
+import NotFound from './components/NotFound'
+import ProfilePage from './components/ProfilePage'
+import LinkedInNavbar from './components/LinkedInNavbar'
+
 function App() {
-  return <>
-  <HeroSection />
-  </>
+  const APIKEY =
+    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVmZWI5YTBlYTI4NjAwMTUyOGI5MzMiLCJpYXQiOjE3MzQzMzk0ODMsImV4cCI6MTczNTU0OTA4M30.8FVQXQEJDpi6FMcQ05hTBgRDTzAWcis88nWJx_ksQWw'
+
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isError, setIsError] = useState<boolean>(false)
+
+  const getProfile = async () => {
+    fetch('https://striveschool-api.herokuapp.com/api/profile/me', {
+      headers: {
+        Authorization: APIKEY,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error('no ok')
+        }
+      })
+      .then((data: Profile) => {
+        console.log(data)
+        setProfile(data)
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        setIsError(true)
+        console.log(error)
+      })
+  }
+
+  useEffect(() => {
+    getProfile()
+  }, [])
+
+  return (
+    <BrowserRouter>
+      <LinkedInNavbar
+        profile={profile!}
+        isLoading={isLoading}
+        isError={isError}
+      />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProfilePage
+              profile={profile!}
+              isLoading={isLoading}
+              isError={isError}
+              APIKEY={APIKEY}
+              p
+            />
+          }
+        />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App

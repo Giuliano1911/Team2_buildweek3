@@ -20,7 +20,7 @@ const ExperienceMod = ({
 
   const putExperiences = async () => {
     fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${profile._id}/experiences`,
+      `https://striveschool-api.herokuapp.com/api/profile/${profileid}/experiences/${mod?._id}`,
       {
         method: 'PUT',
         body: JSON.stringify(mod),

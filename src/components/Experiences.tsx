@@ -15,6 +15,15 @@ interface ExperiencesProps {
   APIKEY: string
 }
 
+interface InitialState {
+  role: string
+  company: string
+  startDate: string
+  endDate: string
+  description: string
+  area: string
+}
+
 const InitialAddState = {
   role: '',
   company: '',
@@ -32,14 +41,14 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
   const [isModified, setIsModified] = useState<boolean>(false)
   const [mod, setMod] = useState<Experience | null>(null)
   const [isAdd, setIsAdd] = useState<boolean>(false)
-  const [add, setAdd] = useState<Experience>(InitialAddState)
+  const [add, setAdd] = useState<InitialState>(InitialAddState)
 
   // 6694d5f8196d7b0015d6b525
   // ${profile._id}
 
   const getExperiences = async () => {
     fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/6694d5f8196d7b0015d6b525/experiences`,
+      `https://striveschool-api.herokuapp.com/api/profile/${profile._id}/experiences`,
       {
         headers: {
           Authorization: APIKEY,

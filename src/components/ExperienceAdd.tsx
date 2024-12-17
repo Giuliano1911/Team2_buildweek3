@@ -1,11 +1,19 @@
 import { Button, Card, Form } from 'react-bootstrap'
-import Experience from '../types/Experience'
 
 interface ExperienceAddProps {
-  setAdd: React.Dispatch<React.SetStateAction<Experience>>
-  add: Experience | null
+  setAdd: React.Dispatch<React.SetStateAction<InitialState>>
+  add: InitialState
   profileid: string
   APIKEY: string
+}
+
+interface InitialState {
+  role: string
+  company: string
+  startDate: string
+  endDate: string
+  description: string
+  area: string
 }
 
 const ExperienceAdd = ({
@@ -50,7 +58,7 @@ const ExperienceAdd = ({
           <Form.Label>Ruolo</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Di cosa ti occupavi?"
+            placeholder="Posizione lavorativa"
             required
             value={add!.role}
             onChange={(e) => setAdd({ ...add!, role: e.target.value })}
@@ -60,7 +68,7 @@ const ExperienceAdd = ({
           <Form.Label>Azienda</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Azienda?"
+            placeholder="Azienda"
             required
             value={add!.company}
             onChange={(e) => setAdd({ ...add!, company: e.target.value })}
@@ -69,7 +77,7 @@ const ExperienceAdd = ({
         <Form.Group className="mb-3">
           <Form.Label>Data Inizio</Form.Label>
           <Form.Control
-            type="datetime-local"
+            type="date"
             placeholder="Inizio lavoro"
             required
             value={add!.startDate}
@@ -79,7 +87,7 @@ const ExperienceAdd = ({
         <Form.Group className="mb-3">
           <Form.Label>Data Fine</Form.Label>
           <Form.Control
-            type="datetime-local"
+            type="date"
             placeholder="Fine Lavoro"
             value={add!.endDate}
             onChange={(e) => setAdd({ ...add!, endDate: e.target.value })}

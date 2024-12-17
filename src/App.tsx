@@ -10,6 +10,8 @@ import NotFound from './components/NotFound'
 import ProfilePage from './components/ProfilePage'
 import LinkedInNavbar from './components/LinkedInNavbar'
 import HomePage from './components/HomePage'
+import Jobs from './components/Jobs'
+import Job from './types/Job'
 
 function App() {
   const APIKEY =
@@ -18,6 +20,9 @@ function App() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
+
+  const [jobs, setJobs] = useState<Job[] | null>(null)
+  const [search, setSearch] = useState<string>('s')
 
   const getProfile = async () => {
     fetch('https://striveschool-api.herokuapp.com/api/profile/me', {
@@ -53,6 +58,7 @@ function App() {
         profile={profile!}
         isLoading={isLoading}
         isError={isError}
+        setSearch={setSearch}
       />
 
       <Routes>
@@ -67,7 +73,6 @@ function App() {
             />
           }
         />
-
         <Route
           path="/homepage"
           element={
@@ -76,6 +81,17 @@ function App() {
               isLoading={isLoading}
               isError={isError}
               APIKEY={APIKEY}
+            />
+          }
+        />
+        <Route
+          path="/jobs"
+          element={
+            <Jobs
+              APIKEY={APIKEY}
+              setJobs={setJobs}
+              search={search}
+              jobs={jobs}
             />
           }
         />

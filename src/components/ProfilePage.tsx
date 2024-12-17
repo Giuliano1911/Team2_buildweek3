@@ -6,7 +6,7 @@ import HeroSection from './Hero'
 import FooterSection from './footer'
 import ConsigliatiSection from './ConsigliatoSection'
 
-interface ProfilePagePops {
+interface ProfilePageProps {
   profile: Profile
   isLoading: boolean
   isError: boolean
@@ -18,7 +18,7 @@ const ProfilePage = ({
   isLoading,
   isError,
   APIKEY,
-}: ProfilePagePops) => {
+}: ProfilePageProps) => {
   return (
     <Container fluid>
       <Row className=" justify-content-center">

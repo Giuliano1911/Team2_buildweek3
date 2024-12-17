@@ -43,3 +43,23 @@ body {
 .dropdown-toggle::after {
   display: none;
 }
+
+.margin-sidebar-custom {
+  margin-left: 10px;
+}
+
+.buttonSidebar-mostraAltro {
+  padding: 5px 0px;
+  background-color: white;
+  border: none;
+  border-top: 1px solid gray;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  font-weight: 600;
+  color: rgb(60, 60, 60);
+}
+
+.buttonSidebar-mostraAltro:hover {
+  background-color: #e8e8e8;
+  color: black;
+}

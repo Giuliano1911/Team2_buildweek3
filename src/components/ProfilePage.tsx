@@ -28,7 +28,9 @@ const ProfilePage = ({
                 isLoading={isLoading}
                 isError={isError}
               />
-              <Experiences />
+              {!isError && !isLoading && (
+                <Experiences profile={profile} APIKEY={APIKEY} />
+              )}
             </Col>
             <Col xs={12} lg={4}>
               <SideBar APIKEY={APIKEY} />

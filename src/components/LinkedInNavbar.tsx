@@ -24,12 +24,14 @@ interface LinkedInNavbarProps {
   profile: Profile
   isLoading: boolean
   isError: boolean
+  setSearch: React.Dispatch<React.SetStateAction<string>>
 }
 
 const LinkedInNavbar = ({
   profile,
   isLoading,
   isError,
+  setSearch,
 }: LinkedInNavbarProps) => {
   const [showSecondNavbar, setShowSecondNavbar] = useState(false)
   useEffect(() => {

@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "boostrap": "^2.0.0",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "dom": "^0.0.3",
+    "icons": "^1.0.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.7",
+    "react-bootstrap-icons": "^1.11.5",
     "react-dom": "^18.3.1",
+    "react-multi-carousel": "^2.8.5",
     "react-router": "^7.0.2"
   },
   "devDependencies": {

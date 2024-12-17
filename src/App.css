@@ -42,6 +42,155 @@ body {
 
 .dropdown-toggle::after {
   display: none;
+  padding: none !important;
+}
+.premium {
+  color: #9f5903;
+}
+
+@media (min-width: 992px) {
+  #basic-nav-dropdown {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .dropdown-menu {
+    transform: translateX(+40px) !important;
+  }
+}
+
+.dropdown-menu {
+  width: 260px;
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-top: 10px !important;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-primary {
+  font-size: 0.8rem;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: transparent;
+  color: #0a66c2;
+  border-color: #0a66c2;
+  border-width: 1px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #ebf4fd;
+  border-color: #004182;
+  color: #004182;
+  border-width: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.btn-outline-dark {
+  font-size: 0.8rem;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: transparent;
+  color: #000000bf;
+  border-color: #000000;
+  border-width: 1px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-outline-dark:hover {
+  background-color: #0000000c;
+  border-color: #000000;
+  color: #000000;
+  border-width: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.btn-primary {
+  font-size: 0.8rem;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: #0a66c2;
+
+  color: #ffffff;
+  border-color: #0a66c2;
+  border-width: 1px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-primary:hover {
+  background-color: #004182;
+  border-color: #004182;
+  color: #ffffff;
+  border-width: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.bi-square-fill {
+  color: #9f5903;
+}
+
+.navbar .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -230px;
+  right: 0;
+}
+
+.myButton {
+  background-color: transparent;
+  height: 24px;
+  border-radius: 42px;
+  border: 1px dashed #124d77;
+  display: flex;
+  cursor: pointer;
+  color: #524ff7;
+  font-family: Arial;
+  font-size: 14px;
+  margin: 0px 0px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #154682;
+}
+.myButton:hover {
+  background-color: #ebf4fd;
+}
+.myButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.navbar-second {
+  top: 50px;
+}
+
+.icons {
+  opacity: 60%;
+  transition: 0.3s;
+}
+
+.icons:hover {
+  opacity: 100%;
+}
+
+.home {
+  text-decoration: none !important;
 }
 
 .margin-sidebar-custom {

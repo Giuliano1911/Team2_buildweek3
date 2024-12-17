@@ -257,7 +257,7 @@ const LinkedInNavbar = ({
                                   <p>{profile.title}</p>
                                 </div>
                               </div>
-                              <button className="btn-primary w-100 my-2 fw-semibold rounded-5">
+                              <button className="btn-outline-primary w-100 my-2 fw-semibold rounded-5">
                                 Visualizza profilo
                               </button>
                             </NavDropdown.Item>

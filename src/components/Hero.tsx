@@ -1,10 +1,16 @@
-import React from 'react'
+import Profile from '../types/Profile'
 
-const HeroSection: React.FC = () => {
+interface HeroProps {
+  profile: Profile
+  isLoading: boolean
+  isError: boolean
+}
+
+const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
   return (
-    <div className="container my-5">
+    <div className="container mb-5">
       <div className="row justify-content-center">
-        <div className="col-9">
+        <div>
           <div className="card position-relative">
             <div className="mb-3">
               {' '}
@@ -39,15 +45,14 @@ const HeroSection: React.FC = () => {
                 <h3 className="card-title fw-bold mb-1">Luca Capasso</h3>
                 <a
                   href="#"
-                  class=" ms-3 myButton ps-2 pe-2 align-self-center d-flex"
+                  className=" ms-3 myButton ps-2 pe-2 align-self-center d-flex"
                 >
                   <svg
-                    className=" align-self-center me-2"
+                    className="align-self-center me-2 bi bi-patch-check"
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
                     height="18"
                     fill="currentColor"
-                    class="bi bi-patch-check"
                     viewBox="0 0 16 16"
                   >
                     <path

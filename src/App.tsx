@@ -62,9 +62,11 @@ function App() {
               isLoading={isLoading}
               isError={isError}
               APIKEY={APIKEY}
+              p
             />
           }
         />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

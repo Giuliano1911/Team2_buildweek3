@@ -8,7 +8,7 @@ import {
   Form,
   Button,
 } from 'react-bootstrap'
-import Logo from '../assets/Logo.png'
+import Logo from '../assets/LinkedIn Logo.png'
 import ProfileImg from '../assets/Generic profile.png'
 import SearchIcon from '../assets/Search Icon.png'
 import HomeIcon from '../assets/Home Icon.png'
@@ -137,63 +137,69 @@ const LinkedInNavbar = ({
                         </div>
                       </Nav.Link>
                       <Nav.Link href="#home" className="my-auto p-0 pt-1">
-                        <div className="d-flex flex-grow-1 flex-column align-items-center">
+                        <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={HomeIcon}
                             height="20"
                             className="mx-lg-4 px-2"
                             alt="Home Icon"
                           />
-                          <p className="m-0 d-none d-lg-block mt-1">Home</p>
+                          <p className="m-0 d-none text-dark d-lg-block mt-1">
+                            Home
+                          </p>
                         </div>
                       </Nav.Link>
                       <Nav.Link href="#rete" className="my-auto p-0 pt-1">
-                        <div className="d-flex flex-grow-1 flex-column align-items-center">
+                        <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={WebIcon}
                             height="20"
                             className="mx-lg-4 px-2"
                             alt="Web Icon"
                           />
-                          <p className="m-0 d-none d-lg-block mt-1">Rete</p>
+                          <p className="m-0 d-none text-dark d-lg-block mt-1">
+                            Rete
+                          </p>
                         </div>
                       </Nav.Link>
                       <Nav.Link href="#lavoro" className="my-auto p-0 pt-1">
-                        <div className="d-flex flex-grow-1 flex-column align-items-center">
+                        <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={JobIcon}
                             height="20"
                             className="mx-lg-4 px-2"
                             alt="Job Icon"
                           />
-                          <p className="m-0 d-none d-lg-block mt-1">Lavoro</p>
+                          <p className="m-0 d-none text-dark d-lg-block mt-1">
+                            Lavoro
+                          </p>
                         </div>
                       </Nav.Link>
                       <Nav.Link
                         href="#messaggistica"
                         className="my-auto p-0 pt-1"
                       >
-                        <div className="d-flex flex-grow-1 flex-column align-items-center">
+                        <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={MessageIcon}
                             height="20"
                             className="mx-lg-4 px-2"
                             alt="Message Icon"
                           />
-                          <p className="m-0 d-none d-lg-block mt-1">
+                          <p className="m-0 d-none text-dark d-lg-block mt-1">
                             Messaggistica
                           </p>
                         </div>
                       </Nav.Link>
                       <Nav.Link href="#notifiche" className="my-auto p-0 pt-1">
-                        <div className="d-flex flex-grow-1 flex-column align-items-center">
+                        <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={NotificationIcon}
                             height="20"
                             className="mx-lg-4 px-2"
                             alt="Notification Icon"
                           />
-                          <p className="m-0 d-none d-lg-block mt-1">
+                          <p className="m-0 d-none text-dark d-lg-block mt-1">
                             Notifiche
                           </p>
                         </div>
@@ -219,7 +225,7 @@ const LinkedInNavbar = ({
                               />
                             )}
 
-                            <div className="d-flex align-items-center d-none d-lg-block mt-1">
+                            <div className="icons d-flex text dark align-items-center d-none d-lg-block mt-1">
                               Tu
                               <span className="ms-1 dropdown-caret">
                                 <i className="bi bi-caret-down-fill"></i>
@@ -251,9 +257,9 @@ const LinkedInNavbar = ({
                                   <p>{profile.title}</p>
                                 </div>
                               </div>
-                              <Button className=" z-1 btn-outline-primary text-primary w-100 my-2 fw-semibold rounded-5">
+                              <button className="btn-primary w-100 my-2 fw-semibold rounded-5">
                                 Visualizza profilo
-                              </Button>
+                              </button>
                             </NavDropdown.Item>
                             <NavDropdown.Divider className="my-0" />
                             <NavDropdown.Item
@@ -310,7 +316,7 @@ const LinkedInNavbar = ({
                   <NavDropdown
                     title={
                       <>
-                        <div className="d-flex flex-column align-items-center p-0">
+                        <div className="icons d-flex flex-column align-items-center p-0">
                           <img
                             src={FirmIcon}
                             width="20"
@@ -318,7 +324,7 @@ const LinkedInNavbar = ({
                             className="d-inline-block align-top"
                             alt="Profile"
                           />
-                          <div className="d-flex align-items-center d-none d-lg-block mt-1">
+                          <div className="d-flex text-dark align-items-center d-none d-lg-block mt-1">
                             Per le aziende
                             <span className="ms-1 dropdown-caret">
                               <i className="bi bi-caret-down-fill"></i>
@@ -359,7 +365,7 @@ const LinkedInNavbar = ({
       {!isError && !isLoading ? (
         <Navbar
           expand="lg"
-          className={`navbar-second d-flex w-100 bg-body-tertiary d-none d-lg-block shadow-sm fixed-top z-1 ${
+          className={`navbar-second d-flex w-100 bg-body-tertiary d-none pb-0 d-lg-block shadow-sm fixed-top z-1 ${
             showSecondNavbar ? 'show' : ''
           }`}
         >
@@ -376,12 +382,23 @@ const LinkedInNavbar = ({
                       alt="Profile"
                     />
                   </Navbar.Brand>
-                  <div className="">
+                  <div className="my-auto">
                     <p className="fs-6 fw-semibold mb-0">
                       {profile.name} {profile.surname}
                     </p>
                     <p className="mb-0">{profile.title}</p>
                   </div>
+                </div>
+                <div className="d-flex ">
+                  <button className="btn btn-outline-dark fs-6 my-2 ms-2 fw-semibold rounded-5">
+                    Risorse
+                  </button>
+                  <button className="btn-outline-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                    Aggiungi sezione del profilo
+                  </button>
+                  <button className="btn-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                    Disponibile per
+                  </button>
                 </div>
               </Col>
             </Row>

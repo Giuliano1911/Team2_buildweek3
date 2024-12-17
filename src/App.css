@@ -1,5 +1,9 @@
 .navbar {
-  font-size: small;
+  font-size: 0.7rem;
+}
+
+.textform {
+  font-size: 0.8rem;
 }
 
 .navbar-second {
@@ -8,4 +12,8 @@
 }
 .navbar-second.show {
   transform: translateY(0);
+}
+
+.dropdown-toggle::after {
+  display: none;
 }

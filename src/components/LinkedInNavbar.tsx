@@ -7,7 +7,7 @@ import {
   Col,
   Form,
 } from 'react-bootstrap'
-import Logo from '../assets/LinkedIn Logo.png'
+import Logo from '../assets/Logo.png'
 import ProfileImg from '../assets/Generic profile.png'
 import SearchIcon from '../assets/Search Icon.png'
 import HomeIcon from '../assets/Home Icon.png'
@@ -47,7 +47,7 @@ const LinkedInNavbar = ({
     <>
       <Navbar
         expand="lg"
-        className="d-flex w-100 bg-body-tertiary shadow-sm fixed-top z-1 "
+        className="d-flex w-100 bg-body-tertiary shadow-sm fixed-top z-1 py-0"
       >
         <Container fluid className="mx-0 ">
           <Row className="d-flex flex-grow-1 w-100 justify-content-center">
@@ -56,9 +56,9 @@ const LinkedInNavbar = ({
                 <Navbar.Brand href="#home" className="my-auto">
                   <img
                     src={Logo}
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top "
+                    width="35"
+                    height="35"
+                    className="d-inline-block align-top rounded-1"
                     alt="LinkedIn Logo"
                   />
                 </Navbar.Brand>
@@ -75,7 +75,7 @@ const LinkedInNavbar = ({
                       <Form.Control
                         type="text"
                         placeholder="Cerca"
-                        className="py-1 m-0 border-0 bg-body-secondary ps-5 d-none d-lg-block"
+                        className="textform py-2 m-0 border-0 bg-body-secondary px-5 d-none d-lg-block"
                       />
                     </Col>
                   </Row>
@@ -83,70 +83,72 @@ const LinkedInNavbar = ({
               </div>
               <div className="d-flex flex-grow-1 justify-content-end me-lg-auto">
                 <Nav className="d-flex flex-row justify-content-evenly w-100 justify-content-lg-end">
-                  <Nav.Link href="#home">
+                  <Nav.Link href="#home" className="my-auto p-0">
                     <div className="d-flex flex-column align-items-center">
                       <img
                         src={HomeIcon}
                         height="20"
-                        className=""
+                        className="mx-4 px-2"
                         alt="Home Icon"
                       />
-                      <p className="m-0 d-none d-lg-block">Home</p>
+                      <p className="m-0 d-none d-lg-block mt-1">Home</p>
                     </div>
                   </Nav.Link>
-                  <Nav.Link href="#rete">
+                  <Nav.Link href="#rete" className="my-auto p-0">
                     <div className="d-flex flex-column align-items-center">
                       <img
                         src={WebIcon}
                         height="20"
-                        className=""
+                        className="mx-4 px-2"
                         alt="Web Icon"
                       />
-                      <p className="m-0 d-none d-lg-block">Rete</p>
+                      <p className="m-0 d-none d-lg-block mt-1">Rete</p>
                     </div>
                   </Nav.Link>
-                  <Nav.Link href="#lavoro">
+                  <Nav.Link href="#lavoro" className="my-auto p-0">
                     <div className="d-flex flex-column align-items-center">
                       <img
                         src={JobIcon}
                         height="20"
-                        className=""
+                        className="mx-4 px-2"
                         alt="Job Icon"
                       />
-                      <p className="m-0 d-none d-lg-block">Lavoro</p>
+                      <p className="m-0 d-none d-lg-block mt-1">Lavoro</p>
                     </div>
                   </Nav.Link>
-                  <Nav.Link href="#messaggistica">
+                  <Nav.Link href="#messaggistica" className="my-auto p-0">
                     <div className="d-flex flex-column align-items-center">
                       <img
                         src={MessageIcon}
                         height="20"
-                        className=""
+                        className="mx-4 px-2"
                         alt="Message Icon"
                       />
-                      <p className="m-0 d-none d-lg-block">Messaggistica</p>
+                      <p className="m-0 d-none d-lg-block mt-1">
+                        Messaggistica
+                      </p>
                     </div>
                   </Nav.Link>
-                  <Nav.Link href="#notifiche">
+                  <Nav.Link href="#notifiche" className="my-auto p-0">
                     <div className="d-flex flex-column align-items-center">
                       <img
                         src={NotificationIcon}
                         height="20"
-                        className=""
+                        className="mx-4 px-2"
                         alt="Notification Icon"
                       />
-                      <p className="m-0 d-none d-lg-block">Notifiche</p>
+                      <p className="m-0 d-none d-lg-block mt-1">Notifiche</p>
                     </div>
                   </Nav.Link>
                   <NavDropdown
                     title={
-                      <div className="d-flex flex-column align-items-center">
+                      <div className="d-flex flex-column align-items-center p-0">
                         {!isError && !isLoading ? (
                           <img
                             src={profile.image}
                             width="20"
                             height="20"
-                            className="d-inline-block align-top rounded-circle"
+                            className="d-inline-block align-top rounded-circle mx-4"
                             alt="Profile"
                           />
                         ) : (
@@ -154,17 +156,18 @@ const LinkedInNavbar = ({
                             src={ProfileImg}
                             width="20"
                             height="20"
-                            className="d-inline-block align-top"
+                            className="d-inline-block align-top mx-4"
                             alt="Profile"
                           />
                         )}
 
-                        <div className="d-flex align-items-center d-none d-lg-block">
+                        <div className="d-flex align-items-center d-none d-lg-block mt-1">
                           Tu
                         </div>
                       </div>
                     }
                     id="basic-nav-dropdown"
+                    className="dropdown-toggle-no-caret my-auto p-0"
                   >
                     {!isError && !isLoading ? (
                       <>
@@ -209,20 +212,22 @@ const LinkedInNavbar = ({
                   <NavDropdown
                     title={
                       <>
-                        <div className="d-flex flex-column align-items-center">
+                        <div className="d-flex flex-column align-items-center p-0">
                           <img
                             src={FirmIcon}
                             width="20"
                             height="20"
-                            className="d-inline-block align-top "
+                            className="d-inline-block align-top"
                             alt="Profile"
                           />
-                          Per le aziende
+                          <div className="d-flex align-items-center d-none d-lg-block mt-1">
+                            Per le aziende
+                          </div>
                         </div>
                       </>
                     }
                     id="basic-nav-dropdown"
-                    className="d-none d-lg-block"
+                    className="d-none d-lg-block my-auto p-0"
                   >
                     <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
@@ -244,9 +249,9 @@ const LinkedInNavbar = ({
 
                 <a
                   href=""
-                  className="text-danger-emphasis d-block text-center d-none d-lg-block"
+                  className="text-danger-emphasis d-block text-center d-none d-lg-block my-auto"
                 >
-                  Prova Premium per 0 <span className="d-block">EUR</span>
+                  Prova Premium per 0 <span className="d-block px-5">EUR</span>
                 </a>
               </div>
             </Col>

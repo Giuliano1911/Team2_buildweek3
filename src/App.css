@@ -72,11 +72,13 @@ body {
   padding-top: 2px;
   padding-bottom: 2px;
   background-color: transparent;
+  color: #205993 !important;
+  border-color: #205993;
 }
 
 .dropdown-menu .btn-primary:hover {
-  background-color: #ebf1ff;
-  border-color: #362a92;
+  background-color: #ebf4fd;
+  border-color: #004182;
   border-width: 2px;
   padding: 1px;
 }
@@ -112,4 +114,8 @@ body {
 .myButton:active {
   position: relative;
   top: 1px;
+}
+
+.navbar-second {
+  top: 50px;
 }

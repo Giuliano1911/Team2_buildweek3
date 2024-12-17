@@ -30,7 +30,6 @@ const ProfilePage = ({
                 isLoading={isLoading}
                 isError={isError}
               />
-              <Experiences />
               {!isError && !isLoading && (
                 <Experiences profile={profile} APIKEY={APIKEY} />
               )}

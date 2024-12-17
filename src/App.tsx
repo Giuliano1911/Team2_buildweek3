@@ -63,7 +63,6 @@ function App() {
               isLoading={isLoading}
               isError={isError}
               APIKEY={APIKEY}
-              p
             />
           }
         />

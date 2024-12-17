@@ -3,6 +3,8 @@ import Profile from '../types/Profile'
 import SideBar from './SideBar'
 import Experiences from './Experiences'
 import HeroSection from './Hero'
+import FooterSection from './footer'
+import ConsigliatiSection from './ConsigliatoSection'
 
 interface ProfilePagePops {
   profile: Profile
@@ -28,6 +30,7 @@ const ProfilePage = ({
                 isLoading={isLoading}
                 isError={isError}
               />
+              <ConsigliatiSection />
               <Experiences />
             </Col>
             <Col xs={12} lg={4}>
@@ -36,6 +39,7 @@ const ProfilePage = ({
           </Row>
         </Col>
       </Row>
+      <FooterSection />
     </Container>
   )
 }

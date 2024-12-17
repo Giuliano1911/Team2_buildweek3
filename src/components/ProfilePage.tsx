@@ -1,5 +1,6 @@
 import { Col, Container, Row } from 'react-bootstrap'
 import Profile from '../types/Profile'
+import SideBar from './SideBar'
 
 interface ProfilePagePops {
   profile: Profile
@@ -17,7 +18,9 @@ const ProfilePage = ({
   return (
     <Container fluid>
       <Row>
-        <Col xs={12} lg={10}></Col>
+        <Col xs={12} lg={10} className=" mt-5">
+          <SideBar APIKEY={APIKEY} />
+        </Col>
       </Row>
     </Container>
   )

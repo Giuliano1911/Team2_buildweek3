@@ -3,8 +3,10 @@ import Profile from '../types/Profile'
 import SideBar from './SideBar'
 import Experiences from './Experiences'
 import HeroSection from './Hero'
+import FooterSection from './footer'
+import ConsigliatiSection from './ConsigliatoSection'
 
-interface ProfilePagePops {
+interface ProfilePageProps {
   profile: Profile
   isLoading: boolean
   isError: boolean
@@ -16,7 +18,7 @@ const ProfilePage = ({
   isLoading,
   isError,
   APIKEY,
-}: ProfilePagePops) => {
+}: ProfilePageProps) => {
   return (
     <Container fluid>
       <Row className=" justify-content-center">
@@ -28,9 +30,11 @@ const ProfilePage = ({
                 isLoading={isLoading}
                 isError={isError}
               />
+              <Experiences />
               {!isError && !isLoading && (
                 <Experiences profile={profile} APIKEY={APIKEY} />
               )}
+              <ConsigliatiSection />
             </Col>
             <Col xs={12} lg={4}>
               <SideBar APIKEY={APIKEY} />
@@ -38,6 +42,7 @@ const ProfilePage = ({
           </Row>
         </Col>
       </Row>
+      <FooterSection />
     </Container>
   )
 }

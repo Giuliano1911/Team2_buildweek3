@@ -91,3 +91,25 @@ body {
   left: -230px;
   right: 0;
 }
+
+.myButton {
+  background-color: transparent;
+  height: 24px;
+  border-radius: 42px;
+  border: 1px dashed #124d77;
+  display: flex;
+  cursor: pointer;
+  color: #524ff7;
+  font-family: Arial;
+  font-size: 14px;
+  margin: 0px 0px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #154682;
+}
+.myButton:hover {
+  background-color: #ebf4fd;
+}
+.myButton:active {
+  position: relative;
+  top: 1px;
+}

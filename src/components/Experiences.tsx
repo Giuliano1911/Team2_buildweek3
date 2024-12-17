@@ -39,7 +39,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
 
   const getExperiences = async () => {
     fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${profile._id}/experiences`,
+      `https://striveschool-api.herokuapp.com/api/profile/6694d5f8196d7b0015d6b525/experiences`,
       {
         headers: {
           Authorization: APIKEY,

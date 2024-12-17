@@ -9,6 +9,7 @@ import Profile from './types/Profile'
 import NotFound from './components/NotFound'
 import ProfilePage from './components/ProfilePage'
 import LinkedInNavbar from './components/LinkedInNavbar'
+import HomePage from './components/HomePage'
 
 function App() {
   const APIKEY =
@@ -63,11 +64,21 @@ function App() {
               isLoading={isLoading}
               isError={isError}
               APIKEY={APIKEY}
-              p
             />
           }
         />
 
+        <Route
+          path="/homepage"
+          element={
+            <HomePage
+              profile={profile!}
+              isLoading={isLoading}
+              isError={isError}
+              APIKEY={APIKEY}
+            />
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -6,7 +6,6 @@ import {
   Row,
   Col,
   Form,
-  Button,
 } from 'react-bootstrap'
 import Logo from '../assets/LinkedIn Logo.png'
 import ProfileImg from '../assets/Generic profile.png'
@@ -19,8 +18,9 @@ import NotificationIcon from '../assets/Notification Icon.png'
 import FirmIcon from '../assets/Firm Icon.png'
 import Profile from '../types/Profile'
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router'
 
-interface LinkedInNavbarPops {
+interface LinkedInNavbarProps {
   profile: Profile
   isLoading: boolean
   isError: boolean
@@ -30,7 +30,7 @@ const LinkedInNavbar = ({
   profile,
   isLoading,
   isError,
-}: LinkedInNavbarPops) => {
+}: LinkedInNavbarProps) => {
   const [showSecondNavbar, setShowSecondNavbar] = useState(false)
   useEffect(() => {
     const handleScroll = () => {
@@ -71,10 +71,7 @@ const LinkedInNavbar = ({
           <Row className="d-flex flex-grow-1 w-100 justify-content-center">
             <Col className="d-flex col-12 col-lg-10 justify-content-between py-1 pe-0 ">
               <div className="d-flex">
-                <Navbar.Brand
-                  href="#home"
-                  className="my-auto me-1 me-lg-3 py-0"
-                >
+                <Link to="/homepage" className="my-auto me-1 me-lg-3 py-0">
                   <img
                     src={Logo}
                     width="35"
@@ -82,7 +79,7 @@ const LinkedInNavbar = ({
                     className="d-inline-block align-top rounded-1 p-0"
                     alt="LinkedIn Logo"
                   />
-                </Navbar.Brand>
+                </Link>
                 <Form className="my-auto d-none d-lg-block">
                   <Row>
                     <Col xs="auto" className="p-0 m-1 position-relative">
@@ -136,7 +133,7 @@ const LinkedInNavbar = ({
                           />
                         </div>
                       </Nav.Link>
-                      <Nav.Link href="#home" className="my-auto p-0 pt-1">
+                      <Link to="/homepage" className="my-auto p-0 pt-1">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={HomeIcon}
@@ -144,12 +141,12 @@ const LinkedInNavbar = ({
                             className="mx-lg-4 px-2"
                             alt="Home Icon"
                           />
-                          <p className="m-0 d-none text-dark d-lg-block mt-1">
+                          <p className="home m-0 d-none text-dark d-lg-block mt-1">
                             Home
                           </p>
                         </div>
-                      </Nav.Link>
-                      <Nav.Link href="#rete" className="my-auto p-0 pt-1">
+                      </Link>
+                      <Nav.Link href="" className="my-auto p-0 pt-1">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={WebIcon}
@@ -162,7 +159,7 @@ const LinkedInNavbar = ({
                           </p>
                         </div>
                       </Nav.Link>
-                      <Nav.Link href="#lavoro" className="my-auto p-0 pt-1">
+                      <Nav.Link href="" className="my-auto p-0 pt-1">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={JobIcon}
@@ -175,10 +172,7 @@ const LinkedInNavbar = ({
                           </p>
                         </div>
                       </Nav.Link>
-                      <Nav.Link
-                        href="#messaggistica"
-                        className="my-auto p-0 pt-1"
-                      >
+                      <Nav.Link href="" className="my-auto p-0 pt-1">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={MessageIcon}
@@ -191,7 +185,7 @@ const LinkedInNavbar = ({
                           </p>
                         </div>
                       </Nav.Link>
-                      <Nav.Link href="#notifiche" className="my-auto p-0 pt-1">
+                      <Nav.Link href="" className="my-auto p-0 pt-1">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={NotificationIcon}
@@ -238,10 +232,7 @@ const LinkedInNavbar = ({
                       >
                         {!isError && !isLoading ? (
                           <>
-                            <NavDropdown.Item
-                              href="#action/3.1"
-                              className="p-2 m-0 pb-0 bg-transparent"
-                            >
+                            <NavDropdown.Item className="p-2 m-0 pb-0 bg-transparent">
                               <div className="d-flex ">
                                 <img
                                   src={profile.image}
@@ -262,10 +253,7 @@ const LinkedInNavbar = ({
                               </button>
                             </NavDropdown.Item>
                             <NavDropdown.Divider className="my-0" />
-                            <NavDropdown.Item
-                              href="#action/3.2"
-                              className="p-2 m-0"
-                            >
+                            <NavDropdown.Item className="p-2 m-0">
                               <div className="ps-2">
                                 <p className="fs-6 fw-semibold mb-2">Account</p>
                                 <div className="mb-1">
@@ -282,10 +270,7 @@ const LinkedInNavbar = ({
                             </NavDropdown.Item>
 
                             <NavDropdown.Divider className="my-0" />
-                            <NavDropdown.Item
-                              href="#action/3.3"
-                              className="p-2 m-0"
-                            >
+                            <NavDropdown.Item className="p-2 m-0">
                               <div className="ps-2">
                                 <p className="fs-6 fw-semibold mb-2">
                                   Gestisci
@@ -299,10 +284,7 @@ const LinkedInNavbar = ({
                               </div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider className="my-0" />
-                            <NavDropdown.Item
-                              href="#action/3.4"
-                              className="p-2 m-0"
-                            >
+                            <NavDropdown.Item className="p-2 m-0">
                               <div className="ps-2">
                                 <p className="mb-0 text-secondary">Esci</p>
                               </div>
@@ -336,21 +318,15 @@ const LinkedInNavbar = ({
                     id="basic-nav-dropdown"
                     className="dropdown-toggle-no-caret my-auto py-0 pt-1 px-2 d-none d-lg-block"
                   >
-                    <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                      Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">
-                      Something
-                    </NavDropdown.Item>
+                    <NavDropdown.Item></NavDropdown.Item>
+                    <NavDropdown.Item>Another action</NavDropdown.Item>
+                    <NavDropdown.Item>Something</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Esci</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.4">
-                      Post e attività
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.4">Esci</NavDropdown.Item>
+                    <NavDropdown.Item>Esci</NavDropdown.Item>
+                    <NavDropdown.Item>Post e attività</NavDropdown.Item>
+                    <NavDropdown.Item>Esci</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Esci</NavDropdown.Item>
+                    <NavDropdown.Item>Esci</NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
 

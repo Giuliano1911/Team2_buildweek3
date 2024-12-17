@@ -182,8 +182,13 @@ body {
 
 .icons {
   opacity: 60%;
+  transition: 0.3s;
 }
 
 .icons:hover {
   opacity: 100%;
+}
+
+.home {
+  text-decoration: none !important;
 }

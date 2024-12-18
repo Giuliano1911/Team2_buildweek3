@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Col } from 'react-bootstrap'
+import { Button, Col, Container } from 'react-bootstrap'
 import { useLocation } from 'react-router'
 
 import Experience from '../types/Experience'
@@ -42,6 +42,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
   const [mod, setMod] = useState<Experience | null>(null)
   const [isAdd, setIsAdd] = useState<boolean>(false)
   const [add, setAdd] = useState<InitialState>(InitialAddState)
+  const [restart, setRestart] = useState<boolean>(false)
 
   // 6694d5f8196d7b0015d6b525
   // ${profile._id}
@@ -66,6 +67,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
         console.log(data)
         setExperiences(data)
         setIsLoading(false)
+        setRestart(false)
       })
       .catch((error) => {
         setIsError(true)
@@ -76,11 +78,11 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
   useEffect(() => {
     getExperiences()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mod])
+  }, [restart])
 
   const location = useLocation()
   return (
-    <>
+    <Container className="p-0">
       <Col className=" bg-white border rounded-2 p-3">
         <div className=" d-flex justify-content-between">
           <h4>Esperienze</h4>
@@ -108,6 +110,8 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
                 key={e._id}
                 setIsModified={setIsModified}
                 setMod={setMod}
+                APIKEY={APIKEY}
+                setRestart={setRestart}
               />
             )
           })}
@@ -118,6 +122,8 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
           mod={mod}
           profileid={profile._id}
           APIKEY={APIKEY}
+          setIsModified={setIsModified}
+          setRestart={setRestart}
         />
       )}
       {isAdd && !isLoading && (
@@ -126,9 +132,11 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
           add={add}
           profileid={profile._id}
           APIKEY={APIKEY}
+          setIsAdd={setIsAdd}
+          setRestart={setRestart}
         />
       )}
-    </>
+    </Container>
   )
 }
 export default Experiences

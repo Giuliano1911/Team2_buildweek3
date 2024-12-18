@@ -8,6 +8,17 @@ interface ExperienceModProps {
   mod: Experience | null
   profileid: string
   APIKEY: string
+  setIsModified: React.Dispatch<React.SetStateAction<boolean>>
+  setRestart: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+interface InitialState {
+  role: string
+  company: string
+  startDate: string
+  endDate?: string
+  description: string
+  area: string
 }
 
 const ExperienceMod = ({
@@ -15,15 +26,26 @@ const ExperienceMod = ({
   mod,
   profileid,
   APIKEY,
+  setIsModified,
+  setRestart,
 }: ExperienceModProps) => {
-  const [formv, setFormv] = useState<Experience | null>(mod)
+  const InitialModState = {
+    role: mod!.role,
+    company: mod!.company,
+    startDate: mod!.startDate,
+    endDate: mod!.endDate,
+    description: mod!.description,
+    area: mod!.area,
+  }
+
+  const [formv, setFormv] = useState<InitialState>(InitialModState)
 
   const putExperiences = async () => {
     fetch(
       `https://striveschool-api.herokuapp.com/api/profile/${profileid}/experiences/${mod?._id}`,
       {
         method: 'PUT',
-        body: JSON.stringify(mod),
+        body: JSON.stringify(formv),
         headers: {
           'Content-Type': 'application/JSON',
           Authorization: APIKEY,
@@ -32,6 +54,8 @@ const ExperienceMod = ({
     )
       .then((response) => {
         if (response.ok) {
+          console.log(response)
+          setRestart(true)
           return response.json()
         } else {
           throw new Error('no ok')
@@ -48,8 +72,9 @@ const ExperienceMod = ({
         className="p-3"
         onSubmit={(e) => {
           e.preventDefault()
-          setMod(formv)
+          setMod({ ...mod, formv })
           putExperiences()
+          setIsModified(false)
         }}
       >
         <Form.Group className="mb-3">
@@ -75,19 +100,19 @@ const ExperienceMod = ({
         <Form.Group className="mb-3">
           <Form.Label>Data Inizio</Form.Label>
           <Form.Control
-            type="datetime-local"
+            type="date"
             placeholder="Inizio lavoro"
             required
-            value={formv?.startDate}
+            value={formv?.startDate.slice(0, 10)}
             onChange={(e) => setFormv({ ...formv!, startDate: e.target.value })}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Data Fine</Form.Label>
           <Form.Control
-            type="datetime-local"
+            type="date"
             placeholder="Fine Lavoro"
-            value={formv?.endDate}
+            value={formv?.endDate ? formv?.endDate.slice(0, 10) : ''}
             onChange={(e) => setFormv({ ...formv!, endDate: e.target.value })}
           />
         </Form.Group>

@@ -5,6 +5,8 @@ interface ExperienceAddProps {
   add: InitialState
   profileid: string
   APIKEY: string
+  setIsAdd: React.Dispatch<React.SetStateAction<boolean>>
+  setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface InitialState {
@@ -21,6 +23,8 @@ const ExperienceAdd = ({
   add,
   profileid,
   APIKEY,
+  setIsAdd,
+  setRestart,
 }: ExperienceAddProps) => {
   const putExperiences = async () => {
     console.log(add)
@@ -37,6 +41,7 @@ const ExperienceAdd = ({
     )
       .then((response) => {
         if (response.ok) {
+          setRestart(true)
           return response.json()
         } else {
           throw new Error('no ok')
@@ -54,6 +59,7 @@ const ExperienceAdd = ({
         onSubmit={(e) => {
           e.preventDefault()
           putExperiences()
+          setIsAdd(false)
         }}
       >
         <Form.Group className="mb-3">

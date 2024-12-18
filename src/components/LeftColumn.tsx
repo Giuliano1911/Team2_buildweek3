@@ -72,10 +72,8 @@ const LeftColumn = ({ profile, isLoading, isError }: LeftColumnProps) => {
                 {profile.area}
               </Card.Text>
               <Card.Text className="">
-                <div className="">
-                  <img src={CompanyImg} width="15" height="15" alt="company" />
-                  <span className="my-auto ps-1 fw-semibold">epicode</span>
-                </div>
+                <img src={CompanyImg} width="15" height="15" alt="company" />
+                <span className="my-auto ps-1 fw-semibold">epicode</span>
               </Card.Text>
             </Card.Body>
           </>
@@ -85,13 +83,11 @@ const LeftColumn = ({ profile, isLoading, isError }: LeftColumnProps) => {
       <Card className="left-column mb-2">
         <Card.Body className="p-3 m-0">
           <Card.Text className="text-secondary mb-1">
-            Cresci professionalmente con <p className="mb-0">Premium</p>
+            Cresci professionalmente con Premium
           </Card.Text>
           <Card.Text className="">
-            <div>
-              <i className="bi bi-square-fill me-2"></i>
-              <span className="fw-semibold">Prova 1 mese per 0 EUR</span>
-            </div>
+            <i className="bi bi-square-fill me-2"></i>
+            <span className="fw-semibold">Prova 1 mese per 0 EUR</span>
           </Card.Text>
         </Card.Body>
       </Card>

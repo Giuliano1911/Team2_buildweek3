@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Job from '../types/Job'
 import JobsResponse from '../types/JobsResponse'
+import JobsCentralColumn from './JobsCentralColumn'
 
 interface JobsProps {
   APIKEY: string
@@ -15,7 +16,7 @@ const Jobs = ({ APIKEY, setJobs, search, jobs }: JobsProps) => {
 
   const getJobs = async () => {
     fetch(
-      `https://strive-benchmark.herokuapp.com/api/jobs?search=${search}&limit=20`,
+      `https://strive-benchmark.herokuapp.com/api/jobs?search=${search}&limit=50`,
       {
         headers: {
           Authorization: APIKEY,
@@ -47,7 +48,7 @@ const Jobs = ({ APIKEY, setJobs, search, jobs }: JobsProps) => {
 
   return (
     <>
-      <p className="mt-5">{!isLoading && jobs![0].company_name}</p>
+      <JobsCentralColumn jobs={jobs} isLoading={isLoading} isError={isError} />
     </>
   )
 }

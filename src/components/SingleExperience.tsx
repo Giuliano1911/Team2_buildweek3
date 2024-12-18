@@ -8,6 +8,7 @@ interface SingleExperienceProps {
   setIsModified: React.Dispatch<React.SetStateAction<boolean>>
   setMod: React.Dispatch<React.SetStateAction<Experience | null>>
   APIKEY: string
+  setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const SingleExperience = ({
@@ -15,6 +16,7 @@ const SingleExperience = ({
   setIsModified,
   setMod,
   APIKEY,
+  setRestart,
 }: SingleExperienceProps) => {
   const location = useLocation()
 
@@ -31,6 +33,7 @@ const SingleExperience = ({
       .then((response) => {
         if (response.ok) {
           console.log('Eliminato')
+          setRestart(true)
         } else {
           throw new Error('No ok')
         }

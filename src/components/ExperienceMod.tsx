@@ -9,6 +9,7 @@ interface ExperienceModProps {
   profileid: string
   APIKEY: string
   setIsModified: React.Dispatch<React.SetStateAction<boolean>>
+  setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface InitialState {
@@ -26,6 +27,7 @@ const ExperienceMod = ({
   profileid,
   APIKEY,
   setIsModified,
+  setRestart,
 }: ExperienceModProps) => {
   const InitialModState = {
     role: mod!.role,
@@ -53,6 +55,7 @@ const ExperienceMod = ({
       .then((response) => {
         if (response.ok) {
           console.log(response)
+          setRestart(true)
           return response.json()
         } else {
           throw new Error('no ok')

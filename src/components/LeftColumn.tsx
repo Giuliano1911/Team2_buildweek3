@@ -1,8 +1,10 @@
 import { Card } from 'react-bootstrap'
 import Profile from '../types/Profile'
 import CompanyImg from '../assets/Generic company.png'
+import CoverImg from '../assets/Generic cover.webp'
 import Loading from './Loading'
 import Error1 from './Error1'
+import { Link } from 'react-router'
 
 interface LeftColumnProps {
   profile: Profile
@@ -22,7 +24,7 @@ const LeftColumn = ({ profile, isLoading, isError }: LeftColumnProps) => {
             <div className="mb-3 position-relative">
               {/* Immagine di copertina */}
               <img
-                src="https://media.licdn.com/dms/image/v2/D4E16AQG5Bl3WdJPu8Q/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1706041180519?e=1740009600&v=beta&t=GxIvX1dol3SJnlpZ0j1gYtPtqmkw_A-5CxDRmMCbOHc" // Sostituisci con l'immagine desiderata
+                src={CoverImg}
                 className="card-img-top"
                 alt="Copertina"
                 style={{
@@ -45,17 +47,25 @@ const LeftColumn = ({ profile, isLoading, isError }: LeftColumnProps) => {
                   zIndex: '2',
                 }}
               >
-                <img
-                  src="https://media.licdn.com/dms/image/v2/D4E03AQGc6RH6KeJqHw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714508430409?e=1740009600&v=beta&t=gbpKiXK4YUrcnDSc91Z53irPvDRoHWoIunD-3XtVJGk" // Sostituisci con l'immagine del profilo
-                  className="rounded-circle border border-2 border-white"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  alt="Profilo"
-                />
+                <Link to="/">
+                  <img
+                    src={profile.image}
+                    className="rounded-circle border border-2 border-white"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                    alt="Profilo"
+                  />
+                </Link>
               </div>
             </div>
             <Card.Body className="mt-3 p-3 m-0">
               <Card.Title>
-                {profile.name} {profile.surname}
+                <Link to="/" className="nav-link">
+                  {profile.name} {profile.surname}
+                </Link>
               </Card.Title>
               <Card.Text className="mb-1">{profile.title}</Card.Text>
               <Card.Text className="text-secondary mb-1">

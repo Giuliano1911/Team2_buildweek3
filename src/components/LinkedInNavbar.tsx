@@ -261,24 +261,28 @@ const LinkedInNavbar = ({
                         {!isError && !isLoading ? (
                           <>
                             <NavDropdown.Item className="p-2 m-0 pb-0 bg-transparent">
-                              <div className="d-flex ">
-                                <img
-                                  src={profile.image}
-                                  width="60"
-                                  height="60"
-                                  className="d-inline-block align-top rounded-circle"
-                                  alt="Profile"
-                                />
-                                <div className="ps-2">
-                                  <p className="fs-6 fw-semibold mb-0">
-                                    {profile.name} {profile.surname}
-                                  </p>
-                                  <p>{profile.title}</p>
+                              <Link to="/" className="nav-link p-0">
+                                <div className="d-flex text-dark">
+                                  <img
+                                    src={profile.image}
+                                    width="60"
+                                    height="60"
+                                    className="d-inline-block align-top rounded-circle"
+                                    alt="Profile"
+                                  />
+                                  <div className="ps-2">
+                                    <p className="fs-6 fw-semibold mb-0">
+                                      {profile.name} {profile.surname}
+                                    </p>
+                                    <p>{profile.title}</p>
+                                  </div>
                                 </div>
-                              </div>
-                              <button className="btn-outline-primary w-100 my-2 fw-semibold rounded-5">
-                                Visualizza profilo
-                              </button>
+                              </Link>
+                              <Link to="/">
+                                <button className="btn-outline-primary w-100 my-2 fw-semibold rounded-5">
+                                  Visualizza profilo
+                                </button>
+                              </Link>
                             </NavDropdown.Item>
                             <NavDropdown.Divider className="my-0" />
                             <NavDropdown.Item className="p-2 m-0">
@@ -376,7 +380,7 @@ const LinkedInNavbar = ({
           <Container fluid className="mx-0 ">
             <Row className="d-flex flex-grow-1 w-100 justify-content-center">
               <Col className="d-flex col-12 col-lg-10 justify-content-between ">
-                <div className="d-flex ">
+                <Link to="/" className="nav-link p-0 d-flex">
                   <Navbar.Brand href="#home" className="my-auto">
                     <img
                       src={profile.image}
@@ -392,7 +396,8 @@ const LinkedInNavbar = ({
                     </p>
                     <p className="mb-0">{profile.title}</p>
                   </div>
-                </div>
+                </Link>
+
                 <div className="d-flex ">
                   <button className="btn btn-outline-dark fs-6 my-2 ms-2 fw-semibold rounded-5">
                     Risorse

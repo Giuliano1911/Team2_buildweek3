@@ -3,6 +3,7 @@ import Profile from '../types/Profile'
 import LeftColumn from './LeftColumn'
 import SideBarNotizieHomePage from './SideBarNotizieHomePage'
 
+import SideBarNotizieHomePage from './SideBarNotizieHomePage'
 interface HomePageProps {
   profile: Profile
   isLoading: boolean

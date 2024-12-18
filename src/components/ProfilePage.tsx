@@ -25,7 +25,7 @@ const ProfilePage = ({
       <Row className=" justify-content-center">
         <Col xs={12} lg={10} className=" mt-5">
           <Row className="mt-5">
-            <Col xs={12} lg={8}>
+            <Col xs={12} lg={8} className="flex-grow-1">
               <HeroSection
                 profile={profile}
                 isLoading={isLoading}
@@ -37,7 +37,7 @@ const ProfilePage = ({
               <ConsigliatiSection />
               <AnalisiSection />
             </Col>
-            <Col xs={12} lg={4}>
+            <Col xs={12} lg={3} className="flex-grow-1">
               <SideBar APIKEY={APIKEY} />
             </Col>
           </Row>

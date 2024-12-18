@@ -1,47 +1,47 @@
-import { Col } from "react-bootstrap";
-import SidebarPersonalProfiles from "./SidebarPersonalProfiles";
-import Profile from "../types/Profile";
-import { useEffect, useState } from "react";
-import Loading from "./Loading";
-import Error1 from "./Error1";
+import { Col } from 'react-bootstrap'
+import SidebarPersonalProfiles from './SidebarPersonalProfiles'
+import Profile from '../types/Profile'
+import { useEffect, useState } from 'react'
+import Loading from './Loading'
+import Error1 from './Error1'
 
 interface SideBarProps {
-  APIKEY: string;
+  APIKEY: string
 }
 
 const SideBar = ({ APIKEY }: SideBarProps) => {
-  const [profiles, setProfiles] = useState<Profile[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [profiles, setProfiles] = useState<Profile[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isError, setIsError] = useState<boolean>(false)
 
   const getProfiles = async () => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile/", {
+    fetch('https://striveschool-api.herokuapp.com/api/profile/', {
       headers: {
         Authorization: APIKEY,
       },
     })
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return response.json()
         } else {
-          throw new Error("no ok");
+          throw new Error('no ok')
         }
       })
       .then((data: Profile[]) => {
-        console.log(data);
-        setProfiles(data.reverse());
-        setIsLoading(false);
+        console.log(data)
+        setProfiles(data.reverse())
+        setIsLoading(false)
       })
       .catch((error) => {
-        setIsError(true);
-        console.log(error);
-      });
-  };
+        setIsError(true)
+        console.log(error)
+      })
+  }
 
   useEffect(() => {
-    getProfiles();
+    getProfiles()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <>
@@ -78,7 +78,7 @@ const SideBar = ({ APIKEY }: SideBarProps) => {
           {!isLoading &&
             !isError &&
             profiles?.slice(0, 5).map((p) => {
-              return <SidebarPersonalProfiles p={p} key={p._id} />;
+              return <SidebarPersonalProfiles p={p} key={p._id} />
             })}
         </div>
         <button className="buttonSidebar-mostraAltro">Mostra altro</button>
@@ -91,7 +91,7 @@ const SideBar = ({ APIKEY }: SideBarProps) => {
         />
       </Col>
     </>
-  );
-};
+  )
+}
 
-export default SideBar;
+export default SideBar

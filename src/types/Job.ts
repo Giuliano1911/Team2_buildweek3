@@ -4,7 +4,7 @@ export default interface Job {
   company_name: string
   description: string
   job_type: string
-  publication_date: Date
+  publication_date: string
   salary: string
   title: string
   url: string

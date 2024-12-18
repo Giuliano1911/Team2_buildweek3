@@ -12,6 +12,7 @@ import LinkedInNavbar from './components/LinkedInNavbar'
 import HomePage from './components/HomePage'
 import Jobs from './components/Jobs'
 import Job from './types/Job'
+import Company from './components/Company'
 
 function App() {
   const APIKEY =
@@ -95,6 +96,7 @@ function App() {
             />
           }
         />
+        <Route path="/company/:name" element={<Company APIKEY={APIKEY} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

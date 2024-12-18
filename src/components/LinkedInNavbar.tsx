@@ -158,7 +158,10 @@ const LinkedInNavbar = ({
                           />
                         </div>
                       </Nav.Link>
-                      <Link to="/homepage" className="my-auto p-0 pt-1">
+                      <Link
+                        to="/homepage"
+                        className="my-auto p-0 pt-1 nav-link"
+                      >
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={HomeIcon}
@@ -166,7 +169,7 @@ const LinkedInNavbar = ({
                             className="mx-lg-4 px-2"
                             alt="Home Icon"
                           />
-                          <p className="home m-0 d-none text-dark d-lg-block mt-1">
+                          <p className=" m-0 d-none text-dark d-lg-block mt-1">
                             Home
                           </p>
                         </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Col } from 'react-bootstrap'
+import { Button, Col, Container } from 'react-bootstrap'
 import { useLocation } from 'react-router'
 
 import Experience from '../types/Experience'
@@ -76,11 +76,11 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
   useEffect(() => {
     getExperiences()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mod])
+  }, [mod, add])
 
   const location = useLocation()
   return (
-    <>
+    <Container className="p-0">
       <Col className=" bg-white border rounded-2 p-3">
         <div className=" d-flex justify-content-between">
           <h4>Esperienze</h4>
@@ -108,6 +108,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
                 key={e._id}
                 setIsModified={setIsModified}
                 setMod={setMod}
+                APIKEY={APIKEY}
               />
             )
           })}
@@ -118,6 +119,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
           mod={mod}
           profileid={profile._id}
           APIKEY={APIKEY}
+          setIsModified={setIsModified}
         />
       )}
       {isAdd && !isLoading && (
@@ -126,9 +128,10 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
           add={add}
           profileid={profile._id}
           APIKEY={APIKEY}
+          setIsAdd={setIsAdd}
         />
       )}
-    </>
+    </Container>
   )
 }
 export default Experiences

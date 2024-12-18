@@ -5,6 +5,7 @@ interface ExperienceAddProps {
   add: InitialState
   profileid: string
   APIKEY: string
+  setIsAdd: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface InitialState {
@@ -21,6 +22,7 @@ const ExperienceAdd = ({
   add,
   profileid,
   APIKEY,
+  setIsAdd,
 }: ExperienceAddProps) => {
   const putExperiences = async () => {
     console.log(add)
@@ -54,6 +56,7 @@ const ExperienceAdd = ({
         onSubmit={(e) => {
           e.preventDefault()
           putExperiences()
+          setIsAdd(false)
         }}
       >
         <Form.Group className="mb-3">

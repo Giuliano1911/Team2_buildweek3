@@ -144,7 +144,7 @@ body {
 }
 
 .bi-square-fill {
-  color: #9f5903;
+  color: #daa556;
 }
 
 .navbar .dropdown-menu {
@@ -207,4 +207,8 @@ body {
 .buttonSidebar-mostraAltro:hover {
   background-color: #e8e8e8;
   color: black;
+}
+
+.left-column {
+  font-size: 0.7rem;
 }

@@ -25,6 +25,7 @@ const ExperienceMod = ({
         method: 'PUT',
         body: JSON.stringify(mod),
         headers: {
+          'Content-Type': 'application/JSON',
           Authorization: APIKEY,
         },
       }

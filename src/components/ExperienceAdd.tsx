@@ -23,12 +23,14 @@ const ExperienceAdd = ({
   APIKEY,
 }: ExperienceAddProps) => {
   const putExperiences = async () => {
+    console.log(add)
     fetch(
       `https://striveschool-api.herokuapp.com/api/profile/${profileid}/experiences`,
       {
         method: 'POST',
         body: JSON.stringify(add),
         headers: {
+          'Content-Type': 'application/JSON',
           Authorization: APIKEY,
         },
       }

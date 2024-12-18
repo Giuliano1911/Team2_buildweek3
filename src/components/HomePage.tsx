@@ -1,6 +1,8 @@
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import Profile from '../types/Profile'
 import LeftColumn from './LeftColumn'
+import SideBarNotizieHomePage from './SideBarNotizieHomePage'
+
 interface HomePageProps {
   profile: Profile
   isLoading: boolean

@@ -5,6 +5,7 @@ import Experiences from './Experiences'
 import HeroSection from './Hero'
 import FooterSection from './footer'
 import ConsigliatiSection from './ConsigliatoSection'
+import AnalisiSection from './AnalisiSection'
 
 interface ProfilePageProps {
   profile: Profile
@@ -34,6 +35,7 @@ const ProfilePage = ({
                 <Experiences profile={profile} APIKEY={APIKEY} />
               )}
               <ConsigliatiSection />
+              <AnalisiSection />
             </Col>
             <Col xs={12} lg={4}>
               <SideBar APIKEY={APIKEY} />

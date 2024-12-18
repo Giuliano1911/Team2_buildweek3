@@ -33,7 +33,9 @@ const LinkedInNavbar = ({
   isError,
   setSearch,
 }: LinkedInNavbarProps) => {
+  const [searchJobs, setSearchJobs] = useState<string>('')
   const [showSecondNavbar, setShowSecondNavbar] = useState(false)
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 450) {
@@ -73,7 +75,10 @@ const LinkedInNavbar = ({
           <Row className="d-flex flex-grow-1 w-100 justify-content-center">
             <Col className="d-flex col-12 col-lg-10 justify-content-between py-1 pe-0 ">
               <div className="d-flex">
-                <Link to="/homepage" className="my-auto me-1 me-lg-3 py-0">
+                <Link
+                  to="/homepage"
+                  className="my-auto me-1 me-lg-3 py-0 nav-link"
+                >
                   <img
                     src={Logo}
                     width="35"
@@ -82,7 +87,13 @@ const LinkedInNavbar = ({
                     alt="LinkedIn Logo"
                   />
                 </Link>
-                <Form className="my-auto d-none d-lg-block">
+                <Form
+                  className="my-auto d-none d-lg-block"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    setSearch(searchJobs)
+                  }}
+                >
                   <Row>
                     <Col xs="auto" className="p-0 m-1 position-relative">
                       <img
@@ -95,7 +106,11 @@ const LinkedInNavbar = ({
                       <Form.Control
                         type="text"
                         placeholder="Cerca"
+                        value={searchJobs}
                         className="textform py-2 m-0 border-0 bg-body-secondary px-5 d-none d-lg-block"
+                        onChange={(e) => {
+                          setSearchJobs(e.target.value)
+                        }}
                       />
                     </Col>
                   </Row>
@@ -108,13 +123,21 @@ const LinkedInNavbar = ({
                       showSearch ? 'd-block' : 'd-none'
                     } d-lg-none`}
                     ref={searchRef}
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                      setSearch(searchJobs)
+                    }}
                   >
                     <Row>
                       <Col xs="auto" className="p-0 m-1">
                         <Form.Control
                           type="text"
                           placeholder="Cerca"
+                          value={searchJobs}
                           className="textform py-2 m-0 border-0 bg-body-secondary px-5 d-none d-lg-block"
+                          onChange={(e) => {
+                            setSearchJobs(e.target.value)
+                          }}
                         />
                       </Col>
                     </Row>
@@ -161,7 +184,7 @@ const LinkedInNavbar = ({
                           </p>
                         </div>
                       </Nav.Link>
-                      <Nav.Link href="" className="my-auto p-0 pt-1">
+                      <Link to="/jobs" className="my-auto p-0 pt-1 nav-link">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={JobIcon}
@@ -173,7 +196,7 @@ const LinkedInNavbar = ({
                             Lavoro
                           </p>
                         </div>
-                      </Nav.Link>
+                      </Link>
                       <Nav.Link href="" className="my-auto p-0 pt-1">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img

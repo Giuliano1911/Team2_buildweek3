@@ -12,6 +12,7 @@ import LinkedInNavbar from './components/LinkedInNavbar'
 import HomePage from './components/HomePage'
 import Jobs from './components/Jobs'
 import Job from './types/Job'
+import FriendProfilePage from './components/FriendProfilePage'
 
 function App() {
   const APIKEY =
@@ -83,6 +84,10 @@ function App() {
               APIKEY={APIKEY}
             />
           }
+        />
+        <Route
+          path="/profile/:id"
+          element={<FriendProfilePage profile={profile!} APIKEY={APIKEY} />}
         />
         <Route
           path="/jobs"

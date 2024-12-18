@@ -1,6 +1,8 @@
 import { Card } from 'react-bootstrap'
 import Profile from '../types/Profile'
 import CompanyImg from '../assets/Generic company.png'
+import Loading from './Loading'
+import Error1 from './Error1'
 
 interface LeftColumnProps {
   profile: Profile
@@ -12,54 +14,64 @@ const LeftColumn = ({ profile, isLoading, isError }: LeftColumnProps) => {
   return (
     <div className="d-flex flex-column">
       <Card className="left-column mb-2">
-        <div className="mb-3 position-relative">
-          {/* Immagine di copertina */}
-          <img
-            src="https://media.licdn.com/dms/image/v2/D4E16AQG5Bl3WdJPu8Q/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1706041180519?e=1740009600&v=beta&t=GxIvX1dol3SJnlpZ0j1gYtPtqmkw_A-5CxDRmMCbOHc" // Sostituisci con l'immagine desiderata
-            className="card-img-top"
-            alt="Copertina"
-            style={{
-              objectFit: 'cover',
-              height: '65px',
-              width: '100%',
-              position: 'relative',
-              zIndex: '1',
-            }}
-          />
-          {/* Immagine profilo */}
-          <div
-            className="position-absolute"
-            style={{
-              width: '70px',
-              height: '70px',
-              left: '50px',
-              top: '70px',
-              transform: 'translate(-50%, -50%)',
-              zIndex: '2',
-            }}
-          >
-            <img
-              src="https://media.licdn.com/dms/image/v2/D4E03AQGc6RH6KeJqHw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714508430409?e=1740009600&v=beta&t=gbpKiXK4YUrcnDSc91Z53irPvDRoHWoIunD-3XtVJGk" // Sostituisci con l'immagine del profilo
-              className="rounded-circle border border-2 border-white"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              alt="Profilo"
-            />
-          </div>
-        </div>
-        <Card.Body className="mt-3 p-3 m-0">
-          <Card.Title>
-            {profile.name} {profile.surname}
-          </Card.Title>
-          <Card.Text className="mb-1">{profile.title}</Card.Text>
-          <Card.Text className="text-secondary mb-1">{profile.area}</Card.Text>
-          <Card.Text className="">
-            <div className="">
-              <img src={CompanyImg} width="15" height="15" alt="company" />
-              <span className="my-auto ps-1 fw-semibold">epicode</span>
+        {isError && <Error1 />}
+        {isLoading && <Loading />}
+        {!isLoading && !isError && (
+          <>
+            {' '}
+            <div className="mb-3 position-relative">
+              {/* Immagine di copertina */}
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4E16AQG5Bl3WdJPu8Q/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1706041180519?e=1740009600&v=beta&t=GxIvX1dol3SJnlpZ0j1gYtPtqmkw_A-5CxDRmMCbOHc" // Sostituisci con l'immagine desiderata
+                className="card-img-top"
+                alt="Copertina"
+                style={{
+                  objectFit: 'cover',
+                  height: '65px',
+                  width: '100%',
+                  position: 'relative',
+                  zIndex: '1',
+                }}
+              />
+              {/* Immagine profilo */}
+              <div
+                className="position-absolute"
+                style={{
+                  width: '70px',
+                  height: '70px',
+                  left: '50px',
+                  top: '70px',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: '2',
+                }}
+              >
+                <img
+                  src="https://media.licdn.com/dms/image/v2/D4E03AQGc6RH6KeJqHw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714508430409?e=1740009600&v=beta&t=gbpKiXK4YUrcnDSc91Z53irPvDRoHWoIunD-3XtVJGk" // Sostituisci con l'immagine del profilo
+                  className="rounded-circle border border-2 border-white"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  alt="Profilo"
+                />
+              </div>
             </div>
-          </Card.Text>
-        </Card.Body>
+            <Card.Body className="mt-3 p-3 m-0">
+              <Card.Title>
+                {profile.name} {profile.surname}
+              </Card.Title>
+              <Card.Text className="mb-1">{profile.title}</Card.Text>
+              <Card.Text className="text-secondary mb-1">
+                {profile.area}
+              </Card.Text>
+              <Card.Text className="">
+                <div className="">
+                  <img src={CompanyImg} width="15" height="15" alt="company" />
+                  <span className="my-auto ps-1 fw-semibold">epicode</span>
+                </div>
+              </Card.Text>
+            </Card.Body>
+          </>
+        )}
       </Card>
+
       <Card className="left-column mb-2">
         <Card.Body className="p-3 m-0">
           <Card.Text className="text-secondary mb-1">

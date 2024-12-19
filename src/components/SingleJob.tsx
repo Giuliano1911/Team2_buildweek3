@@ -11,12 +11,17 @@ const SingleJob = ({ j }: SingleJobProps) => {
   return (
     <Container fluid className="py-3">
       <Row className="p-0">
-        <Col xs={1}>
+        <Col xs={1} className="px-0 px-md-1">
           <img src={stockImage} className="w-100" alt="experience picture" />
         </Col>
 
         <Col xs={10} className=" flex-grow-1">
-          <Card.Title className="m-0">{j.title}</Card.Title>
+          <div className="d-flex justify-content-between m-0">
+            <Card.Title className="m-0">{j.title}</Card.Title>
+            <p role="button" className="m-0">
+              <i className="far fa-bookmark"></i>
+            </p>
+          </div>
           <Link
             to={'/company/' + j.company_name}
             className="m-0 card-title text-decoration-none"

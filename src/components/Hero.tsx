@@ -23,16 +23,16 @@ interface HeroProps {
   setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-interface InitialState {
-  name: string
-  surname: string
-  email: string
-  username: string
-  bio: string
-  title: string
-  area: string
-  image: string
-}
+// interface InitialState {
+//   name: string
+//   surname: string
+//   email: string
+//   username: string
+//   bio: string
+//   title: string
+//   area: string
+//   image: string
+// }
 
 const HeroSection = ({ profile, isLoading, isError, APIKEY }: HeroProps) => {
   const [showModal, setShowModal] = useState(false)
@@ -127,6 +127,18 @@ const HeroSection = ({ profile, isLoading, isError, APIKEY }: HeroProps) => {
                   }}
                 >
                   <i className="bi bi-pencil fs-5"></i>
+                </button>
+              )}
+              {location.pathname === '/' && (
+                <button
+                  className="camera btn position-absolute rounded-circle px-1 py-0 border-3 border-light"
+                  onClick={handleShow}
+                  style={{
+                    left: '135px',
+                    top: '100px',
+                  }}
+                >
+                  <i className="bi bi-camera fs-6"></i>
                 </button>
               )}
               <div className="card-body text-start mt-4 px-4">

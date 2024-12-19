@@ -17,7 +17,7 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
   const handleShow = () => setShowModal(true)
 
   return (
-    <div className="container mb-5">
+    <div className="container">
       <div className="row justify-content-center">
         <div className="card position-relative p-0">
           {isError && <Error1 />}

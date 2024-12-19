@@ -70,9 +70,9 @@ const FriendProfilePage = ({ APIKEY }: ProfilePageProps) => {
               <SideBar APIKEY={APIKEY} />
             </Col>
           </Row>
+          <FooterSection />
         </Col>
       </Row>
-      <FooterSection />
     </Container>
   )
 }

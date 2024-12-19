@@ -245,3 +245,9 @@ body {
 .bi-pencil {
   -webkit-text-stroke: 0.7px;
 }
+
+.actual-page {
+  text-decoration: underline !important;
+  text-decoration-color: #000000 !important;
+  color: #000000 !important;
+}

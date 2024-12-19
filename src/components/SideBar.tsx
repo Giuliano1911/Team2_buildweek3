@@ -88,7 +88,7 @@ const SideBar = ({ APIKEY }: SideBarProps) => {
       </Card>
       <Col sm={12}>
         <img
-          className="w-100 rounded-3 custom-sidebar-border margin-sidebar-custom"
+          className="w-100 rounded-3 custom-sidebar-border"
           src={SideBarImg}
           alt="image-1"
         />

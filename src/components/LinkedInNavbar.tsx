@@ -19,7 +19,7 @@ import NotificationIcon from '../assets/Notification Icon.png'
 import FirmIcon from '../assets/Firm Icon.png'
 import Profile from '../types/Profile'
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 
 interface LinkedInNavbarProps {
   profile: Profile
@@ -36,6 +36,7 @@ const LinkedInNavbar = ({
 }: LinkedInNavbarProps) => {
   const [searchJobs, setSearchJobs] = useState<string>('')
   const [showSecondNavbar, setShowSecondNavbar] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -161,7 +162,11 @@ const LinkedInNavbar = ({
                       </Nav.Link>
                       <Link
                         to="/homepage"
-                        className="my-auto p-0 pt-1 nav-link"
+                        className={
+                          location.pathname === '/homepage'
+                            ? 'my-auto p-0 pt-1 nav-link actual-page'
+                            : 'my-auto p-0 pt-1 nav-link '
+                        }
                       >
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
@@ -188,7 +193,14 @@ const LinkedInNavbar = ({
                           </p>
                         </div>
                       </Nav.Link>
-                      <Link to="/jobs" className="my-auto p-0 pt-1 nav-link">
+                      <Link
+                        to="/jobs"
+                        className={
+                          location.pathname === '/jobs'
+                            ? 'my-auto p-0 pt-1 nav-link actual-page'
+                            : 'my-auto p-0 pt-1 nav-link'
+                        }
+                      >
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={JobIcon}

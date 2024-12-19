@@ -41,9 +41,9 @@ const ProfilePage = ({
               <SideBar APIKEY={APIKEY} />
             </Col>
           </Row>
+          <FooterSection />
         </Col>
       </Row>
-      <FooterSection />
     </Container>
   )
 }

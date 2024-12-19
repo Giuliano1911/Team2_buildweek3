@@ -272,7 +272,7 @@ const LinkedInNavbar = ({
                       >
                         {!isError && !isLoading ? (
                           <>
-                            <NavDropdown.Item className="p-2 m-0 pb-0 bg-transparent">
+                            <NavDropdown.Header className="p-2 m-0 pb-0 bg-transparent">
                               <Link to="/" className="nav-link p-0">
                                 <div className="d-flex text-dark">
                                   <img
@@ -295,7 +295,7 @@ const LinkedInNavbar = ({
                                   Visualizza profilo
                                 </button>
                               </Link>
-                            </NavDropdown.Item>
+                            </NavDropdown.Header>
                             <NavDropdown.Divider className="my-0" />
                             <NavDropdown.Item className="p-2 m-0">
                               <div className="ps-2">

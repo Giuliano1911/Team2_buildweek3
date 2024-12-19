@@ -17,7 +17,7 @@ import Company from './components/Company'
 
 function App() {
   const APIKEY =
-    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVmZWIxZjBlYTI4NjAwMTUyOGI5MzIiLCJpYXQiOjE3MzQzNDM1NzgsImV4cCI6MTczNTU1MzE3OH0.v7lEVOe2QDdJlK5ak5I4FmtNPgqcmd8kXKzCk7W8hCc'
+    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzY0MjllMDk5MDYxMDAwMTViNjc4YmEiLCJpYXQiOjE3MzQ2MTc1NjgsImV4cCI6MTczNTgyNzE2OH0.Fv6lYZpaTNofky2UWNoDgj02ecQEkEGsQt38EpPFV3E'
 
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)

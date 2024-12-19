@@ -72,9 +72,7 @@ const HomePageCentralSection = ({
                       Aggiungi la tua esperienza lavorativa e le tue competenze
                       per farti scoprire dai recruiter.
                     </Card.Text>
-                    <Button className="homepage-aggiorna-profilo">
-                      Aggiorna profilo
-                    </Button>
+                    <Button className="rounded-pill">Aggiorna profilo</Button>
                   </div>
                 </div>
               </Card>
@@ -98,10 +96,13 @@ const HomePageCentralSection = ({
                           e.preventDefault()
                         }}
                       >
-                        <Form.Control placeholder="Scrivi un post..."></Form.Control>
+                        <Form.Control
+                          className="rounded-pill"
+                          placeholder="Scrivi un post..."
+                        ></Form.Control>
                         <Button
                           type="submit"
-                          className="ms-3 homepage-CreaUnPost-button text-nowrap"
+                          className="ms-3 text-nowrap rounded-pill"
                         >
                           Crea post
                         </Button>
@@ -110,13 +111,22 @@ const HomePageCentralSection = ({
                   </div>
 
                   <Card.Text className="d-flex justify-content-around mt-3">
-                    <Button className="fw-semibold" variant="outline-primary">
+                    <Button
+                      className="fw-semibold rounded-pill"
+                      variant="outline-primary"
+                    >
                       🎬 Video
                     </Button>
-                    <Button className="fw-semibold" variant="outline-primary">
+                    <Button
+                      className="fw-semibold rounded-pill"
+                      variant="outline-primary"
+                    >
                       🖼️ Foto
                     </Button>
-                    <Button className="fw-semibold" variant="outline-primary">
+                    <Button
+                      className="fw-semibold rounded-pill"
+                      variant="outline-primary"
+                    >
                       🖊️ Scrivi un articolo
                     </Button>
                   </Card.Text>

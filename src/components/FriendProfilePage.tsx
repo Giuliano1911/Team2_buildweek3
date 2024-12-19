@@ -54,11 +54,13 @@ const FriendProfilePage = ({ APIKEY }: ProfilePageProps) => {
         <Col xs={12} lg={10} className=" mt-5">
           <Row className="mt-5">
             <Col xs={12} lg={8} className="flex-grow-1">
-              <HeroSection
-                profile={friendProfile!}
-                isLoading={isLoading}
-                isError={isError}
-              />
+              {!isError && !isLoading && (
+                <HeroSection
+                  profile={friendProfile!}
+                  isLoading={isLoading}
+                  isError={isError}
+                />
+              )}
               {!isError && !isLoading && (
                 <Experiences profile={friendProfile!} APIKEY={APIKEY} />
               )}
@@ -70,9 +72,9 @@ const FriendProfilePage = ({ APIKEY }: ProfilePageProps) => {
               <SideBar APIKEY={APIKEY} />
             </Col>
           </Row>
+          <FooterSection />
         </Col>
       </Row>
-      <FooterSection />
     </Container>
   )
 }

@@ -19,7 +19,7 @@ import NotificationIcon from '../assets/Notification Icon.png'
 import FirmIcon from '../assets/Firm Icon.png'
 import Profile from '../types/Profile'
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 
 interface LinkedInNavbarProps {
   profile: Profile
@@ -36,6 +36,7 @@ const LinkedInNavbar = ({
 }: LinkedInNavbarProps) => {
   const [searchJobs, setSearchJobs] = useState<string>('')
   const [showSecondNavbar, setShowSecondNavbar] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -146,7 +147,6 @@ const LinkedInNavbar = ({
                   {!showSearch && (
                     <>
                       <Nav.Link
-                        href="#home"
                         className="my-auto p-0 pt-1"
                         onClick={handleSearchClick}
                       >
@@ -161,7 +161,11 @@ const LinkedInNavbar = ({
                       </Nav.Link>
                       <Link
                         to="/homepage"
-                        className="my-auto p-0 pt-1 nav-link"
+                        className={
+                          location.pathname === '/homepage'
+                            ? 'my-auto p-0 pt-1 nav-link actual-page'
+                            : 'my-auto p-0 pt-1 nav-link '
+                        }
                       >
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
@@ -188,7 +192,14 @@ const LinkedInNavbar = ({
                           </p>
                         </div>
                       </Nav.Link>
-                      <Link to="/jobs" className="my-auto p-0 pt-1 nav-link">
+                      <Link
+                        to="/jobs"
+                        className={
+                          location.pathname === '/jobs'
+                            ? 'my-auto p-0 pt-1 nav-link actual-page'
+                            : 'my-auto p-0 pt-1 nav-link'
+                        }
+                      >
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={JobIcon}
@@ -261,7 +272,7 @@ const LinkedInNavbar = ({
                       >
                         {!isError && !isLoading ? (
                           <>
-                            <NavDropdown.Item className="p-2 m-0 pb-0 bg-transparent">
+                            <NavDropdown.Header className="p-2 m-0 pb-0 bg-transparent">
                               <Link to="/" className="nav-link p-0">
                                 <div className="d-flex text-dark">
                                   <img
@@ -280,11 +291,11 @@ const LinkedInNavbar = ({
                                 </div>
                               </Link>
                               <Link to="/">
-                                <button className="btn-outline-primary w-100 my-2 fw-semibold rounded-5">
+                                <button className="btn btn-outline-primary w-100 my-2 fw-semibold rounded-5">
                                   Visualizza profilo
                                 </button>
                               </Link>
-                            </NavDropdown.Item>
+                            </NavDropdown.Header>
                             <NavDropdown.Divider className="my-0" />
                             <NavDropdown.Item className="p-2 m-0">
                               <div className="ps-2">
@@ -454,10 +465,10 @@ const LinkedInNavbar = ({
                   <button className="btn btn-outline-dark fs-6 my-2 ms-2 fw-semibold rounded-5">
                     Risorse
                   </button>
-                  <button className="btn-outline-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                  <button className="btn btn-outline-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
                     Aggiungi sezione del profilo
                   </button>
-                  <button className="btn-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                  <button className="btn btn-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
                     Disponibile per
                   </button>
                 </div>

@@ -2,16 +2,87 @@ import Profile from '../types/Profile'
 import CoverImg from '../assets/Generic cover.webp'
 import Error1 from './Error1'
 import Loading from './Loading'
+import { useState } from 'react'
+import { Modal, ModalBody } from 'react-bootstrap'
+import {
+  Form,
+  FormGroup,
+  FormLabel,
+  FormControl,
+  FormText,
+} from 'react-bootstrap'
 
 interface HeroProps {
   profile: Profile
   isLoading: boolean
   isError: boolean
+  APIKEY: string
+  setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
+interface InitialState {
+  name: string
+  surname: string
+  email: string
+  username: string
+  bio: string
+  title: string
+  area: string
+  image: string
+}
+
+const HeroSection = ({
+  profile,
+  isLoading,
+  isError,
+  APIKEY,
+  setRestart,
+}: HeroProps) => {
+  const [showModal, setShowModal] = useState(false)
+  const [showModalImg, setShowModalImg] = useState(false)
+  const handleClose = () => setShowModal(false)
+  const handleShow = () => setShowModal(true)
+  const handleCloseImg = () => setShowModalImg(false)
+  const handleShowImg = () => setShowModalImg(true)
+
+  const InitialModState = {
+    name: profile!.name,
+    surname: profile!.surname,
+    email: profile!.email,
+    username: profile!.username,
+    bio: profile!.bio,
+    title: profile!.title,
+    area: profile!.area,
+    image: profile!.image,
+  }
+
+  const [mod, setMod] = useState<InitialState>(InitialModState)
+
+  const putProfile = async () => {
+    fetch(`https://striveschool-api.herokuapp.com/api/profile/`, {
+      method: 'PUT',
+      body: JSON.stringify(mod),
+      headers: {
+        'Content-Type': 'application/JSON',
+        Authorization: APIKEY,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log(response)
+          setRestart(true)
+          return response.json()
+        } else {
+          throw new Error('no ok')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   return (
-    <div className="container mb-5">
+    <div className="container">
       <div className="row justify-content-center">
         <div className="card position-relative p-0">
           {isError && <Error1 />}
@@ -47,32 +118,41 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
                   />
                 </div>
               </div>
-
+              {location.pathname === '/' && (
+                <button
+                  className="pencil btn position-absolute rounded-circle border-0"
+                  onClick={handleShow}
+                  style={{
+                    right: '15px',
+                    top: '215px',
+                  }}
+                >
+                  <i className="bi bi-pencil fs-5"></i>
+                </button>
+              )}
+              {location.pathname === '/' && (
+                <button
+                  className="camera btn position-absolute rounded-circle px-1 py-0 border-3 border-light"
+                  onClick={handleShowImg}
+                  style={{
+                    left: '135px',
+                    top: '100px',
+                  }}
+                >
+                  <i className="bi bi-camera fs-6"></i>
+                </button>
+              )}
               <div className="card-body text-start mt-4 px-4">
                 <div className="d-flex">
                   <h3 className="card-title fw-bold mb-1">
                     {profile.name} {profile.surname}
                   </h3>
-                  <a
-                    href="#"
-                    className=" ms-3 myButton ps-2 pe-2 align-self-center d-flex"
-                  >
-                    <svg
-                      className="align-self-center me-2 bi bi-patch-check"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0"
-                      />
-                      <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z" />
-                    </svg>
-                    Aggiungi badge di verifica
-                  </a>
+                  <button className="myButton btn ms-3 px-3 py-0 rounded-5 my-auto ">
+                    <i className="bi bi-shield-check"></i>{' '}
+                    <span className="fw-semibold">
+                      Aggiungi badge di verifica
+                    </span>
+                  </button>
                 </div>
                 <p className="card-text text-muted">{profile.title}</p>
                 <p className="text-muted small">
@@ -86,16 +166,16 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
               <div className="container px-4 pb-4 ">
                 <div className="row gx-3 text-center ">
                   <div className="col d-flex flex-wrap">
-                    <button className="btn-primary fs-6 my-2 me-2 fw-semibold rounded-5">
+                    <button className="btn btn-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Disponibile per
                     </button>
-                    <button className="btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
+                    <button className="btn btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Aggiungi sezione del profilo
                     </button>
-                    <button className="btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
+                    <button className="btn btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Migliora Profilo
                     </button>
-                    <button className="btn btn-outline-dark fs-6 my-2 me-2 fw-semibold rounded-5">
+                    <button className="btn btn btn-outline-dark fs-6 my-2 me-2 fw-semibold rounded-5">
                       Risorse
                     </button>
                   </div>
@@ -112,6 +192,205 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
                   </div>
                 </div>
               </div>
+              {location.pathname === '/' && (
+                <>
+                  <Modal
+                    show={showModal}
+                    onHide={handleClose}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                  >
+                    <Modal.Header closeButton className="px-4 py-3">
+                      <Modal.Title
+                        id="contained-modal-title-vcenter"
+                        className="fs-5"
+                      >
+                        Modifica presentazione
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="pt-2 px-4">
+                      <p
+                        className="text-secondary "
+                        style={{ fontSize: '0.7rem' }}
+                      >
+                        * indica che è obbligatorio
+                      </p>
+                      <Form
+                        className="form"
+                        onSubmit={(e) => {
+                          e.preventDefault()
+                          setMod({ ...profile, mod })
+                          putProfile()
+                        }}
+                      >
+                        <FormGroup className="mb-3" controlId="formBasicEmail">
+                          <FormLabel className="mb-0">Nome*</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.name}
+                            value={mod.name}
+                            onChange={(e) =>
+                              setMod({ ...mod!, name: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+
+                        <FormGroup
+                          className="mb-3"
+                          controlId="formBasicPassword"
+                        >
+                          <FormLabel className="mb-0">Cognome*</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.surname}
+                            value={mod?.surname}
+                            onChange={(e) =>
+                              setMod({ ...mod!, surname: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+
+                        <FormGroup className="mb-3" controlId="formBasicEmail">
+                          <FormLabel className="mb-0">Email*</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="email"
+                            placeholder={profile.email}
+                            value={mod?.email}
+                            onChange={(e) =>
+                              setMod({ ...mod!, email: e.target.value })
+                            }
+                          />
+                          <FormText
+                            className="text-secondary"
+                            style={{ fontSize: '0.7rem' }}
+                          >
+                            Il tuo indirizzo email non sarà visibile agli altri
+                          </FormText>
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">Username*</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.username}
+                            value={mod?.username}
+                            onChange={(e) =>
+                              setMod({ ...mod!, username: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">Biografia*</FormLabel>
+                          <Form.Control
+                            className="form border-dark "
+                            as="textarea"
+                            placeholder={profile.bio}
+                            rows={3}
+                            value={mod?.bio}
+                            onChange={(e) =>
+                              setMod({ ...mod!, bio: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">
+                            Posizione lavorativa*
+                          </FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.title}
+                            value={mod?.title}
+                            onChange={(e) =>
+                              setMod({ ...mod!, title: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">
+                            Paese/Area geografica*
+                          </FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.area}
+                            value={mod?.area}
+                            onChange={(e) =>
+                              setMod({ ...mod!, area: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">Foto profilo</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.image}
+                            value={mod?.image}
+                            onChange={(e) =>
+                              setMod({ ...mod!, image: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+
+                        <div className="d-flex justify-content-end">
+                          <button
+                            type="submit"
+                            className="btn btn-primary fs-6 fw-semibold rounded-5"
+                            onClick={handleClose}
+                          >
+                            Salva
+                          </button>
+                        </div>
+                      </Form>
+                    </Modal.Body>
+                  </Modal>
+                  <Modal
+                    show={showModalImg}
+                    onHide={handleCloseImg}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                  >
+                    <Modal.Header closeButton className="px-4 py-3">
+                      <Modal.Title
+                        id="contained-modal-title-vcenter"
+                        className="fs-5"
+                      >
+                        Modifica immagine
+                      </Modal.Title>
+                    </Modal.Header>
+                    <ModalBody className="pt-2 px-4">
+                      <Form className="form mt-2">
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">
+                            Carica l'immagine*
+                          </FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="file"
+                            placeholder="Scegi file"
+                          />
+                        </FormGroup>
+
+                        <div className="d-flex justify-content-end">
+                          <button
+                            type="submit"
+                            className="btn btn-primary fs-6 fw-semibold rounded-5"
+                            onClick={handleClose}
+                          >
+                            Salva
+                          </button>
+                        </div>
+                      </Form>
+                    </ModalBody>
+                  </Modal>
+                </>
+              )}
             </>
           )}
         </div>

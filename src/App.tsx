@@ -17,7 +17,7 @@ import Company from './components/Company'
 
 function App() {
   const APIKEY =
-    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVmZWIxZjBlYTI4NjAwMTUyOGI5MzIiLCJpYXQiOjE3MzQzNDM1NzgsImV4cCI6MTczNTU1MzE3OH0.v7lEVOe2QDdJlK5ak5I4FmtNPgqcmd8kXKzCk7W8hCc'
+    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzY0MjllMDk5MDYxMDAwMTViNjc4YmEiLCJpYXQiOjE3MzQ2MTc1NjgsImV4cCI6MTczNTgyNzE2OH0.Fv6lYZpaTNofky2UWNoDgj02ecQEkEGsQt38EpPFV3E'
 
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -25,6 +25,8 @@ function App() {
 
   const [jobs, setJobs] = useState<Job[] | null>(null)
   const [search, setSearch] = useState<string>('s')
+
+  const [restart, setRestart] = useState<boolean>(false)
 
   const getProfile = async () => {
     fetch('https://striveschool-api.herokuapp.com/api/profile/me', {
@@ -43,6 +45,7 @@ function App() {
         console.log(data)
         setProfile(data)
         setIsLoading(false)
+        setRestart(false)
       })
       .catch((error) => {
         setIsError(true)
@@ -52,7 +55,7 @@ function App() {
 
   useEffect(() => {
     getProfile()
-  }, [])
+  }, [restart])
 
   return (
     <BrowserRouter>
@@ -72,6 +75,7 @@ function App() {
               isLoading={isLoading}
               isError={isError}
               APIKEY={APIKEY}
+              setRestart={setRestart}
             />
           }
         />

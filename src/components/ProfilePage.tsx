@@ -12,6 +12,7 @@ interface ProfilePageProps {
   isLoading: boolean
   isError: boolean
   APIKEY: string
+  setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ProfilePage = ({
@@ -19,6 +20,7 @@ const ProfilePage = ({
   isLoading,
   isError,
   APIKEY,
+  setRestart,
 }: ProfilePageProps) => {
   return (
     <Container fluid>
@@ -26,11 +28,15 @@ const ProfilePage = ({
         <Col xs={12} lg={10} className=" mt-5">
           <Row className="mt-5">
             <Col xs={12} lg={8} className="flex-grow-1">
-              <HeroSection
-                profile={profile}
-                isLoading={isLoading}
-                isError={isError}
-              />
+              {!isError && !isLoading && (
+                <HeroSection
+                  profile={profile}
+                  isLoading={isLoading}
+                  isError={isError}
+                  APIKEY={APIKEY}
+                  setRestart={setRestart}
+                />
+              )}
               {!isError && !isLoading && (
                 <Experiences profile={profile} APIKEY={APIKEY} />
               )}
@@ -41,9 +47,9 @@ const ProfilePage = ({
               <SideBar APIKEY={APIKEY} />
             </Col>
           </Row>
+          <FooterSection />
         </Col>
       </Row>
-      <FooterSection />
     </Container>
   )
 }

@@ -9,6 +9,23 @@ const HomePageCentralSection = ({
   profile,
   APIKEY,
 }: HomePageCentralSectionProps) => {
+  const getPost = async () => {
+    fetch("https://striveschool-api.herokuapp.com/api/posts/")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("ERRORE NELLA FETCH");
+        }
+      })
+      .then((Posts) => {
+        console.log(Posts);
+      })
+      .catch((error) => {
+        console.log(error, "ERRORE");
+      });
+  };
+
   return (
     <>
       <Container>
@@ -66,6 +83,7 @@ const HomePageCentralSection = ({
             </Card.Body>
           </Card>
         </Row>
+        <Row></Row>
       </Container>
     </>
   );

@@ -26,6 +26,8 @@ function App() {
   const [jobs, setJobs] = useState<Job[] | null>(null)
   const [search, setSearch] = useState<string>('s')
 
+  const [restart, setRestart] = useState<boolean>(false)
+
   const getProfile = async () => {
     fetch('https://striveschool-api.herokuapp.com/api/profile/me', {
       headers: {
@@ -43,6 +45,7 @@ function App() {
         console.log(data)
         setProfile(data)
         setIsLoading(false)
+        setRestart(false)
       })
       .catch((error) => {
         setIsError(true)
@@ -52,7 +55,7 @@ function App() {
 
   useEffect(() => {
     getProfile()
-  }, [])
+  }, [restart])
 
   return (
     <BrowserRouter>
@@ -72,6 +75,7 @@ function App() {
               isLoading={isLoading}
               isError={isError}
               APIKEY={APIKEY}
+              setRestart={setRestart}
             />
           }
         />

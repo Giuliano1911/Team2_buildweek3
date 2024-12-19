@@ -4,7 +4,7 @@ import { Col } from 'react-bootstrap'
 
 const ConsigliatiSection = () => {
   return (
-    <Container className="container-fluid bg-white border rounded-2 mt-4 p-4">
+    <Container className="container-fluid bg-white border rounded-2 mt-2 p-4">
       <Row className="row justify-content-center">
         <h3 className="p-0">Consigliato per te</h3>
         <div className="d-flex align-items-center p-0">

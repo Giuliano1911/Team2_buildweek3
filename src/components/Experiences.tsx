@@ -83,7 +83,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
 
   const location = useLocation()
   return (
-    <Container className="p-0">
+    <Container className="p-0 mt-2">
       <Col className=" bg-white border rounded-2 p-3">
         <div className=" d-flex justify-content-between">
           <h4>Esperienze</h4>

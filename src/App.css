@@ -212,3 +212,9 @@ body {
   background-color: #e9ecef;
   color: #004182;
 }
+
+.actual-page {
+  text-decoration: underline !important;
+  text-decoration-color: #000000 !important;
+  color: #000000 !important;
+}

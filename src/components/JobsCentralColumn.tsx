@@ -44,7 +44,7 @@ const JobsCentralColumn = ({
         )}
       </Card>
       <Card className="mt-2 p-4 pb-0 mb-2">
-        <h4 className=" fw-bold ps-1 pt-1">Consigliato per te</h4>
+        <h4 className=" ps-1 pt-1">Consigliato per te</h4>
         <p className=" opacity-50 ps-1">
           Sulla base del tuo profilo e della tua cronologie ricerche
         </p>

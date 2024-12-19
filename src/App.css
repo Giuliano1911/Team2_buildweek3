@@ -2,33 +2,12 @@ body {
   background-color: #f4f2ee;
 }
 
-.custom-sidebar-border {
-  border: 1px solid gray;
-}
-
-.custom-sidebar-profiles-buttons {
-  background-color: white;
-  border: none;
-  border: 1px solid black;
-  border-radius: 20px;
-  font-weight: 500;
-  color: #404040;
-  padding: 3px 15px;
-}
-
-.custom-sidebar-profiles-buttons:hover {
-  border: 2px solid black;
-  background-color: #f3f3f3;
-}
-
-.custom-sidebar-profilePicSize {
-  width: 4rem;
-}
 .navbar {
   font-size: 0.7rem;
 }
 
-.textform {
+.textform,
+.sidebar {
   font-size: 0.8rem;
 }
 
@@ -144,7 +123,7 @@ body {
 }
 
 .bi-square-fill {
-  color: #9f5903;
+  color: #daa556;
 }
 
 .navbar .dropdown-menu {
@@ -187,10 +166,6 @@ body {
 
 .icons:hover {
   opacity: 100%;
-}
-
-.home {
-  text-decoration: none !important;
 }
 
 .margin-sidebar-custom {
@@ -256,3 +231,7 @@ body {
 }
 
 /* end css homepage central section */
+
+.left-column {
+  font-size: 0.7rem;
+}

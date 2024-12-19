@@ -10,14 +10,21 @@ import NotFound from './components/NotFound'
 import ProfilePage from './components/ProfilePage'
 import LinkedInNavbar from './components/LinkedInNavbar'
 import HomePage from './components/HomePage'
+import Jobs from './components/Jobs'
+import Job from './types/Job'
+import FriendProfilePage from './components/FriendProfilePage'
+import Company from './components/Company'
 
 function App() {
   const APIKEY =
-    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVmZWI5YTBlYTI4NjAwMTUyOGI5MzMiLCJpYXQiOjE3MzQzMzk0ODMsImV4cCI6MTczNTU0OTA4M30.8FVQXQEJDpi6FMcQ05hTBgRDTzAWcis88nWJx_ksQWw'
+    'BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVmZWIxZjBlYTI4NjAwMTUyOGI5MzIiLCJpYXQiOjE3MzQzNDM1NzgsImV4cCI6MTczNTU1MzE3OH0.v7lEVOe2QDdJlK5ak5I4FmtNPgqcmd8kXKzCk7W8hCc'
 
   const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
+
+  const [jobs, setJobs] = useState<Job[] | null>(null)
+  const [search, setSearch] = useState<string>('s')
 
   const getProfile = async () => {
     fetch('https://striveschool-api.herokuapp.com/api/profile/me', {
@@ -53,6 +60,7 @@ function App() {
         profile={profile!}
         isLoading={isLoading}
         isError={isError}
+        setSearch={setSearch}
       />
 
       <Routes>
@@ -67,7 +75,6 @@ function App() {
             />
           }
         />
-
         <Route
           path="/homepage"
           element={
@@ -79,6 +86,22 @@ function App() {
             />
           }
         />
+        <Route
+          path="/profile/:id"
+          element={<FriendProfilePage APIKEY={APIKEY} />}
+        />
+        <Route
+          path="/jobs"
+          element={
+            <Jobs
+              APIKEY={APIKEY}
+              setJobs={setJobs}
+              search={search}
+              jobs={jobs}
+            />
+          }
+        />
+        <Route path="/company/:name" element={<Company APIKEY={APIKEY} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

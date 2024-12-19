@@ -24,14 +24,18 @@ interface LinkedInNavbarProps {
   profile: Profile
   isLoading: boolean
   isError: boolean
+  setSearch: React.Dispatch<React.SetStateAction<string>>
 }
 
 const LinkedInNavbar = ({
   profile,
   isLoading,
   isError,
+  setSearch,
 }: LinkedInNavbarProps) => {
+  const [searchJobs, setSearchJobs] = useState<string>('')
   const [showSecondNavbar, setShowSecondNavbar] = useState(false)
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 450) {
@@ -67,11 +71,14 @@ const LinkedInNavbar = ({
         expand="lg"
         className="d-flex w-100 bg-body-tertiary shadow-sm fixed-top z-2 py-0"
       >
-        <Container fluid className="mx-0 ">
+        <Container fluid className="mx-0">
           <Row className="d-flex flex-grow-1 w-100 justify-content-center">
-            <Col className="d-flex col-12 col-lg-10 justify-content-between py-1 pe-0 ">
+            <Col className="d-flex col-12 col-lg-10 justify-content-between py-1 ">
               <div className="d-flex">
-                <Link to="/homepage" className="my-auto me-1 me-lg-3 py-0">
+                <Link
+                  to="/homepage"
+                  className="my-auto me-1 me-lg-3 py-0 nav-link"
+                >
                   <img
                     src={Logo}
                     width="35"
@@ -80,7 +87,13 @@ const LinkedInNavbar = ({
                     alt="LinkedIn Logo"
                   />
                 </Link>
-                <Form className="my-auto d-none d-lg-block">
+                <Form
+                  className="my-auto d-none d-lg-block"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    setSearch(searchJobs)
+                  }}
+                >
                   <Row>
                     <Col xs="auto" className="p-0 m-1 position-relative">
                       <img
@@ -93,7 +106,11 @@ const LinkedInNavbar = ({
                       <Form.Control
                         type="text"
                         placeholder="Cerca"
+                        value={searchJobs}
                         className="textform py-2 m-0 border-0 bg-body-secondary px-5 d-none d-lg-block"
+                        onChange={(e) => {
+                          setSearchJobs(e.target.value)
+                        }}
                       />
                     </Col>
                   </Row>
@@ -106,13 +123,21 @@ const LinkedInNavbar = ({
                       showSearch ? 'd-block' : 'd-none'
                     } d-lg-none`}
                     ref={searchRef}
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                      setSearch(searchJobs)
+                    }}
                   >
                     <Row>
                       <Col xs="auto" className="p-0 m-1">
                         <Form.Control
                           type="text"
                           placeholder="Cerca"
+                          value={searchJobs}
                           className="textform py-2 m-0 border-0 bg-body-secondary px-5 d-none d-lg-block"
+                          onChange={(e) => {
+                            setSearchJobs(e.target.value)
+                          }}
                         />
                       </Col>
                     </Row>
@@ -133,7 +158,10 @@ const LinkedInNavbar = ({
                           />
                         </div>
                       </Nav.Link>
-                      <Link to="/homepage" className="my-auto p-0 pt-1">
+                      <Link
+                        to="/homepage"
+                        className="my-auto p-0 pt-1 nav-link"
+                      >
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={HomeIcon}
@@ -141,7 +169,7 @@ const LinkedInNavbar = ({
                             className="mx-lg-4 px-2"
                             alt="Home Icon"
                           />
-                          <p className="home m-0 d-none text-dark d-lg-block mt-1">
+                          <p className=" m-0 d-none text-dark d-lg-block mt-1">
                             Home
                           </p>
                         </div>
@@ -159,7 +187,7 @@ const LinkedInNavbar = ({
                           </p>
                         </div>
                       </Nav.Link>
-                      <Nav.Link href="" className="my-auto p-0 pt-1">
+                      <Link to="/jobs" className="my-auto p-0 pt-1 nav-link">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
                             src={JobIcon}
@@ -171,7 +199,7 @@ const LinkedInNavbar = ({
                             Lavoro
                           </p>
                         </div>
-                      </Nav.Link>
+                      </Link>
                       <Nav.Link href="" className="my-auto p-0 pt-1">
                         <div className="icons d-flex flex-grow-1 flex-column align-items-center">
                           <img
@@ -233,24 +261,28 @@ const LinkedInNavbar = ({
                         {!isError && !isLoading ? (
                           <>
                             <NavDropdown.Item className="p-2 m-0 pb-0 bg-transparent">
-                              <div className="d-flex ">
-                                <img
-                                  src={profile.image}
-                                  width="60"
-                                  height="60"
-                                  className="d-inline-block align-top rounded-circle"
-                                  alt="Profile"
-                                />
-                                <div className="ps-2">
-                                  <p className="fs-6 fw-semibold mb-0">
-                                    {profile.name} {profile.surname}
-                                  </p>
-                                  <p>{profile.title}</p>
+                              <Link to="/" className="nav-link p-0">
+                                <div className="d-flex text-dark">
+                                  <img
+                                    src={profile.image}
+                                    width="60"
+                                    height="60"
+                                    className="d-inline-block align-top rounded-circle"
+                                    alt="Profile"
+                                  />
+                                  <div className="ps-2">
+                                    <p className="fs-6 fw-semibold mb-0">
+                                      {profile.name} {profile.surname}
+                                    </p>
+                                    <p>{profile.title}</p>
+                                  </div>
                                 </div>
-                              </div>
-                              <button className="btn-outline-primary w-100 my-2 fw-semibold rounded-5">
-                                Visualizza profilo
-                              </button>
+                              </Link>
+                              <Link to="/">
+                                <button className="btn-outline-primary w-100 my-2 fw-semibold rounded-5">
+                                  Visualizza profilo
+                                </button>
+                              </Link>
                             </NavDropdown.Item>
                             <NavDropdown.Divider className="my-0" />
                             <NavDropdown.Item className="p-2 m-0">
@@ -348,7 +380,7 @@ const LinkedInNavbar = ({
           <Container fluid className="mx-0 ">
             <Row className="d-flex flex-grow-1 w-100 justify-content-center">
               <Col className="d-flex col-12 col-lg-10 justify-content-between ">
-                <div className="d-flex ">
+                <Link to="/" className="nav-link p-0 d-flex">
                   <Navbar.Brand href="#home" className="my-auto">
                     <img
                       src={profile.image}
@@ -364,7 +396,8 @@ const LinkedInNavbar = ({
                     </p>
                     <p className="mb-0">{profile.title}</p>
                   </div>
-                </div>
+                </Link>
+
                 <div className="d-flex ">
                   <button className="btn btn-outline-dark fs-6 my-2 ms-2 fw-semibold rounded-5">
                     Risorse

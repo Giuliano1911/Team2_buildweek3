@@ -89,7 +89,7 @@ const SideBar = ({ APIKEY }: SideBarProps) => {
       <Col sm={12}>
         <img
           className="w-100 rounded-3 custom-sidebar-border margin-sidebar-custom"
-          src={img1}
+          src={SideBarImg}
           alt="image-1"
         />
       </Col>

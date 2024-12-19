@@ -1,8 +1,8 @@
-import { Link } from 'react-router'
-import Profile from '../types/Profile'
+import { Link } from "react-router";
+import Profile from "../types/Profile";
 
 interface SidebarPersonalProfilesProps {
-  p: Profile
+  p: Profile;
 }
 
 const SidebarPersonalProfiles = ({ p }: SidebarPersonalProfilesProps) => {
@@ -14,15 +14,15 @@ const SidebarPersonalProfiles = ({ p }: SidebarPersonalProfilesProps) => {
             <img
               className=" rounded-circle "
               style={{
-                width: '50px',
-                height: '50px',
+                width: "50px",
+                height: "50px",
               }}
               src={p.image}
               alt="profile-pic"
             />
           </Link>
           <div className=" ps-2 d-flex flex-column">
-            <Link to={`/profile/${p._id}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/profile/${p._id}`} style={{ textDecoration: "none" }}>
               <p className=" mb-0 p-0 fs-6 fw-semibold text-dark ">
                 {p.name} <span> {p.surname}</span>
               </p>
@@ -36,7 +36,7 @@ const SidebarPersonalProfiles = ({ p }: SidebarPersonalProfilesProps) => {
       </div>
       <hr className=" " />
     </>
-  )
-}
+  );
+};
 
-export default SidebarPersonalProfiles
+export default SidebarPersonalProfiles;

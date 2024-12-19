@@ -7,6 +7,7 @@ import stockImage from '../assets/Screenshot 2024-12-18 114210.png'
 import Error1 from './Error1'
 import Loading from './Loading'
 import SingleJob from './SingleJob'
+import CompanySideBar from './CompanySideBar'
 
 interface CompanyProps {
   APIKEY: string
@@ -103,7 +104,9 @@ const Company = ({ APIKEY }: CompanyProps) => {
             </Container>
           </Card>
         </Col>
-        <Col xs={10} md={4}></Col>
+        <Col xs={10} md={4}>
+          <CompanySideBar />
+        </Col>
       </Row>
     </Container>
   )

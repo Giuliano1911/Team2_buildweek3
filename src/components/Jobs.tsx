@@ -4,8 +4,8 @@ import JobsResponse from '../types/JobsResponse'
 import JobsCentralColumn from './JobsCentralColumn'
 import { Col, Container, Row } from 'react-bootstrap'
 import LeftColumn from './LeftColumn'
-import SideBarNotizieHomePage from './SideBarNotizieHomePage'
 import Profile from '../types/Profile'
+import FooterPiccolo from './FooterPiccolo'
 
 interface JobsProps {
   APIKEY: string
@@ -84,7 +84,7 @@ const Jobs = ({
               />
             </Col>
             <Col xs={12} lg={3} className="flex-grow-1">
-              <SideBarNotizieHomePage />
+              <FooterPiccolo />
             </Col>
           </Row>
         </Col>

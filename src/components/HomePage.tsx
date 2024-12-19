@@ -1,14 +1,14 @@
-import { Card, Col, Container, Row } from "react-bootstrap";
-import Profile from "../types/Profile";
-import HomePageCentralSection from "./HomePageCentralSection";
-import LeftColumn from "./LeftColumn";
-import SideBarNotizieHomePage from "./SideBarNotizieHomePage";
+import { Card, Col, Container, Row } from 'react-bootstrap'
+import Profile from '../types/Profile'
+import HomePageCentralSection from './HomePageCentralSection'
+import LeftColumn from './LeftColumn'
+import SideBarNotizieHomePage from './SideBarNotizieHomePage'
 
 interface HomePageProps {
-  profile: Profile;
-  isLoading: boolean;
-  isError: boolean;
-  APIKEY: string;
+  profile: Profile
+  isLoading: boolean
+  isError: boolean
+  APIKEY: string
 }
 
 const HomePage = ({ profile, isLoading, isError, APIKEY }: HomePageProps) => {
@@ -25,7 +25,12 @@ const HomePage = ({ profile, isLoading, isError, APIKEY }: HomePageProps) => {
               />
             </Col>
             <Col xs={12} lg={6} className="flex-grow-1">
-              <HomePageCentralSection profile={profile} APIKEY={APIKEY} />
+              <HomePageCentralSection
+                profile={profile}
+                APIKEY={APIKEY}
+                isLoading={isLoading}
+                isError={isError}
+              />
             </Col>
             <Col xs={12} lg={3} className="flex-grow-1">
               <SideBarNotizieHomePage />
@@ -34,6 +39,6 @@ const HomePage = ({ profile, isLoading, isError, APIKEY }: HomePageProps) => {
         </Col>
       </Row>
     </Container>
-  );
-};
-export default HomePage;
+  )
+}
+export default HomePage

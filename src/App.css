@@ -199,7 +199,18 @@ body {
 
 .bi-shield-check,
 .bi-pencil {
-  -webkit-text-stroke: 0.7px;
+  -webkit-text-stroke: 0.5px;
+}
+
+.camera {
+  background-color: #e9ecef;
+  color: #0a66c2;
+  -webkit-text-stroke: 0.5px;
+}
+
+.camera:hover {
+  background-color: #e9ecef;
+  color: #004182;
 }
 
 .actual-page {

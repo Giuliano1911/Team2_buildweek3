@@ -3,7 +3,7 @@ import CoverImg from '../assets/Generic cover.webp'
 import Error1 from './Error1'
 import Loading from './Loading'
 import { useState } from 'react'
-import { Modal } from 'react-bootstrap'
+import { Modal, ModalBody } from 'react-bootstrap'
 import {
   Form,
   FormGroup,
@@ -20,16 +20,16 @@ interface HeroProps {
   setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-// interface InitialState {
-//   name: string
-//   surname: string
-//   email: string
-//   username: string
-//   bio: string
-//   title: string
-//   area: string
-//   image: string
-// }
+interface InitialState {
+  name: string
+  surname: string
+  email: string
+  username: string
+  bio: string
+  title: string
+  area: string
+  image: string
+}
 
 const HeroSection = ({
   profile,
@@ -39,8 +39,11 @@ const HeroSection = ({
   setRestart,
 }: HeroProps) => {
   const [showModal, setShowModal] = useState(false)
+  const [showModalImg, setShowModalImg] = useState(false)
   const handleClose = () => setShowModal(false)
   const handleShow = () => setShowModal(true)
+  const handleCloseImg = () => setShowModalImg(false)
+  const handleShowImg = () => setShowModalImg(true)
 
   const InitialModState = {
     name: profile!.name,
@@ -130,7 +133,7 @@ const HeroSection = ({
               {location.pathname === '/' && (
                 <button
                   className="camera btn position-absolute rounded-circle px-1 py-0 border-3 border-light"
-                  onClick={handleShow}
+                  onClick={handleShowImg}
                   style={{
                     left: '135px',
                     top: '100px',
@@ -190,158 +193,203 @@ const HeroSection = ({
                 </div>
               </div>
               {location.pathname === '/' && (
-                <Modal
-                  show={showModal}
-                  onHide={handleClose}
-                  size="lg"
-                  aria-labelledby="contained-modal-title-vcenter"
-                  centered
-                >
-                  <Modal.Header closeButton className="px-4 py-3">
-                    <Modal.Title
-                      id="contained-modal-title-vcenter"
-                      className="fs-5"
-                    >
-                      Modifica presentazione
-                    </Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body className="pt-2 px-4">
-                    <p
-                      className="text-secondary "
-                      style={{ fontSize: '0.7rem' }}
-                    >
-                      * indica che è obbligatorio
-                    </p>
-                    <Form
-                      className="form"
-                      onSubmit={(e) => {
-                        e.preventDefault()
-                        setMod({ ...profile, mod })
-                        putProfile()
-                      }}
-                    >
-                      <FormGroup className="mb-3" controlId="formBasicEmail">
-                        <FormLabel className="mb-0">Nome*</FormLabel>
-                        <FormControl
-                          className="form border-dark "
-                          type="text"
-                          placeholder={profile.name}
-                          value={mod.name}
-                          onChange={(e) =>
-                            setMod({ ...mod!, name: e.target.value })
-                          }
-                        />
-                      </FormGroup>
+                <>
+                  <Modal
+                    show={showModal}
+                    onHide={handleClose}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                  >
+                    <Modal.Header closeButton className="px-4 py-3">
+                      <Modal.Title
+                        id="contained-modal-title-vcenter"
+                        className="fs-5"
+                      >
+                        Modifica presentazione
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="pt-2 px-4">
+                      <p
+                        className="text-secondary "
+                        style={{ fontSize: '0.7rem' }}
+                      >
+                        * indica che è obbligatorio
+                      </p>
+                      <Form
+                        className="form"
+                        onSubmit={(e) => {
+                          e.preventDefault()
+                          setMod({ ...profile, mod })
+                          putProfile()
+                        }}
+                      >
+                        <FormGroup className="mb-3" controlId="formBasicEmail">
+                          <FormLabel className="mb-0">Nome*</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.name}
+                            value={mod.name}
+                            onChange={(e) =>
+                              setMod({ ...mod!, name: e.target.value })
+                            }
+                          />
+                        </FormGroup>
 
-                      <FormGroup className="mb-3" controlId="formBasicPassword">
-                        <FormLabel className="mb-0">Cognome*</FormLabel>
-                        <FormControl
-                          className="form border-dark "
-                          type="text"
-                          placeholder={profile.surname}
-                          value={mod?.surname}
-                          onChange={(e) =>
-                            setMod({ ...mod!, surname: e.target.value })
-                          }
-                        />
-                      </FormGroup>
-
-                      <FormGroup className="mb-3" controlId="formBasicEmail">
-                        <FormLabel className="mb-0">Email*</FormLabel>
-                        <FormControl
-                          className="form border-dark "
-                          type="email"
-                          placeholder={profile.email}
-                          value={mod?.email}
-                          onChange={(e) =>
-                            setMod({ ...mod!, email: e.target.value })
-                          }
-                        />
-                        <FormText
-                          className="text-secondary"
-                          style={{ fontSize: '0.7rem' }}
+                        <FormGroup
+                          className="mb-3"
+                          controlId="formBasicPassword"
                         >
-                          Il tuo indirizzo email non sarà visibile agli altri
-                        </FormText>
-                      </FormGroup>
-                      <FormGroup className="mb-3" controlId="formBasicPassword">
-                        <FormLabel className="mb-0">Username*</FormLabel>
-                        <FormControl
-                          className="form border-dark "
-                          type="text"
-                          placeholder={profile.username}
-                          value={mod?.username}
-                          onChange={(e) =>
-                            setMod({ ...mod!, username: e.target.value })
-                          }
-                        />
-                      </FormGroup>
-                      <FormGroup className="mb-3" controlId="formBasicPassword">
-                        <FormLabel className="mb-0">Biografia*</FormLabel>
-                        <Form.Control
-                          className="form border-dark "
-                          as="textarea"
-                          placeholder={profile.bio}
-                          rows={3}
-                          value={mod?.bio}
-                          onChange={(e) =>
-                            setMod({ ...mod!, bio: e.target.value })
-                          }
-                        />
-                      </FormGroup>
-                      <FormGroup className="mb-3" controlId="formBasicPassword">
-                        <FormLabel className="mb-0">
-                          Posizione lavorativa*
-                        </FormLabel>
-                        <FormControl
-                          className="form border-dark "
-                          type="text"
-                          placeholder={profile.title}
-                          value={mod?.title}
-                          onChange={(e) =>
-                            setMod({ ...mod!, title: e.target.value })
-                          }
-                        />
-                      </FormGroup>
-                      <FormGroup className="mb-3" controlId="formBasicPassword">
-                        <FormLabel className="mb-0">
-                          Paese/Area geografica*
-                        </FormLabel>
-                        <FormControl
-                          className="form border-dark "
-                          type="text"
-                          placeholder={profile.area}
-                          value={mod?.area}
-                          onChange={(e) =>
-                            setMod({ ...mod!, area: e.target.value })
-                          }
-                        />
-                      </FormGroup>
-                      <FormGroup className="mb-3" controlId="formBasicPassword">
-                        <FormLabel className="mb-0">Foto profilo</FormLabel>
-                        <FormControl
-                          className="form border-dark "
-                          type="text"
-                          placeholder={profile.image}
-                          value={mod?.image}
-                          onChange={(e) =>
-                            setMod({ ...mod!, image: e.target.value })
-                          }
-                        />
-                      </FormGroup>
+                          <FormLabel className="mb-0">Cognome*</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.surname}
+                            value={mod?.surname}
+                            onChange={(e) =>
+                              setMod({ ...mod!, surname: e.target.value })
+                            }
+                          />
+                        </FormGroup>
 
-                      <div className="d-flex justify-content-end">
-                        <button
-                          type="submit"
-                          className="btn btn-primary fs-6 fw-semibold rounded-5"
-                          onClick={handleClose}
-                        >
-                          Salva
-                        </button>
-                      </div>
-                    </Form>
-                  </Modal.Body>
-                </Modal>
+                        <FormGroup className="mb-3" controlId="formBasicEmail">
+                          <FormLabel className="mb-0">Email*</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="email"
+                            placeholder={profile.email}
+                            value={mod?.email}
+                            onChange={(e) =>
+                              setMod({ ...mod!, email: e.target.value })
+                            }
+                          />
+                          <FormText
+                            className="text-secondary"
+                            style={{ fontSize: '0.7rem' }}
+                          >
+                            Il tuo indirizzo email non sarà visibile agli altri
+                          </FormText>
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">Username*</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.username}
+                            value={mod?.username}
+                            onChange={(e) =>
+                              setMod({ ...mod!, username: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">Biografia*</FormLabel>
+                          <Form.Control
+                            className="form border-dark "
+                            as="textarea"
+                            placeholder={profile.bio}
+                            rows={3}
+                            value={mod?.bio}
+                            onChange={(e) =>
+                              setMod({ ...mod!, bio: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">
+                            Posizione lavorativa*
+                          </FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.title}
+                            value={mod?.title}
+                            onChange={(e) =>
+                              setMod({ ...mod!, title: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">
+                            Paese/Area geografica*
+                          </FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.area}
+                            value={mod?.area}
+                            onChange={(e) =>
+                              setMod({ ...mod!, area: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">Foto profilo</FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="text"
+                            placeholder={profile.image}
+                            value={mod?.image}
+                            onChange={(e) =>
+                              setMod({ ...mod!, image: e.target.value })
+                            }
+                          />
+                        </FormGroup>
+
+                        <div className="d-flex justify-content-end">
+                          <button
+                            type="submit"
+                            className="btn btn-primary fs-6 fw-semibold rounded-5"
+                            onClick={handleClose}
+                          >
+                            Salva
+                          </button>
+                        </div>
+                      </Form>
+                    </Modal.Body>
+                  </Modal>
+                  <Modal
+                    show={showModalImg}
+                    onHide={handleCloseImg}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                  >
+                    <Modal.Header closeButton className="px-4 py-3">
+                      <Modal.Title
+                        id="contained-modal-title-vcenter"
+                        className="fs-5"
+                      >
+                        Modifica immagine
+                      </Modal.Title>
+                    </Modal.Header>
+                    <ModalBody className="pt-2 px-4">
+                      <Form className="form mt-2">
+                        <FormGroup className="mb-3">
+                          <FormLabel className="mb-0">
+                            Carica l'immagine*
+                          </FormLabel>
+                          <FormControl
+                            className="form border-dark "
+                            type="file"
+                            placeholder="Scegi file"
+                          />
+                        </FormGroup>
+
+                        <div className="d-flex justify-content-end">
+                          <button
+                            type="submit"
+                            className="btn btn-primary fs-6 fw-semibold rounded-5"
+                            onClick={handleClose}
+                          >
+                            Salva
+                          </button>
+                        </div>
+                      </Form>
+                    </ModalBody>
+                  </Modal>
+                </>
               )}
             </>
           )}

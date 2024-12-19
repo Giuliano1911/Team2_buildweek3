@@ -86,13 +86,17 @@ const SideBar = ({ APIKEY }: SideBarProps) => {
         </div>
         <button className="buttonSidebar-mostraAltro">Mostra altro</button>
       </Card>
-      <Col sm={12}>
+      <Card className="sidebar mb-2">
         <img
-          className="w-100 rounded-3 custom-sidebar-border"
           src={SideBarImg}
           alt="image-1"
+          style={{
+            objectFit: 'cover',
+            height: '100%',
+            width: '100%',
+          }}
         />
-      </Col>
+      </Card>
     </>
   )
 }

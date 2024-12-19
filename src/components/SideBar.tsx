@@ -4,6 +4,7 @@ import Profile from '../types/Profile'
 import { useEffect, useState } from 'react'
 import Loading from './Loading'
 import Error1 from './Error1'
+import img1 from '../assets/image/image 1.png'
 
 interface SideBarProps {
   APIKEY: string
@@ -62,7 +63,7 @@ const SideBar = ({ APIKEY }: SideBarProps) => {
       <Col sm={12}>
         <img
           className="w-100 rounded-3 custom-sidebar-border margin-sidebar-custom"
-          src="src/assets/image/image 1.png"
+          src={img1}
           alt="image-1"
         />
       </Col>
@@ -86,7 +87,7 @@ const SideBar = ({ APIKEY }: SideBarProps) => {
       <Col sm={12}>
         <img
           className="w-100 rounded-3 custom-sidebar-border margin-sidebar-custom"
-          src="src/assets/image/image 1.png"
+          src={img1}
           alt="image-1"
         />
       </Col>

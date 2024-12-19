@@ -10,16 +10,11 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 
 interface ProfilePageProps {
-  profile: Profile
   APIKEY: string
 }
 
-const FriendProfilePage = ({
-  profile,
-
-  APIKEY,
-}: ProfilePageProps) => {
-  const [friendProfile, setFriendProfile] = useState<Profile>()
+const FriendProfilePage = ({ APIKEY }: ProfilePageProps) => {
+  const [friendProfile, setFriendProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
   const params = useParams()
@@ -50,6 +45,7 @@ const FriendProfilePage = ({
 
   useEffect(() => {
     getFriendProfile()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id])
 
   return (
@@ -59,12 +55,12 @@ const FriendProfilePage = ({
           <Row className="mt-5">
             <Col xs={12} lg={8} className="flex-grow-1">
               <HeroSection
-                profile={friendProfile}
+                profile={friendProfile!}
                 isLoading={isLoading}
                 isError={isError}
               />
               {!isError && !isLoading && (
-                <Experiences profile={friendProfile} APIKEY={APIKEY} />
+                <Experiences profile={friendProfile!} APIKEY={APIKEY} />
               )}
               <ConsigliatiSection />
               <AnalisiSection />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Button, Col, Container } from 'react-bootstrap'
-import { useLocation } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 
 import Experience from '../types/Experience'
 import Profile from '../types/Profile'
@@ -44,6 +44,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
   const [add, setAdd] = useState<InitialState>(InitialAddState)
   const [restart, setRestart] = useState<boolean>(false)
 
+  const params = useParams()
   // 6694d5f8196d7b0015d6b525
   // ${profile._id}
 
@@ -78,7 +79,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
   useEffect(() => {
     getExperiences()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [restart])
+  }, [restart, params.id])
 
   const location = useLocation()
   return (

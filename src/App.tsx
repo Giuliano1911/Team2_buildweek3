@@ -88,7 +88,7 @@ function App() {
         />
         <Route
           path="/profile/:id"
-          element={<FriendProfilePage profile={profile!} APIKEY={APIKEY} />}
+          element={<FriendProfilePage APIKEY={APIKEY} />}
         />
         <Route
           path="/jobs"

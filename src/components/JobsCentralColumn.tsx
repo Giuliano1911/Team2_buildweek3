@@ -24,7 +24,11 @@ const JobsCentralColumn = ({
 }: JobsCentralColumnProps) => {
   return (
     <>
-      <Card></Card>
+      <Card>
+        {isErrorP && <Error1 />}
+        {isLoadingP && <Loading />}
+        {!isLoadingP && !isErrorP && <></>}
+      </Card>
       <Card className="mt-2 p-2">
         <h4 className=" fw-bold ps-1 pt-1">Consigliato per te</h4>
         <p className=" opacity-50 ps-1">

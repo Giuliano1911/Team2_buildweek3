@@ -98,6 +98,9 @@ function App() {
               setJobs={setJobs}
               search={search}
               jobs={jobs}
+              profile={profile!}
+              isLoadingP={isLoading}
+              isErrorP={isError}
             />
           }
         />

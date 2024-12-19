@@ -185,6 +185,54 @@ body {
   color: black;
 }
 
+/* css homepage central section */
+
+.homepage-aggiorna-profilo {
+  padding: 7px 15px;
+  background-color: #0a66c2;
+  color: white;
+  font-weight: 500;
+  border-radius: 20px;
+  border: none;
+}
+.homepage-aggiorna-profilo:hover {
+  background-color: #004182;
+}
+
+.border-first-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+}
+
+.homepage-CreaUnPost-button {
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  background-color: #fff;
+  color: #333;
+  padding: 10px 80% 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.homepage-CreaUnPost-button:hover {
+  background-color: #f3f3f3;
+  color: black;
+}
+
+.button-CreaUnPost-centralSection {
+  background-color: white;
+  padding: 10px 10px;
+  border: none;
+}
+.button-CreaUnPost-centralSection:hover {
+  background-color: #f3f3f3;
+}
+
+.profilePic-centralSection-homePage {
+  width: 4rem;
+}
+
+/* end css homepage central section */
+
 .left-column {
   font-size: 0.7rem;
 }

@@ -6,6 +6,7 @@ import {
   Row,
   Col,
   Form,
+  Dropdown,
 } from 'react-bootstrap'
 import Logo from '../assets/LinkedIn Logo.png'
 import ProfileImg from '../assets/Generic profile.png'
@@ -69,7 +70,7 @@ const LinkedInNavbar = ({
     <>
       <Navbar
         expand="lg"
-        className="d-flex w-100 bg-body-tertiary shadow-sm fixed-top z-2 py-0"
+        className="d-flex w-100 bg-body-tertiary shadow-sm fixed-top z-2 py-0 z-3"
       >
         <Container fluid className="mx-0">
           <Row className="d-flex flex-grow-1 w-100 justify-content-center">
@@ -350,15 +351,66 @@ const LinkedInNavbar = ({
                     id="basic-nav-dropdown"
                     className="dropdown-toggle-no-caret my-auto py-0 pt-1 px-2 d-none d-lg-block"
                   >
-                    <NavDropdown.Item></NavDropdown.Item>
-                    <NavDropdown.Item>Another action</NavDropdown.Item>
-                    <NavDropdown.Item>Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item>Esci</NavDropdown.Item>
-                    <NavDropdown.Item>Post e attività</NavDropdown.Item>
-                    <NavDropdown.Item>Esci</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item>Esci</NavDropdown.Item>
+                    <Dropdown.Item href="#/action-1">
+                      <p className="m-0 fs-6">
+                        <strong>Assumi su LinkedIn</strong>
+                      </p>
+                      <p className="m-0 text-secondary">
+                        Trova, attrai e assumi
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
+                      <p className="m-0 fs-6">
+                        <strong>Vendi con LinkedIn</strong>
+                      </p>
+                      <p className="m-0 text-secondary">
+                        Sblocca nuove opprtunità di <br />
+                        vendita
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">
+                      <p className="m-0 fs-6">
+                        <strong>Offerta di lavoro gratuita</strong>
+                      </p>
+                      <p className="m-0 text-secondary">
+                        Ottieni rapidamente candidati <br />
+                        qualificati
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-1">
+                      <p className="m-0 fs-6">
+                        <strong>Fai pubblicità con LinkedIn</strong>
+                      </p>
+                      <p className="m-0 text-secondary">
+                        Acquisisci clienti e fai crescere la
+                        <br />
+                        tua azienda
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
+                      <p className="m-0 fs-6">
+                        <strong>Inizia con Premium</strong>
+                      </p>
+                      <p className="m-0 text-secondary">
+                        Amplia e sfrutta la tua rete
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">
+                      <p className="m-0 fs-6">
+                        <strong>Impara con LinkedIn</strong>
+                      </p>
+                      <p className="m-0 text-secondary">
+                        Corsi per formare i tuoi dipendenti
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">
+                      <p className="m-0 fs-6">
+                        <strong>Admin Center</strong>
+                      </p>
+                      <p className="m-0 text-secondary">
+                        Gestisci i dettagli di fatturazione e <br /> account
+                      </p>
+                    </Dropdown.Item>
                   </NavDropdown>
                 </Nav>
 
@@ -381,7 +433,7 @@ const LinkedInNavbar = ({
             <Row className="d-flex flex-grow-1 w-100 justify-content-center">
               <Col className="d-flex col-12 col-lg-10 justify-content-between ">
                 <Link to="/" className="nav-link p-0 d-flex">
-                  <Navbar.Brand href="#home" className="my-auto">
+                  <Navbar.Brand className="my-auto">
                     <img
                       src={profile.image}
                       width="30"

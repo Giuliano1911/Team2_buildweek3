@@ -1,4 +1,4 @@
-import { Card, Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import Profile from '../types/Profile'
 import HomePageCentralSection from './HomePageCentralSection'
 import LeftColumn from './LeftColumn'

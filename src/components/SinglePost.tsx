@@ -1,14 +1,22 @@
-import { Card, Col, Row } from "react-bootstrap";
-import Post from "../types/Post";
+import { Button, Card, Col, Row } from 'react-bootstrap'
+import Post from '../types/Post'
+import Profile from '../types/Profile'
+import { useState } from 'react'
+import SingleComment from './SingleComment'
 
 interface SinglePostProps {
-  p: Post;
+  p: Post
+  profile: Profile
 }
 
-const SinglePost = ({ p }: SinglePostProps) => {
+const SinglePost = ({ p, profile }: SinglePostProps) => {
+  const [isComment, setIsComment] = useState<boolean>(false)
+  const [isAdd, setIsAdd] = useState<boolean>(false)
+  const [isMod, setIsMod] = useState<boolean>(false)
+
   return (
     <>
-      <Col xs={12} md={12} className="mb-2">
+      <Col xs={12} md={12} className="mb-2 p-0">
         <Card>
           <Card.Body>
             <Row>
@@ -20,11 +28,30 @@ const SinglePost = ({ p }: SinglePostProps) => {
                 />
               </Col>
               <Col md={10}>
-                <h5 className=" mb-0">
-                  {p.user.name} {p.user.surname}
-                </h5>
+                <div className="d-flex justify-content-between">
+                  <h5 className=" mb-0">
+                    {p.user.name} {p.user.surname}
+                  </h5>
+                  {p.user._id === profile._id ? (
+                    <>
+                      <a
+                        onClick={() => {
+                          setIsMod(true)
+                        }}
+                      >
+                        <i className="fas fa-pencil-alt text-black"></i>
+                      </a>
+                      <a>
+                        <i className="fas fa-pencil-alt ms-1 text-black"></i>
+                      </a>
+                    </>
+                  ) : (
+                    ''
+                  )}
+                </div>
                 <div className="centralSection-hpostHomePage-fontPost">
-                  {p.createdAt}
+                  {p.createdAt.slice(0, 10)}{' '}
+                  {p.createdAt.split('T')[1].slice(0, 5)}
                 </div>
               </Col>
               <Col className="mt-4">{p.text}</Col>
@@ -32,56 +59,34 @@ const SinglePost = ({ p }: SinglePostProps) => {
           </Card.Body>
           <Card.Body className="pt-1 pb">
             <div className="d-flex justify-content-center justify-content-around">
-              <button className="centralSection-homePage-button">
+              <Button className="centralSection-homePage-button text-black">
                 <i className="bi bi-hand-thumbs-up"></i> Consiglia
-              </button>
-              <button className="centralSection-homePage-button">
-                <i className="bi bi-chat-dots"></i> Commenta
-              </button>
-              <button className="centralSection-homePage-button">
+              </Button>
+              <Button
+                className="centralSection-homePage-button text-black"
+                onClick={() => {
+                  setIsComment(true)
+                }}
+              >
+                <i className="bi bi-chat-dots "></i> Commenti
+              </Button>
+              <Button className="centralSection-homePage-button text-black">
                 <i className="bi bi-recycle"></i> Diffondi il post
-              </button>
-              <button className="centralSection-homePage-button">
+              </Button>
+              <Button className="centralSection-homePage-button text-black">
                 <i className="bi bi-send"></i> Invia
-              </button>
+              </Button>
             </div>
           </Card.Body>
+          {isComment && (
+            <Card.Footer>
+              <SingleComment p={p} setIsComment={setIsComment} />
+            </Card.Footer>
+          )}
         </Card>
-        {/* <div>
-            <button>Mostra altro di aggiornamenti del feed</button>
-        </div> */}
       </Col>
     </>
-  );
-};
-
-export default SinglePost;
-
-{
-  /* <Card>
-  <Card.Body>
-    <Row>
-      <Col md={2}></Col>
-      <Col md={10}></Col>
-    </Row>
-    <div>
-      <img
-        className="profilePic-centralSection-hpostHomePage rounded-5 me-3"
-        src={p.user.image}
-        alt=""
-      />
-      {p.user.name} {p.user.surname}
-      <div className=" ms-5 fs-6">{p.createdAt}</div>
-    </div>
-    <Card.Text>{p.text}</Card.Text>
-  </Card.Body>
-  <Card.Body>
-    <div className="d-flex justify-content-center">
-      <button>Consiglia</button>
-      <button>Commenta</button>
-      <button>Diffondi il post</button>
-      <button>Invia</button>
-    </div>
-  </Card.Body>
-</Card>; */
+  )
 }
+
+export default SinglePost

@@ -147,7 +147,6 @@ const LinkedInNavbar = ({
                   {!showSearch && (
                     <>
                       <Nav.Link
-                        href="#home"
                         className="my-auto p-0 pt-1"
                         onClick={handleSearchClick}
                       >

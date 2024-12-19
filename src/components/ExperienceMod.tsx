@@ -67,7 +67,17 @@ const ExperienceMod = ({
   }
 
   return (
-    <Card>
+    <Card className=" position-relative">
+      <div className=" position-absolute end-0 top-0">
+        <Button
+          className="m-0 p-2 bg-white border-0 me-2"
+          onClick={() => {
+            setIsModified(false)
+          }}
+        >
+          <i className="fas fa-times text-black"></i>
+        </Button>
+      </div>
       <Form
         className="p-3"
         onSubmit={(e) => {

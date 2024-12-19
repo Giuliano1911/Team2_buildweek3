@@ -16,8 +16,7 @@ const SidebarPersonalProfiles = ({ p }: SidebarPersonalProfilesProps) => {
           />
           <div>
             <h5 className=" ms-2 mt-3">
-              {p.name}
-              {p.surname}
+              {p.name} {p.surname}
             </h5>
             <p className="ms-2">{p.title} </p>
             <button className="custom-sidebar-profiles-buttons">

@@ -1,10 +1,11 @@
-import { Card, Col, Container, Row } from 'react-bootstrap'
-import Profile from '../types/Profile'
+import { Card, Col, Container, Row } from "react-bootstrap";
+import Profile from "../types/Profile";
+import HomePageCentralSection from "./HomePageCentralSection";
 interface HomePageProps {
-  profile: Profile
-  isLoading: boolean
-  isError: boolean
-  APIKEY: string
+  profile: Profile;
+  isLoading: boolean;
+  isError: boolean;
+  APIKEY: string;
 }
 
 const HomePage = ({ profile, isLoading, isError, APIKEY }: HomePageProps) => {
@@ -26,16 +27,7 @@ const HomePage = ({ profile, isLoading, isError, APIKEY }: HomePageProps) => {
               </Card>
             </Col>
             <Col xs={12} lg={6} className="flex-grow-1">
-              <Card>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              <HomePageCentralSection profile={profile} APIKEY={APIKEY} />
             </Col>
             <Col xs={12} lg={3} className="flex-grow-1">
               <Card>
@@ -53,6 +45,6 @@ const HomePage = ({ profile, isLoading, isError, APIKEY }: HomePageProps) => {
         </Col>
       </Row>
     </Container>
-  )
-}
-export default HomePage
+  );
+};
+export default HomePage;

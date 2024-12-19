@@ -1,12 +1,15 @@
-import { Card, Col, Container, Row } from 'react-bootstrap'
-import Profile from '../types/Profile'
-import Error1 from './Error1'
-import Loading from './Loading'
+import { Card, Col, Container, Row } from "react-bootstrap";
+import Profile from "../types/Profile";
+import Error1 from "./Error1";
+import Loading from "./Loading";
+import { useEffect, useState } from "react";
+import Post from "../types/Post";
+import SinglePost from "./SinglePost";
 interface HomePageCentralSectionProps {
-  profile: Profile
-  APIKEY: string
-  isLoading: boolean
-  isError: boolean
+  profile: Profile;
+  APIKEY: string;
+  isLoading: boolean;
+  isError: boolean;
 }
 
 const HomePageCentralSection = ({
@@ -15,22 +18,36 @@ const HomePageCentralSection = ({
   isError,
   isLoading,
 }: HomePageCentralSectionProps) => {
+  const [post, setPost] = useState<Post[] | null>(null);
+  const [isLoadingP, setIsLoadingP] = useState<boolean>(true);
+  const [isErrorP, setIsErrorP] = useState<boolean>(false);
+
   const getPost = async () => {
-    fetch('https://striveschool-api.herokuapp.com/api/posts/')
+    fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+      headers: { Authorization: APIKEY },
+    })
       .then((response) => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         } else {
-          throw new Error('ERRORE NELLA FETCH')
+          throw new Error("ERRORE NELLA FETCH");
         }
       })
-      .then((Posts) => {
-        console.log(Posts)
+      .then((Posts: Post[]) => {
+        console.log(Posts, "Posts");
+        setPost(Posts.reverse());
+        setIsLoadingP(false);
       })
       .catch((error) => {
-        console.log(error, 'ERRORE')
-      })
-  }
+        console.log(error, "ERRORE");
+        setIsErrorP(true);
+      });
+  };
+
+  useEffect(() => {
+    getPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -96,15 +113,23 @@ const HomePageCentralSection = ({
                 </Card.Body>
               </Card>
             </Row>
-            <Row></Row>
+            <Row>
+              {isErrorP && <Error1 />}
+              {isLoadingP && <Loading />}
+              {!isLoadingP &&
+                !isErrorP &&
+                post!.slice(0, 5).map((p) => {
+                  return <SinglePost p={p} key={p._id} />;
+                })}
+            </Row>
           </>
         )}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default HomePageCentralSection
+export default HomePageCentralSection;
 
 {
   /* <Card className=" my-2">

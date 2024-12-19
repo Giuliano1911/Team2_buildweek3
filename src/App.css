@@ -234,6 +234,26 @@ body {
   width: 4rem;
 }
 
+.profilePic-centralSection-hpostHomePage {
+  width: 4rem;
+}
+
+.centralSection-hpostHomePage-fontPost {
+  font-size: 14px;
+  opacity: 70%;
+}
+
+.centralSection-homePage-button {
+  padding: 10px 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+.centralSection-homePage-button:hover {
+  background-color: #f3f3f3;
+}
+
 /* end css homepage central section */
 
 .left-column {

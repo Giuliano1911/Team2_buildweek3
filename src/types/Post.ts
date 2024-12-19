@@ -5,7 +5,7 @@ export default interface Post {
   text: string
   username: string
   user: Profile
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string
   __v: number
 }

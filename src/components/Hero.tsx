@@ -2,6 +2,8 @@ import Profile from '../types/Profile'
 import CoverImg from '../assets/Generic cover.webp'
 import Error1 from './Error1'
 import Loading from './Loading'
+import { useState } from 'react'
+import { Button, Modal } from 'react-bootstrap'
 
 interface HeroProps {
   profile: Profile
@@ -10,6 +12,10 @@ interface HeroProps {
 }
 
 const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
+  const [showModal, setShowModal] = useState(false)
+  const handleClose = () => setShowModal(false)
+  const handleShow = () => setShowModal(true)
+
   return (
     <div className="container mb-5">
       <div className="row justify-content-center">
@@ -47,32 +53,29 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
                   />
                 </div>
               </div>
-
+              {location.pathname === '/' && (
+                <button
+                  className="pencil btn position-absolute rounded-circle border-0"
+                  onClick={handleShow}
+                  style={{
+                    right: '15px',
+                    top: '215px',
+                  }}
+                >
+                  <i className="bi bi-pencil fs-5"></i>
+                </button>
+              )}
               <div className="card-body text-start mt-4 px-4">
                 <div className="d-flex">
                   <h3 className="card-title fw-bold mb-1">
                     {profile.name} {profile.surname}
                   </h3>
-                  <a
-                    href="#"
-                    className=" ms-3 myButton ps-2 pe-2 align-self-center d-flex"
-                  >
-                    <svg
-                      className="align-self-center me-2 bi bi-patch-check"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0"
-                      />
-                      <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z" />
-                    </svg>
-                    Aggiungi badge di verifica
-                  </a>
+                  <button className="myButton btn ms-3 px-3 py-0 rounded-5 my-auto ">
+                    <i className="bi bi-shield-check"></i>{' '}
+                    <span className="fw-semibold">
+                      Aggiungi badge di verifica
+                    </span>
+                  </button>
                 </div>
                 <p className="card-text text-muted">{profile.title}</p>
                 <p className="text-muted small">
@@ -86,16 +89,16 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
               <div className="container px-4 pb-4 ">
                 <div className="row gx-3 text-center ">
                   <div className="col d-flex flex-wrap">
-                    <button className="btn-primary fs-6 my-2 me-2 fw-semibold rounded-5">
+                    <button className="btn btn-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Disponibile per
                     </button>
-                    <button className="btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
+                    <button className="btn btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Aggiungi sezione del profilo
                     </button>
-                    <button className="btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
+                    <button className="btn btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Migliora Profilo
                     </button>
-                    <button className="btn btn-outline-dark fs-6 my-2 me-2 fw-semibold rounded-5">
+                    <button className="btn btn btn-outline-dark fs-6 my-2 me-2 fw-semibold rounded-5">
                       Risorse
                     </button>
                   </div>
@@ -112,6 +115,30 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
                   </div>
                 </div>
               </div>
+              <Modal
+                show={showModal}
+                onHide={handleClose}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="contained-modal-title-vcenter">
+                    Modal heading
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  Woohoo, you are reading this text in a modal!
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleClose}>
+                    Save Changes
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </>
           )}
         </div>

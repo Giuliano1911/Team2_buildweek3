@@ -280,7 +280,7 @@ const LinkedInNavbar = ({
                                 </div>
                               </Link>
                               <Link to="/">
-                                <button className="btn-outline-primary w-100 my-2 fw-semibold rounded-5">
+                                <button className="btn btn-outline-primary w-100 my-2 fw-semibold rounded-5">
                                   Visualizza profilo
                                 </button>
                               </Link>
@@ -454,10 +454,10 @@ const LinkedInNavbar = ({
                   <button className="btn btn-outline-dark fs-6 my-2 ms-2 fw-semibold rounded-5">
                     Risorse
                   </button>
-                  <button className="btn-outline-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                  <button className="btn btn-outline-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
                     Aggiungi sezione del profilo
                   </button>
-                  <button className="btn-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                  <button className="btn btn-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
                     Disponibile per
                   </button>
                 </div>

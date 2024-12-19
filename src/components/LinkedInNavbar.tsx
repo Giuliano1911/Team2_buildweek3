@@ -71,9 +71,9 @@ const LinkedInNavbar = ({
         expand="lg"
         className="d-flex w-100 bg-body-tertiary shadow-sm fixed-top z-2 py-0"
       >
-        <Container fluid className="mx-0 ">
+        <Container fluid className="mx-0">
           <Row className="d-flex flex-grow-1 w-100 justify-content-center">
-            <Col className="d-flex col-12 col-lg-10 justify-content-between py-1 pe-0 ">
+            <Col className="d-flex col-12 col-lg-10 justify-content-between py-1 ">
               <div className="d-flex">
                 <Link
                   to="/homepage"

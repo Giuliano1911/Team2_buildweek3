@@ -28,8 +28,8 @@ const SidebarPersonalProfiles = ({ p }: SidebarPersonalProfilesProps) => {
               </p>
             </Link>
             <p className="">{p.title} </p>
-            <button className="btn btn-outline-dark fs-6 my-2 fw-semibold rounded-5">
-              🔗 Collegati
+            <button className="btn-outline-dark fs-6 my-2 fw-semibold rounded-5 me-auto">
+              <i className="bi bi-person-plus-fill"></i> Collegati
             </button>
           </div>
         </div>

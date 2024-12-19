@@ -48,7 +48,7 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
                 </div>
               </div>
 
-              <div className="card-body text-start mt-4">
+              <div className="card-body text-start mt-4 px-4">
                 <div className="d-flex">
                   <h3 className="card-title fw-bold mb-1">
                     {profile.name} {profile.surname}
@@ -86,16 +86,16 @@ const HeroSection = ({ profile, isLoading, isError }: HeroProps) => {
               <div className="container px-4 pb-4 ">
                 <div className="row gx-3 text-center ">
                   <div className="col d-flex flex-wrap">
-                    <button className="btn-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                    <button className="btn-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Disponibile per
                     </button>
-                    <button className="btn-outline-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                    <button className="btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Aggiungi sezione del profilo
                     </button>
-                    <button className="btn-outline-primary fs-6 my-2 ms-2 fw-semibold rounded-5">
+                    <button className="btn-outline-primary fs-6 my-2 me-2 fw-semibold rounded-5">
                       Migliora Profilo
                     </button>
-                    <button className="btn btn-outline-dark fs-6 my-2 ms-2 fw-semibold rounded-5">
+                    <button className="btn btn-outline-dark fs-6 my-2 me-2 fw-semibold rounded-5">
                       Risorse
                     </button>
                   </div>

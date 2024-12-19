@@ -2,15 +2,12 @@ body {
   background-color: #f4f2ee;
 }
 
-.custom-sidebar-border {
-  border: 1px solid gray;
-}
-
 .navbar {
   font-size: 0.7rem;
 }
 
-.textform {
+.textform,
+.sidebar {
   font-size: 0.8rem;
 }
 

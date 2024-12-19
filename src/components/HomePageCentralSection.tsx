@@ -52,10 +52,16 @@ const HomePageCentralSection = ({
                 </Col>
               </div>
 
-              <Card.Text className="d-flex justify-content-between mt-3">
-                <span className=" fw-semibold">🎬 Video</span>
-                <span className=" fw-semibold">🖼️ Foto</span>
-                <span className=" fw-semibold">🖊️ Scrivi un articolo</span>
+              <Card.Text className="d-flex justify-content-around mt-3">
+                <button className="button-CreaUnPost-centralSection fw-semibold">
+                  🎬 Video
+                </button>
+                <button className="button-CreaUnPost-centralSection fw-semibold">
+                  🖼️ Foto
+                </button>
+                <button className="button-CreaUnPost-centralSection fw-semibold">
+                  🖊️ Scrivi un articolo
+                </button>
               </Card.Text>
             </Card.Body>
           </Card>

@@ -246,4 +246,13 @@ body {
   color: black;
 }
 
+.button-CreaUnPost-centralSection {
+  background-color: white;
+  padding: 10px 10px;
+  border: none;
+}
+.button-CreaUnPost-centralSection:hover {
+  background-color: #f3f3f3;
+}
+
 /* end css homepage central section */

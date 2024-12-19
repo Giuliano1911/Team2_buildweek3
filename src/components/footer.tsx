@@ -34,6 +34,16 @@ const FooterSection = () => {
               className="p-0 mb-3 text-body-tertiary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
             >
               Privacy e condizioni
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-caret-down-fill ms-1"
+                viewBox="0 0 16 16"
+              >
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+              </svg>
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -53,7 +63,7 @@ const FooterSection = () => {
                 Informativa sul copyright
               </Dropdown.Item>
               <Dropdown.Item href="#/action-3">
-                Opzioni relative all'Informativa sulla Privacy
+                Opzioni relative all'Informativa <br /> sulla Privacy
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

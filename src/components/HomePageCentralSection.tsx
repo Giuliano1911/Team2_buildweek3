@@ -40,7 +40,7 @@ const HomePageCentralSection = ({
               <div className="d-flex align-items-center">
                 <Col xs={2} md={2}>
                   <img
-                    className="custom-sidebar-profilePicSize rounded-5"
+                    className="profilePic-centralSection-homePage rounded-5"
                     src={profile.image}
                     alt="profile-image"
                   />

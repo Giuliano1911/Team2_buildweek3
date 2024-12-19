@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row } from 'react-bootstrap'
+import { Button, Card, Col, Form, Row } from 'react-bootstrap'
 import Post from '../types/Post'
 import Profile from '../types/Profile'
 import { useState } from 'react'
@@ -7,12 +7,72 @@ import SingleComment from './SingleComment'
 interface SinglePostProps {
   p: Post
   profile: Profile
+  APIKEY: string
+  setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SinglePost = ({ p, profile }: SinglePostProps) => {
+interface InitialModState {
+  text: string
+  image?: string
+}
+
+const SinglePost = ({ p, profile, APIKEY, setRestart }: SinglePostProps) => {
   const [isComment, setIsComment] = useState<boolean>(false)
-  const [isAdd, setIsAdd] = useState<boolean>(false)
   const [isMod, setIsMod] = useState<boolean>(false)
+
+  let modState
+
+  if (p.image) {
+    modState = { text: p.text, image: p.image }
+  } else {
+    modState = { text: p.text }
+  }
+
+  const [mod, setMod] = useState<InitialModState>(modState)
+
+  const putPost = async () => {
+    fetch(`https://striveschool-api.herokuapp.com/api/posts/${p?._id}`, {
+      method: 'PUT',
+      body: JSON.stringify(mod),
+      headers: {
+        'Content-Type': 'application/JSON',
+        Authorization: APIKEY,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log(response)
+          setRestart(true)
+          setIsMod(false)
+          return response.json()
+        } else {
+          throw new Error('no ok')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  const deletePost = () => {
+    fetch(`https://striveschool-api.herokuapp.com/api/posts/${p?._id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: APIKEY,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('Eliminato')
+          setRestart(true)
+        } else {
+          throw new Error('No ok')
+        }
+      })
+      .catch((err) => {
+        console.log('errore', err)
+      })
+  }
 
   return (
     <>
@@ -33,18 +93,24 @@ const SinglePost = ({ p, profile }: SinglePostProps) => {
                     {p.user.name} {p.user.surname}
                   </h5>
                   {p.user._id === profile._id ? (
-                    <>
+                    <div>
                       <a
+                        role="button"
                         onClick={() => {
                           setIsMod(true)
                         }}
                       >
                         <i className="fas fa-pencil-alt text-black"></i>
                       </a>
-                      <a>
-                        <i className="fas fa-pencil-alt ms-1 text-black"></i>
+                      <a
+                        role="button"
+                        onClick={() => {
+                          deletePost()
+                        }}
+                      >
+                        <i className="fas fa-times ms-1 text-black ms-2"></i>
                       </a>
-                    </>
+                    </div>
                   ) : (
                     ''
                   )}
@@ -57,6 +123,7 @@ const SinglePost = ({ p, profile }: SinglePostProps) => {
               <Col className="mt-4">{p.text}</Col>
             </Row>
           </Card.Body>
+          {p.image && <Card.Img src={p.image} alt="post image" />}
           <Card.Body className="pt-1 pb">
             <div className="d-flex justify-content-center justify-content-around">
               <Button className="centralSection-homePage-button text-black">
@@ -78,6 +145,27 @@ const SinglePost = ({ p, profile }: SinglePostProps) => {
               </Button>
             </div>
           </Card.Body>
+          {isMod && (
+            <Card.Footer>
+              <Form
+                className="d-flex"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  putPost()
+                }}
+              >
+                <Form.Control
+                  className="rounded-pill"
+                  placeholder="Scrivi un post..."
+                  value={mod?.text}
+                  onChange={(e) => setMod({ ...mod!, text: e.target.value })}
+                ></Form.Control>
+                <Button type="submit" className="ms-3 text-nowrap rounded-pill">
+                  Modifica post
+                </Button>
+              </Form>
+            </Card.Footer>
+          )}
           {isComment && (
             <Card.Footer>
               <SingleComment p={p} setIsComment={setIsComment} />

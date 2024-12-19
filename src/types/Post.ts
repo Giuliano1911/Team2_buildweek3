@@ -8,4 +8,5 @@ export default interface Post {
   createdAt: string
   updatedAt: string
   __v: number
+  image: string
 }

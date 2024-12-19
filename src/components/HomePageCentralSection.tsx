@@ -12,6 +12,10 @@ interface HomePageCentralSectionProps {
   isError: boolean
 }
 
+interface InitialAddState {
+  text: string
+}
+
 const HomePageCentralSection = ({
   profile,
   APIKEY,
@@ -21,7 +25,13 @@ const HomePageCentralSection = ({
   const [post, setPost] = useState<Post[] | null>(null)
   const [isLoadingP, setIsLoadingP] = useState<boolean>(true)
   const [isErrorP, setIsErrorP] = useState<boolean>(false)
+  const [restart, setRestart] = useState<boolean>(false)
 
+  const InitialState = {
+    text: '',
+  }
+
+  const [add, setAdd] = useState<InitialAddState>(InitialState)
   const getPost = async () => {
     fetch('https://striveschool-api.herokuapp.com/api/posts/', {
       headers: { Authorization: APIKEY },
@@ -37,6 +47,7 @@ const HomePageCentralSection = ({
         console.log(Posts, 'Posts')
         setPost(Posts.reverse())
         setIsLoadingP(false)
+        setRestart(false)
       })
       .catch((error) => {
         console.log(error, 'ERRORE')
@@ -47,7 +58,30 @@ const HomePageCentralSection = ({
   useEffect(() => {
     getPost()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [restart])
+
+  const postPost = async () => {
+    console.log(add)
+    fetch(`https://striveschool-api.herokuapp.com/api/posts`, {
+      method: 'POST',
+      body: JSON.stringify(add),
+      headers: {
+        'Content-Type': 'application/JSON',
+        Authorization: APIKEY,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setRestart(true)
+          return response.json()
+        } else {
+          throw new Error('no ok')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   return (
     <>
@@ -94,11 +128,16 @@ const HomePageCentralSection = ({
                         className="d-flex"
                         onSubmit={(e) => {
                           e.preventDefault()
+                          postPost()
                         }}
                       >
                         <Form.Control
                           className="rounded-pill"
                           placeholder="Scrivi un post..."
+                          value={add?.text}
+                          onChange={(e) =>
+                            setAdd({ ...add!, text: e.target.value })
+                          }
                         ></Form.Control>
                         <Button
                           type="submit"
@@ -139,7 +178,15 @@ const HomePageCentralSection = ({
               {!isLoadingP &&
                 !isErrorP &&
                 post!.slice(0, 5).map((p) => {
-                  return <SinglePost p={p} key={p._id} profile={profile} />
+                  return (
+                    <SinglePost
+                      p={p}
+                      key={p._id}
+                      profile={profile}
+                      APIKEY={APIKEY}
+                      setRestart={setRestart}
+                    />
+                  )
                 })}
             </Row>
           </>

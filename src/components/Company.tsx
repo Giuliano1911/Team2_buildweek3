@@ -8,6 +8,17 @@ import Error1 from './Error1'
 import Loading from './Loading'
 import SingleJob from './SingleJob'
 import CompanySideBar from './CompanySideBar'
+import FooterSection from './footer'
+import CoverImg from '../assets/Generic cover.webp'
+
+import { Modal, ModalBody } from 'react-bootstrap'
+import {
+  Form,
+  FormGroup,
+  FormLabel,
+  FormControl,
+  FormText,
+} from 'react-bootstrap'
 
 interface CompanyProps {
   APIKEY: string
@@ -62,7 +73,15 @@ const Company = ({ APIKEY }: CompanyProps) => {
                   {isError && <Error1 />}
                   {isLoading && <Loading />}
                   {!isLoading && !isError && company![0]._id && (
-                    <Container fluid>
+                    <Container fluid className="">
+                      <Row>
+                        <img
+                          src={CoverImg}
+                          className="card-img-top p-0"
+                          alt="Copertina"
+                          style={{ objectFit: 'cover', height: '200px' }}
+                        />
+                      </Row>
                       <Row>
                         <Col xs={3}>
                           <Card.Img src={stockImage} className="p-4" />
@@ -96,6 +115,7 @@ const Company = ({ APIKEY }: CompanyProps) => {
                     </Container>
                   )}
                 </Card>
+
                 <Card className="mt-3">
                   <Container>
                     <Row>
@@ -111,6 +131,7 @@ const Company = ({ APIKEY }: CompanyProps) => {
                     </Row>
                   </Container>
                 </Card>
+                <FooterSection />
               </Col>
               <Col xs={10} md={4}>
                 <CompanySideBar />

@@ -122,15 +122,15 @@ const Company = ({ APIKEY }: CompanyProps) => {
                     </Row>
                   </Container>
                 </Card>
-                <div className=" d-none d-md-block">
-                  <FooterSection />
-                </div>
               </Col>
               <Col xs={10} md={4}>
                 <CompanySideBar />
               </Col>
             </Row>
           </Container>
+          <div className=" d-none d-md-block">
+            <FooterSection />
+          </div>
         </Col>
       </Row>
     </Container>

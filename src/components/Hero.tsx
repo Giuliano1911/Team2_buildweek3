@@ -13,7 +13,7 @@ import {
 } from 'react-bootstrap'
 
 interface HeroProps {
-  profile: Profile
+  personalProfile: Profile
   isLoading: boolean
   isError: boolean
   APIKEY: string
@@ -31,8 +31,12 @@ interface InitialState {
   image: string
 }
 
+// interface formData (
+//   profile: any
+// )
+
 const HeroSection = ({
-  profile,
+  personalProfile,
   isLoading,
   isError,
   APIKEY,
@@ -44,16 +48,21 @@ const HeroSection = ({
   const handleShow = () => setShowModal(true)
   const handleCloseImg = () => setShowModalImg(false)
   const handleShowImg = () => setShowModalImg(true)
+  const formData = new FormData()
+  const handleFileChange = (e) => {
+    formData.append('profile', e.target.files[0])
+    console.log(formData.get('profile'))
+  }
 
   const InitialModState = {
-    name: profile!.name,
-    surname: profile!.surname,
-    email: profile!.email,
-    username: profile!.username,
-    bio: profile!.bio,
-    title: profile!.title,
-    area: profile!.area,
-    image: profile!.image,
+    name: personalProfile!.name,
+    surname: personalProfile!.surname,
+    email: personalProfile!.email,
+    username: personalProfile!.username,
+    bio: personalProfile!.bio,
+    title: personalProfile!.title,
+    area: personalProfile!.area,
+    image: personalProfile!.image,
   }
 
   const [mod, setMod] = useState<InitialState>(InitialModState)
@@ -70,6 +79,30 @@ const HeroSection = ({
       .then((response) => {
         if (response.ok) {
           console.log(response)
+          setRestart(true)
+          return response.json()
+        } else {
+          throw new Error('no ok')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  const putImage = async () => {
+    fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${personalProfile._id}/picture`,
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Authorization: APIKEY,
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
           setRestart(true)
           return response.json()
         } else {
@@ -107,7 +140,7 @@ const HeroSection = ({
                   }}
                 >
                   <img
-                    src={profile.image}
+                    src={personalProfile.image}
                     className="rounded-circle border border-4 border-white "
                     style={{
                       width: '100%',
@@ -145,7 +178,7 @@ const HeroSection = ({
               <div className="card-body text-start mt-4 px-4">
                 <div className="d-flex">
                   <h3 className="card-title fw-bold mb-1">
-                    {profile.name} {profile.surname}
+                    {personalProfile.name} {personalProfile.surname}
                   </h3>
                   <button className="myButton btn ms-3 px-3 py-0 rounded-5 my-auto ">
                     <i className="bi bi-shield-check"></i>{' '}
@@ -154,9 +187,9 @@ const HeroSection = ({
                     </span>
                   </button>
                 </div>
-                <p className="card-text text-muted">{profile.title}</p>
+                <p className="card-text text-muted">{personalProfile.title}</p>
                 <p className="text-muted small">
-                  {profile.area}
+                  {personalProfile.area}
                   <a href="#" className="text-decoration-none">
                     - Informazioni di contatto
                   </a>
@@ -220,7 +253,7 @@ const HeroSection = ({
                         className="form"
                         onSubmit={(e) => {
                           e.preventDefault()
-                          setMod({ ...profile, mod })
+                          setMod({ ...personalProfile, mod })
                           putProfile()
                         }}
                       >
@@ -229,7 +262,7 @@ const HeroSection = ({
                           <FormControl
                             className="form border-dark "
                             type="text"
-                            placeholder={profile.name}
+                            placeholder={personalProfile.name}
                             value={mod.name}
                             onChange={(e) =>
                               setMod({ ...mod!, name: e.target.value })
@@ -245,7 +278,7 @@ const HeroSection = ({
                           <FormControl
                             className="form border-dark "
                             type="text"
-                            placeholder={profile.surname}
+                            placeholder={personalProfile.surname}
                             value={mod?.surname}
                             onChange={(e) =>
                               setMod({ ...mod!, surname: e.target.value })
@@ -258,7 +291,7 @@ const HeroSection = ({
                           <FormControl
                             className="form border-dark "
                             type="email"
-                            placeholder={profile.email}
+                            placeholder={personalProfile.email}
                             value={mod?.email}
                             onChange={(e) =>
                               setMod({ ...mod!, email: e.target.value })
@@ -276,7 +309,7 @@ const HeroSection = ({
                           <FormControl
                             className="form border-dark "
                             type="text"
-                            placeholder={profile.username}
+                            placeholder={personalProfile.username}
                             value={mod?.username}
                             onChange={(e) =>
                               setMod({ ...mod!, username: e.target.value })
@@ -288,7 +321,7 @@ const HeroSection = ({
                           <Form.Control
                             className="form border-dark "
                             as="textarea"
-                            placeholder={profile.bio}
+                            placeholder={personalProfile.bio}
                             rows={3}
                             value={mod?.bio}
                             onChange={(e) =>
@@ -303,7 +336,7 @@ const HeroSection = ({
                           <FormControl
                             className="form border-dark "
                             type="text"
-                            placeholder={profile.title}
+                            placeholder={personalProfile.title}
                             value={mod?.title}
                             onChange={(e) =>
                               setMod({ ...mod!, title: e.target.value })
@@ -317,7 +350,7 @@ const HeroSection = ({
                           <FormControl
                             className="form border-dark "
                             type="text"
-                            placeholder={profile.area}
+                            placeholder={personalProfile.area}
                             value={mod?.area}
                             onChange={(e) =>
                               setMod({ ...mod!, area: e.target.value })
@@ -329,7 +362,7 @@ const HeroSection = ({
                           <FormControl
                             className="form border-dark "
                             type="text"
-                            placeholder={profile.image}
+                            placeholder={personalProfile.image}
                             value={mod?.image}
                             onChange={(e) =>
                               setMod({ ...mod!, image: e.target.value })
@@ -365,23 +398,31 @@ const HeroSection = ({
                       </Modal.Title>
                     </Modal.Header>
                     <ModalBody className="pt-2 px-4">
-                      <Form className="form mt-2">
+                      <Form
+                        className="form"
+                        onSubmit={(e) => {
+                          e.preventDefault()
+                          putImage()
+                        }}
+                      >
                         <FormGroup className="mb-3">
                           <FormLabel className="mb-0">
-                            Carica l'immagine*
+                            Carica l'immagine
                           </FormLabel>
                           <FormControl
                             className="form border-dark "
                             type="file"
                             placeholder="Scegi file"
+                            onChange={(e) => {
+                              handleFileChange(e)
+                            }}
                           />
                         </FormGroup>
-
                         <div className="d-flex justify-content-end">
                           <button
                             type="submit"
                             className="btn btn-primary fs-6 fw-semibold rounded-5"
-                            onClick={handleClose}
+                            onClick={handleCloseImg}
                           >
                             Salva
                           </button>

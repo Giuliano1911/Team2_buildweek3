@@ -1,15 +1,15 @@
-import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
-import Profile from '../types/Profile'
-import Error1 from './Error1'
-import Loading from './Loading'
-import { useEffect, useState } from 'react'
-import Post from '../types/Post'
-import SinglePost from './SinglePost'
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import Profile from "../types/Profile";
+import Error1 from "./Error1";
+import Loading from "./Loading";
+import { useEffect, useState } from "react";
+import Post from "../types/Post";
+import SinglePost from "./SinglePost";
 interface HomePageCentralSectionProps {
-  profile: Profile
-  APIKEY: string
-  isLoading: boolean
-  isError: boolean
+  profile: Profile;
+  APIKEY: string;
+  isLoading: boolean;
+  isError: boolean;
 }
 
 const HomePageCentralSection = ({
@@ -18,36 +18,36 @@ const HomePageCentralSection = ({
   isError,
   isLoading,
 }: HomePageCentralSectionProps) => {
-  const [post, setPost] = useState<Post[] | null>(null)
-  const [isLoadingP, setIsLoadingP] = useState<boolean>(true)
-  const [isErrorP, setIsErrorP] = useState<boolean>(false)
+  const [post, setPost] = useState<Post[] | null>(null);
+  const [isLoadingP, setIsLoadingP] = useState<boolean>(true);
+  const [isErrorP, setIsErrorP] = useState<boolean>(false);
 
   const getPost = async () => {
-    fetch('https://striveschool-api.herokuapp.com/api/posts/', {
+    fetch("https://striveschool-api.herokuapp.com/api/posts/", {
       headers: { Authorization: APIKEY },
     })
       .then((response) => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         } else {
-          throw new Error('ERRORE NELLA FETCH')
+          throw new Error("ERRORE NELLA FETCH");
         }
       })
       .then((Posts: Post[]) => {
-        console.log(Posts, 'Posts')
-        setPost(Posts.reverse())
-        setIsLoadingP(false)
+        console.log(Posts, "Posts");
+        setPost(Posts.reverse());
+        setIsLoadingP(false);
       })
       .catch((error) => {
-        console.log(error, 'ERRORE')
-        setIsErrorP(true)
-      })
-  }
+        console.log(error, "ERRORE");
+        setIsErrorP(true);
+      });
+  };
 
   useEffect(() => {
-    getPost()
+    getPost();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <>
@@ -93,7 +93,7 @@ const HomePageCentralSection = ({
                       <Form
                         className="d-flex"
                         onSubmit={(e) => {
-                          e.preventDefault()
+                          e.preventDefault();
                         }}
                       >
                         <Form.Control
@@ -112,19 +112,19 @@ const HomePageCentralSection = ({
 
                   <Card.Text className="d-flex justify-content-around mt-3">
                     <Button
-                      className="fw-semibold rounded-pill"
+                      className="fw-semibold centralSection-homePage-button"
                       variant="outline-primary"
                     >
                       🎬 Video
                     </Button>
                     <Button
-                      className="fw-semibold rounded-pill"
+                      className="fw-semibold centralSection-homePage-button"
                       variant="outline-primary"
                     >
                       🖼️ Foto
                     </Button>
                     <Button
-                      className="fw-semibold rounded-pill"
+                      className="fw-semibold centralSection-homePage-button"
                       variant="outline-primary"
                     >
                       🖊️ Scrivi un articolo
@@ -139,14 +139,14 @@ const HomePageCentralSection = ({
               {!isLoadingP &&
                 !isErrorP &&
                 post!.slice(0, 5).map((p) => {
-                  return <SinglePost p={p} key={p._id} profile={profile} />
+                  return <SinglePost p={p} key={p._id} profile={profile} />;
                 })}
             </Row>
           </>
         )}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default HomePageCentralSection
+export default HomePageCentralSection;

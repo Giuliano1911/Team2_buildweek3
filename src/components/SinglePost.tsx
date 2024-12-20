@@ -1,18 +1,18 @@
-import { Button, Card, Col, Row } from 'react-bootstrap'
-import Post from '../types/Post'
-import Profile from '../types/Profile'
-import { useState } from 'react'
-import SingleComment from './SingleComment'
+import { Button, Card, Col, Row } from "react-bootstrap";
+import Post from "../types/Post";
+import Profile from "../types/Profile";
+import { useState } from "react";
+import SingleComment from "./SingleComment";
 
 interface SinglePostProps {
-  p: Post
-  profile: Profile
+  p: Post;
+  profile: Profile;
 }
 
 const SinglePost = ({ p, profile }: SinglePostProps) => {
-  const [isComment, setIsComment] = useState<boolean>(false)
-  const [isAdd, setIsAdd] = useState<boolean>(false)
-  const [isMod, setIsMod] = useState<boolean>(false)
+  const [isComment, setIsComment] = useState<boolean>(false);
+  const [isAdd, setIsAdd] = useState<boolean>(false);
+  const [isMod, setIsMod] = useState<boolean>(false);
 
   return (
     <>
@@ -36,7 +36,7 @@ const SinglePost = ({ p, profile }: SinglePostProps) => {
                     <>
                       <a
                         onClick={() => {
-                          setIsMod(true)
+                          setIsMod(true);
                         }}
                       >
                         <i className="fas fa-pencil-alt text-black"></i>
@@ -46,12 +46,12 @@ const SinglePost = ({ p, profile }: SinglePostProps) => {
                       </a>
                     </>
                   ) : (
-                    ''
+                    ""
                   )}
                 </div>
                 <div className="centralSection-hpostHomePage-fontPost">
-                  {p.createdAt.slice(0, 10)}{' '}
-                  {p.createdAt.split('T')[1].slice(0, 5)}
+                  {p.createdAt.slice(0, 10)}{" "}
+                  {p.createdAt.split("T")[1].slice(0, 5)}
                 </div>
               </Col>
               <Col className="mt-4">{p.text}</Col>
@@ -65,7 +65,7 @@ const SinglePost = ({ p, profile }: SinglePostProps) => {
               <Button
                 className="centralSection-homePage-button text-black"
                 onClick={() => {
-                  setIsComment(true)
+                  setIsComment(true);
                 }}
               >
                 <i className="bi bi-chat-dots "></i> Commenti
@@ -86,7 +86,7 @@ const SinglePost = ({ p, profile }: SinglePostProps) => {
         </Card>
       </Col>
     </>
-  )
-}
+  );
+};
 
-export default SinglePost
+export default SinglePost;

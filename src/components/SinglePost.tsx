@@ -1,9 +1,18 @@
-import { Button, Card, Col, Form, Row } from 'react-bootstrap'
+import {
+  Button,
+  Card,
+  Col,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Row,
+} from 'react-bootstrap'
 import Post from '../types/Post'
 import Profile from '../types/Profile'
 import { useState } from 'react'
 import { Link } from 'react-router'
 import Comments from './Comments'
+import { Form, FormGroup, FormLabel, FormControl } from 'react-bootstrap'
 
 interface SinglePostProps {
   p: Post
@@ -17,9 +26,18 @@ interface InitialModState {
   image?: string
 }
 
+const formData = new FormData()
+
 const SinglePost = ({ p, profile, APIKEY, setRestart }: SinglePostProps) => {
   const [isComment, setIsComment] = useState<boolean>(false)
   const [isMod, setIsMod] = useState<boolean>(false)
+  const [showModalImg, setShowModalImg] = useState(false)
+  const handleCloseImg = () => setShowModalImg(false)
+  const handleShowImg = () => setShowModalImg(true)
+  const handleFileChange = (event) => {
+    formData.append('post', event.target.files[0])
+    console.log(formData.get('post'))
+  }
 
   let modState
 
@@ -75,6 +93,29 @@ const SinglePost = ({ p, profile, APIKEY, setRestart }: SinglePostProps) => {
       })
   }
 
+  const putImage = async () => {
+    fetch(`https://striveschool-api.herokuapp.com/api/posts/${p._id}`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Authorization: APIKEY,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setRestart(true)
+          formData.delete('post')
+          console.log(formData)
+          return response.json()
+        } else {
+          throw new Error('no ok')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   return (
     <>
       <Col xs={12} md={12} className="mb-2 p-0">
@@ -125,6 +166,14 @@ const SinglePost = ({ p, profile, APIKEY, setRestart }: SinglePostProps) => {
                         }}
                       >
                         <i className="fas fa-times ms-1 text-black ms-2"></i>
+                      </a>
+                      <a
+                        role="button"
+                        onClick={() => {
+                          handleShowImg()
+                        }}
+                      >
+                        <i className="bi bi-camera-fill text-black ms-2"></i>
                       </a>
                     </div>
                   ) : (
@@ -189,6 +238,49 @@ const SinglePost = ({ p, profile, APIKEY, setRestart }: SinglePostProps) => {
           )}
         </Card>
       </Col>
+      <Modal
+        show={showModalImg}
+        onHide={handleCloseImg}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <ModalHeader closeButton className="px-4 py-3">
+          <Modal.Title id="contained-modal-title-vcenter" className="fs-5">
+            Modifica immagine
+          </Modal.Title>
+        </ModalHeader>
+        <ModalBody className="pt-2 px-4">
+          <Form
+            className="form"
+            onSubmit={(event) => {
+              event.preventDefault()
+              putImage()
+            }}
+          >
+            <FormGroup className="mb-3">
+              <FormLabel className="mb-0">Carica l'immagine</FormLabel>
+              <FormControl
+                className="form border-dark "
+                type="file"
+                placeholder="Scegi file"
+                onChange={(event) => {
+                  handleFileChange(event)
+                }}
+              />
+            </FormGroup>
+            <div className="d-flex justify-content-end">
+              <button
+                type="submit"
+                className="btn btn-primary fs-6 fw-semibold rounded-5"
+                onClick={handleCloseImg}
+              >
+                Salva
+              </button>
+            </div>
+          </Form>
+        </ModalBody>
+      </Modal>
     </>
   )
 }

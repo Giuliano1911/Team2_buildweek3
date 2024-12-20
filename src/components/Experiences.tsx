@@ -107,6 +107,7 @@ const Experiences = ({ profile, APIKEY }: ExperiencesProps) => {
           experiences?.map((e) => {
             return (
               <SingleExperience
+                profile={profile}
                 e={e}
                 key={e._id}
                 setIsModified={setIsModified}

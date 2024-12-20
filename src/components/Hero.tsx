@@ -1,5 +1,5 @@
 import Profile from '../types/Profile'
-import CoverImg from '../assets/Generic cover.webp'
+import CoverImg from '../assets/Artic cover.jpg'
 import Error1 from './Error1'
 import Loading from './Loading'
 import { useState } from 'react'

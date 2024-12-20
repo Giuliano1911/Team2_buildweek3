@@ -56,7 +56,7 @@ const FriendProfilePage = ({ APIKEY }: ProfilePageProps) => {
             <Col xs={12} lg={8} className="flex-grow-1">
               {!isError && !isLoading && (
                 <HeroSection
-                  personalProfile={friendProfile!}
+                  profile={friendProfile!}
                   isLoading={isLoading}
                   isError={isError}
                 />

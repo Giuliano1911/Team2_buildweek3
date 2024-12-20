@@ -1,9 +1,7 @@
-import { Col, Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { Card } from 'react-bootstrap'
 import SideBarImg from '../assets/image/image 1.png'
-import Burger from '../assets/image/Burger.svg'
-import Oranye from '../assets/image/Oranye.svg'
-import bunny from '../assets/image/bunny.png'
+import stockImage from '../assets/Screenshot 2024-12-18 114210.png'
 
 const CompanySideBar = () => {
   return (
@@ -19,74 +17,198 @@ const CompanySideBar = () => {
           }}
         />
       </Card>
-      <Card>
-        <Container fluid className="p-0">
-          <h4 className="p-2">Pagine affiliate</h4>
-          <Row>
-            <Col xs={3} md={3} className="p-0 position-relative">
-              <img
-                className="biggerimg position-absolute"
-                src={Burger}
-                alt="family-logo"
-              />
-            </Col>
-            <Col xs={9} md={9}>
+
+      <div className="container-fluid bg-white border rounded-2 mt-3 pt-2 mb-4">
+        <h5 className="pb-4 pt-2">Pagine affiliate</h5>
+
+        <div className="d-flex mb-3">
+          <div
+            style={{
+              height: '60px',
+              width: '60px',
+            }}
+          >
+            <img
+              src={stockImage}
+              alt="image-1"
+              style={{
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+          <div className="border-bottom">
+            <p className="m-0">
+              <a
+                href="#"
+                className="text-black link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-0-hover"
+              >
+                <strong>Marketing Manager</strong>
+              </a>
+            </p>
+            <p className="m-0">Rare Edition</p>
+            <div className="d-flex">
               <div>
-                <h4 className="mb-1">Orange Burger | Restaurant</h4>
-                <p className="mb-2">Servizio di consegne a domicilio</p>
-                <p>Affiliata</p>
-                <button className=" fs-6 fw-medium rounded-5 py-1 px-3 bg-white btn-outline-dark">
-                  <i className=" bi bi-plus"> </i>Segui
-                </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-geo-alt-fill me-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                </svg>
               </div>
-            </Col>
-          </Row>
-        </Container>
-        <hr />
-        <Container fluid className="p-0">
-          <Row>
-            <Col xs={3} md={3} className="p-0 position-relative">
-              <img
-                className="position-absolute w-100 ms-2"
-                src={Oranye}
-                alt="family-logo"
-              />
-            </Col>
-            <Col xs={9} md={9}>
+              <p className="m-0">USA Only</p>
+            </div>
+            <p className="m-0">
+              <strong>Fulltime</strong>
+            </p>
+            <p>Annuncio pubblicato in data: 2021-09-12</p>
+          </div>
+        </div>
+
+        <div className="d-flex mb-3">
+          <div
+            style={{
+              height: '60px',
+              width: '60px',
+            }}
+          >
+            <img
+              src={stockImage}
+              alt="image-1"
+              style={{
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+          <div className="border-bottom">
+            <p className="m-0">
+              <a
+                href="#"
+                className="text-black link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-0-hover"
+              >
+                <strong>Product Owner (ANZ)</strong>
+              </a>
+            </p>
+            <p className="m-0">Live Graphic System Pty Ltd</p>
+            <div className="d-flex">
               <div>
-                <h4 className="mb-1">Big Bold Food</h4>
-                <p className="mb-2">Servizio catering</p>
-                <p>Affiliata</p>
-                <button className=" fs-6 fw-medium rounded-5 py-1 px-3 bg-white btn-outline-dark">
-                  <i className=" bi bi-plus"> </i>Segui
-                </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-geo-alt-fill me-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                </svg>
               </div>
-            </Col>
-          </Row>
-        </Container>
-        <hr />
-        <Container fluid className="p-0 mb-2">
-          <Row>
-            <Col xs={3} md={3} className="p-0 position-relative">
-              <img
-                className="w-100 position-absolute ms-2"
-                src={bunny}
-                alt="family-logo"
-              />
-            </Col>
-            <Col xs={9} md={9}>
+              <p className="m-0">Australia & New Zeland</p>
+            </div>
+            <p className="m-0">
+              <strong>Fulltime</strong>
+            </p>
+            <p>Annuncio pubblicato in data: 2021-09-12</p>
+          </div>
+        </div>
+
+        <div className="d-flex mb-3">
+          <div
+            style={{
+              height: '60px',
+              width: '60px',
+            }}
+          >
+            <img
+              src={stockImage}
+              alt="image-1"
+              style={{
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+          <div className="border-bottom">
+            <p className="m-0">
+              <a
+                href="#"
+                className="text-black link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-0-hover"
+              >
+                <strong>Lead Ruby Developer</strong>
+              </a>
+            </p>
+            <p className="m-0">Robots & Pencils</p>
+            <div className="d-flex">
               <div>
-                <h4 className="mb-1">Graffiti Store</h4>
-                <p className="mb-2">Negozio sneakers</p>
-                <p>Affiliata</p>
-                <button className=" fs-6 fw-medium rounded-5 py-1 px-3 bg-white btn-outline-dark">
-                  <i className=" bi bi-plus"> </i>Segui
-                </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-geo-alt-fill me-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                </svg>
               </div>
-            </Col>
-          </Row>
-        </Container>
-      </Card>
+              <p className="m-0">North America Only</p>
+            </div>
+            <p className="m-0">
+              <strong>Fulltime</strong>
+            </p>
+            <p>Annuncio pubblicato in data: 2021-09-12</p>
+          </div>
+        </div>
+
+        <div className="d-flex mb-3">
+          <div
+            style={{
+              height: '60px',
+              width: '60px',
+            }}
+          >
+            <img
+              src={stockImage}
+              alt="image-1"
+              style={{
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+          <div className="border-bottom">
+            <p className="m-0">
+              <a
+                href="#"
+                className="text-black link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-0-hover"
+              >
+                <strong>Product Manager</strong>
+              </a>
+            </p>
+            <p className="m-0">FairHQ</p>
+            <div className="d-flex">
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-geo-alt-fill me-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                </svg>
+              </div>
+              <p className="m-0">UK and Europe</p>
+            </div>
+            <p className="m-0">
+              <strong>Fulltime</strong>
+            </p>
+            <p>Annuncio pubblicato in data: 2021-09-12</p>
+          </div>
+        </div>
+      </div>
     </Container>
   )
 }

@@ -74,10 +74,37 @@ const Company = ({ APIKEY }: CompanyProps) => {
                         />
                       </Row>
                       <Row>
-                        <Col xs={3}>
-                          <Card.Img src={stockImage} className="p-4" />
-                        </Col>
-                        <Col xs={9}>
+                        <div>
+                          <div className="mb-3">
+                            <div
+                              className="position-absolute translate-middle"
+                              style={{
+                                width: '155px',
+                                height: '155px',
+                                left: '100px',
+                                top: '200px',
+                              }}
+                            >
+                              <img
+                                src={stockImage}
+                                className="rounded-circle border border-4 border-white "
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover',
+                                }}
+                                alt="Profilo"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            paddingTop: '70px',
+                            paddingLeft: '30px',
+                            paddingBottom: '30px',
+                          }}
+                        >
                           <Card.Title className="mt-4">
                             {params.name}
                           </Card.Title>
@@ -95,13 +122,19 @@ const Company = ({ APIKEY }: CompanyProps) => {
                             <i className="fas fa-plus"></i> Segui
                           </Button>
                           <Button
-                            className="rounded-pill px-4"
+                            className="rounded-pill px-3 me-2"
                             variant="outline-primary"
                           >
-                            <i className="fas fa-paper-plane"></i>Invia
+                            <i className="fas fa-paper-plane me-2"></i>Invia
                             messaggio
                           </Button>
-                        </Col>
+                          <Button
+                            className="rounded-pill px-2"
+                            variant="outline-primary"
+                          >
+                            <i className="bi bi-three-dots"></i>
+                          </Button>
+                        </div>
                       </Row>
                     </Container>
                   )}
@@ -122,7 +155,21 @@ const Company = ({ APIKEY }: CompanyProps) => {
                     </Row>
                   </Container>
                 </Card>
-                <FooterSection />
+                <Container className="container-fluid bg-white border rounded-2 mt-2 pt-4">
+                  <h4>Panoramica</h4>
+                  <div className="mb-4">{company![0].description}</div>
+                  <Row>
+                    <Col className=" bg-white border-top rounded-bottom rounded-2 border-secondary-subtl d-flex flex-column p-0">
+                      <button className="buttonSidebar-mostraAltro d-flex justify-content-center align-items-center">
+                        Mostra tutti i dettagli
+                        <i className="bi bi-arrow-right-short fs-4"></i>
+                      </button>
+                    </Col>
+                  </Row>
+                </Container>
+                <div className="mt-5">
+                  <FooterSection />
+                </div>
               </Col>
               <Col xs={10} md={4}>
                 <CompanySideBar />

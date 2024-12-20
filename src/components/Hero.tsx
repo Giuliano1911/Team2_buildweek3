@@ -217,7 +217,7 @@ const HeroSection = ({
                     <div className="alert alert-secondary p-2 mb-0">
                       <small className="text-muted">
                         Disponibile a lavorare:{' '}
-                        <strong>Ruoli di Responsabile ufficio tecnico</strong>
+                        <strong>Ruoli di {personalProfile.title}</strong>
                       </small>
                     </div>
                   </div>

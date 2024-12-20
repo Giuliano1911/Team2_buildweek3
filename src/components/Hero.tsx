@@ -31,9 +31,7 @@ interface InitialState {
   image: string
 }
 
-// interface formData (
-//   profile: any
-// )
+const formData = new FormData()
 
 const HeroSection = ({
   personalProfile,
@@ -48,7 +46,6 @@ const HeroSection = ({
   const handleShow = () => setShowModal(true)
   const handleCloseImg = () => setShowModalImg(false)
   const handleShowImg = () => setShowModalImg(true)
-  const formData = new FormData()
   const handleFileChange = (e) => {
     formData.append('profile', e.target.files[0])
     console.log(formData.get('profile'))
@@ -104,6 +101,7 @@ const HeroSection = ({
       .then((response) => {
         if (response.ok) {
           setRestart(true)
+          formData.delete('profile')
           return response.json()
         } else {
           throw new Error('no ok')

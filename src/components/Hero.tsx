@@ -102,6 +102,7 @@ const HeroSection = ({
         if (response.ok) {
           setRestart(true)
           formData.delete('profile')
+          console.log(formData)
           return response.json()
         } else {
           throw new Error('no ok')

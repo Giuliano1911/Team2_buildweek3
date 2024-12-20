@@ -11,15 +11,6 @@ import CompanySideBar from './CompanySideBar'
 import FooterSection from './footer'
 import CoverImg from '../assets/Generic cover.webp'
 
-import { Modal, ModalBody } from 'react-bootstrap'
-import {
-  Form,
-  FormGroup,
-  FormLabel,
-  FormControl,
-  FormText,
-} from 'react-bootstrap'
-
 interface CompanyProps {
   APIKEY: string
 }

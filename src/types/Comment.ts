@@ -1,10 +1,10 @@
 export default interface Comment {
   author: string
   comment: string
-  createdAt: Date
+  createdAt: string
   elementId: string
   rate: number
-  updatedAt: Date
+  updatedAt: string
   __v: number
   _id: string
 }

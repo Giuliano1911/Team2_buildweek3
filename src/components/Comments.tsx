@@ -76,6 +76,7 @@ const Comments = ({ p, setIsComment }: CommentsProps) => {
       .then((response) => {
         if (response.ok) {
           setRestart(true)
+          setAdd(InitialState)
           return response.json()
         } else {
           throw new Error('no ok')

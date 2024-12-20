@@ -151,19 +151,19 @@ const HomePageCentralSection = ({
 
                   <Card.Text className="d-flex justify-content-around mt-3">
                     <Button
-                      className="fw-semibold rounded-pill"
+                      className="fw-semibold centralSection-homePage-button"
                       variant="outline-primary"
                     >
                       🎬 Video
                     </Button>
                     <Button
-                      className="fw-semibold rounded-pill"
+                      className="fw-semibold centralSection-homePage-button"
                       variant="outline-primary"
                     >
                       🖼️ Foto
                     </Button>
                     <Button
-                      className="fw-semibold rounded-pill"
+                      className="fw-semibold centralSection-homePage-button"
                       variant="outline-primary"
                     >
                       🖊️ Scrivi un articolo

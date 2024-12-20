@@ -58,7 +58,7 @@ const Company = ({ APIKEY }: CompanyProps) => {
       <Row className=" justify-content-center">
         <Col xs={12} md={10} className="p-0">
           <Container className="mt-5" fluid>
-            <Row>
+            <Row className=" justify-content-center">
               <Col xs={10} md={8}>
                 <Card className="mt-3">
                   {isError && <Error1 />}
@@ -122,7 +122,9 @@ const Company = ({ APIKEY }: CompanyProps) => {
                     </Row>
                   </Container>
                 </Card>
-                <FooterSection />
+                <div className=" d-none d-md-block">
+                  <FooterSection />
+                </div>
               </Col>
               <Col xs={10} md={4}>
                 <CompanySideBar />

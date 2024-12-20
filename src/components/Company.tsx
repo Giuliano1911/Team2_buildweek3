@@ -52,60 +52,71 @@ const Company = ({ APIKEY }: CompanyProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <Container className="mt-5">
-      <Row>
-        <Col xs={10} md={8}>
-          <Card className="mt-3">
-            {isError && <Error1 />}
-            {isLoading && <Loading />}
-            {!isLoading && !isError && company![0]._id && (
-              <Container fluid>
-                <Row>
-                  <Col xs={3}>
-                    <Card.Img src={stockImage} className="p-4" />
-                  </Col>
-                  <Col xs={9}>
-                    <Card.Title className="mt-4">{params.name}</Card.Title>
-                    <div className="d-flex gap-1">
-                      <Card.Text>{company![0].category} Company, </Card.Text>
-                      <Card.Text className=" opacity-75">
-                        {company![0].candidate_required_location
-                          .replace('Only', '')
-                          .replace('only', '')}
-                      </Card.Text>
-                    </div>
-                    <Button className="rounded-pill me-2 px-4">
-                      <i className="fas fa-plus"></i> Segui
-                    </Button>
-                    <Button
-                      className="rounded-pill px-4"
-                      variant="outline-primary"
-                    >
-                      <i className="fas fa-paper-plane"></i>Invia messaggio
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
-            )}
-          </Card>
-          <Card className="mt-3">
-            <Container>
-              <Row>
-                <Col>
+    <Container fluid>
+      <Row className=" justify-content-center">
+        <Col xs={12} md={10} className="p-0">
+          <Container className="mt-5" fluid>
+            <Row>
+              <Col xs={10} md={8}>
+                <Card className="mt-3">
                   {isError && <Error1 />}
                   {isLoading && <Loading />}
-                  {!isLoading &&
-                    !isError &&
-                    company?.map((j) => {
-                      return <SingleJob j={j} key={j._id} />
-                    })}
-                </Col>
-              </Row>
-            </Container>
-          </Card>
-        </Col>
-        <Col xs={10} md={4}>
-          <CompanySideBar />
+                  {!isLoading && !isError && company![0]._id && (
+                    <Container fluid>
+                      <Row>
+                        <Col xs={3}>
+                          <Card.Img src={stockImage} className="p-4" />
+                        </Col>
+                        <Col xs={9}>
+                          <Card.Title className="mt-4">
+                            {params.name}
+                          </Card.Title>
+                          <div className="d-flex gap-1">
+                            <Card.Text>
+                              {company![0].category} Company,{' '}
+                            </Card.Text>
+                            <Card.Text className=" opacity-75">
+                              {company![0].candidate_required_location
+                                .replace('Only', '')
+                                .replace('only', '')}
+                            </Card.Text>
+                          </div>
+                          <Button className="rounded-pill me-2 px-4">
+                            <i className="fas fa-plus"></i> Segui
+                          </Button>
+                          <Button
+                            className="rounded-pill px-4"
+                            variant="outline-primary"
+                          >
+                            <i className="fas fa-paper-plane"></i>Invia
+                            messaggio
+                          </Button>
+                        </Col>
+                      </Row>
+                    </Container>
+                  )}
+                </Card>
+                <Card className="mt-3">
+                  <Container>
+                    <Row>
+                      <Col>
+                        {isError && <Error1 />}
+                        {isLoading && <Loading />}
+                        {!isLoading &&
+                          !isError &&
+                          company?.map((j) => {
+                            return <SingleJob j={j} key={j._id} />
+                          })}
+                      </Col>
+                    </Row>
+                  </Container>
+                </Card>
+              </Col>
+              <Col xs={10} md={4}>
+                <CompanySideBar />
+              </Col>
+            </Row>
+          </Container>
         </Col>
       </Row>
     </Container>

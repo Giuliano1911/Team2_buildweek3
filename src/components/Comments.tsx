@@ -1,11 +1,11 @@
 import Post from '../types/Post'
 
-interface SingleCommentProps {
+interface CommentsProps {
   p: Post
   setIsComment: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SingleComment = ({ p, setIsComment }: SingleCommentProps) => {
+const Comments = ({ p, setIsComment }: CommentsProps) => {
   return (
     <a
       role="button"
@@ -17,4 +17,4 @@ const SingleComment = ({ p, setIsComment }: SingleCommentProps) => {
     </a>
   )
 }
-export default SingleComment
+export default Comments

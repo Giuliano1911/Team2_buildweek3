@@ -2,7 +2,8 @@ import { Button, Card, Col, Form, Row } from 'react-bootstrap'
 import Post from '../types/Post'
 import Profile from '../types/Profile'
 import { useState } from 'react'
-import SingleComment from './SingleComment'
+import { Link } from 'react-router'
+import Comments from './Comments'
 
 interface SinglePostProps {
   p: Post
@@ -81,17 +82,32 @@ const SinglePost = ({ p, profile, APIKEY, setRestart }: SinglePostProps) => {
           <Card.Body>
             <Row>
               <Col md={2}>
-                <img
-                  className="profilePic-centralSection-hpostHomePage rounded-5 me-3"
-                  src={p.user.image}
-                  alt="user-image"
-                />
+                <Link
+                  to={
+                    profile._id === p.user._id ? '/' : `/profile/${p.user._id}`
+                  }
+                >
+                  <img
+                    className="profilePic-centralSection-hpostHomePage rounded-5 me-3"
+                    src={p.user.image}
+                    alt="user-image"
+                  />
+                </Link>
               </Col>
               <Col md={10}>
                 <div className="d-flex justify-content-between">
-                  <h5 className=" mb-0">
-                    {p.user.name} {p.user.surname}
-                  </h5>
+                  <Link
+                    to={
+                      profile._id === p.user._id
+                        ? '/'
+                        : `/profile/${p.user._id}`
+                    }
+                    className=" text-decoration-none text-black"
+                  >
+                    <h5 className=" mb-0">
+                      {p.user.name} {p.user.surname}
+                    </h5>
+                  </Link>
                   {p.user._id === profile._id ? (
                     <div>
                       <a
@@ -168,7 +184,7 @@ const SinglePost = ({ p, profile, APIKEY, setRestart }: SinglePostProps) => {
           )}
           {isComment && (
             <Card.Footer>
-              <SingleComment p={p} setIsComment={setIsComment} />
+              <Comments p={p} setIsComment={setIsComment} />
             </Card.Footer>
           )}
         </Card>

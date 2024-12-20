@@ -1,28 +1,32 @@
 import { Container } from 'react-bootstrap'
 import { Row } from 'react-bootstrap'
 import { Col } from 'react-bootstrap'
+import { useLocation } from 'react-router'
 
 const ConsigliatiSection = () => {
+  const location = useLocation()
   return (
     <Container className="container-fluid bg-white border rounded-2 mt-2 p-4">
       <Row className="row justify-content-center">
         <h3 className="p-0">Consigliato per te</h3>
-        <div className="d-flex align-items-center p-0">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-eye-fill text-secondary"
-              viewBox="0 0 16 16"
-            >
-              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
-            </svg>
+        {location.pathname === '/' && (
+          <div className="d-flex align-items-center p-0">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-eye-fill text-secondary"
+                viewBox="0 0 16 16"
+              >
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+              </svg>
+            </div>
+            <p className="mb-0 ms-2 text-secondary">Solo per te</p>
           </div>
-          <p className="mb-0 ms-2 text-secondary">Solo per te</p>
-        </div>
+        )}
       </Row>
       <Row>
         <Col className="col-12 col-lg-5 me-4 justify-content-between bg-white border rounded-2 p-3 mt-4 ">

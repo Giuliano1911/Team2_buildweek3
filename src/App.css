@@ -242,3 +242,7 @@ body {
 .left-column {
   font-size: 0.7rem;
 }
+
+.actual-page {
+  text-decoration: underline !important;
+}

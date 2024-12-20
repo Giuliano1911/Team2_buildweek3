@@ -177,7 +177,7 @@ const HomePageCentralSection = ({
               {isLoadingP && <Loading />}
               {!isLoadingP &&
                 !isErrorP &&
-                post!.slice(0, 5).map((p) => {
+                post!.slice(0, 50).map((p) => {
                   return (
                     <SinglePost
                       p={p}

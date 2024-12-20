@@ -30,7 +30,7 @@ const ProfilePage = ({
             <Col xs={12} lg={8} className="flex-grow-1">
               {!isError && !isLoading && (
                 <HeroSection
-                  profile={profile}
+                  personalProfile={profile}
                   isLoading={isLoading}
                   isError={isError}
                   APIKEY={APIKEY}
